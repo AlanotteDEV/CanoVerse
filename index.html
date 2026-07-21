@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.gstatic.com https://cdn.jsdelivr.net https://*.iubenda.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://*.iubenda.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https://*.iubenda.com; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://*.iubenda.com; frame-src https://www.google.com https://*.iubenda.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
+    <title>CanoVerse 2026 - Canosa di Puglia</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="CanoVerse 2026: il festival pop culture di Canosa di Puglia. Sabato 5 Settembre, Piazza Galluppi. Gara cosplay, torneo One Piece Card Game, stand, gadget e live drawing.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:url" content="https://canoverse.vercel.app/index.html">
+    <meta property="og:title" content="CanoVerse 2026 - Canosa di Puglia">
+    <meta property="og:description" content="Il festival pop culture di Canosa di Puglia: gara cosplay, torneo One Piece Card Game, stand, gadget e live drawing. Sabato 5 Settembre 2026, Piazza Galluppi.">
+    <meta property="og:image" content="https://canoverse.vercel.app/background.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CanoVerse 2026 - Canosa di Puglia">
+    <meta name="twitter:description" content="Il festival pop culture di Canosa di Puglia: gara cosplay, torneo One Piece Card Game, stand, gadget e live drawing. Sabato 5 Settembre 2026.">
+    <meta name="twitter:image" content="https://canoverse.vercel.app/background.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Inter e Noto Sans JP: self-hosted (nessuna richiesta a Google, nessun trasferimento IP a terzi) -->
+    <link href="src/css/fonts.css" rel="stylesheet">
+
+    <!-- FontAwesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        jp: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#f6efe0',       /* Sfondo principale (quasi nero, tinta gialla) */
+                            card: '#fffdf5',     /* Sfondo card (giallo scurissimo) */
+                            border: '#000000',   /* Bordi leggeri (giallo scuro) */
+                            muted: '#57503d',    /* Testo secondario (giallo sabbia chiaro) */
+                            accent: '#111111',   /* Testo nero inchiostro */
+                            yellow: '#FFD600',   /* Accento giallo comics */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Animazione Marquee */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scroll 25s linear infinite;
+        }
+        /* Effetto Glassmorphism */
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Disabilita scroll orizzontale */
+        body {
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(180deg, rgba(246,239,224,0.82) 0%, rgba(246,239,224,0.6) 40%, rgba(246,239,224,0.85) 100%),
+                url('background.png');
+            background-size: 130% auto;
+            background-position: center top;
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            background-blend-mode: normal;
+            min-height: 100vh;
+        }
+
+        /* Scroll fade-in minimal */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+        /* ── Stile poster brutalist ── */
+        h1, h2, h3 { font-weight: 900 !important; }
+        .bg-brand-card {
+            border: 3px solid #000 !important;
+            box-shadow: 8px 8px 0 #000;
+        }
+        a.bg-brand-yellow, button.bg-brand-yellow {
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0 #000;
+            border-radius: 0 !important;
+        }
+        a.bg-brand-yellow:hover, button.bg-brand-yellow:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 #000;
+        }
+    
+        /* leggibilità del giallo su carta */
+        .text-brand-yellow { color: #8a6d00; }
+        h2.text-brand-yellow, h4.text-brand-yellow, p.text-brand-yellow {
+            background: #FFD600; color: #111 !important;
+            display: inline-block; padding: 2px 10px;
+            border: 2px solid #000; box-shadow: 3px 3px 0 #000;
+        }
+    
+        strong.text-brand-yellow, span.text-brand-yellow.uppercase {
+            background: #FFD600; color: #111 !important;
+            display: inline-block; padding: 1px 8px;
+            border: 2px solid #000;
+        }
+        details[open] .faq-arrow { transform: rotate(45deg); }
+        details summary::-webkit-details-marker { display: none; }
+    
+        /* ── Intro splash ── */
+        #intro {
+            position: fixed; inset: 0; z-index: 100;
+            background: #f6efe0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 1.5rem; overflow: hidden;
+            animation: introOut .65s cubic-bezier(.77,0,.18,1) 2.1s forwards;
+        }
+        @keyframes introOut { to { transform: translateY(-101%); } }
+        #intro .intro-kanji {
+            font-size: clamp(5rem, 18vw, 9rem); line-height: 1;
+            color: #111; opacity: 0;
+            animation: stampIn .5s .1s cubic-bezier(.2,1.4,.4,1) forwards;
+        }
+        @keyframes stampIn {
+            0% { opacity: 0; transform: scale(2.8) rotate(-10deg); }
+            100% { opacity: 1; transform: scale(1) rotate(-3deg); }
+        }
+        #intro .intro-letter {
+            display: inline-block; opacity: 0;
+            transform: translateY(45px) rotate(8deg);
+            animation: letterIn .45s cubic-bezier(.2,1.4,.4,1) forwards;
+        }
+        @keyframes letterIn { to { opacity: 1; transform: none; } }
+        #intro .intro-sub {
+            opacity: 0; animation: letterIn .4s 1s cubic-bezier(.2,1.4,.4,1) forwards;
+        }
+        @media (prefers-reduced-motion: reduce) { #intro { display: none; } }
+    
+        .gallery-item { transition: transform .25s ease, box-shadow .25s ease, opacity 0.7s ease; }
+        .gallery-item:hover { transform: rotate(0deg) scale(1.03) !important; box-shadow: 12px 12px 0 #000 !important; z-index: 5; }
+        #lightbox.flex { display: flex; }
+    
+        .gallery-track { animation: galleryScroll 55s linear infinite; }
+        @keyframes galleryScroll { to { transform: translateX(-50%); } }
+        .gallery-strip:hover .gallery-track { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) { .gallery-track { animation: none; } }
+    
+        .team-track { animation: teamScroll 40s linear infinite; }
+        @keyframes teamScroll { to { transform: translateX(-50%); } }
+        .team-strip:hover .team-track { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) { .team-track { animation: none; } }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Festival",
+      "name": "CanoVerse 2026",
+      "startDate": "2026-09-05T20:30:00+02:00",
+      "endDate": "2026-09-06T00:30:00+02:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "isAccessibleForFree": true,
+      "image": "https://canoverse.vercel.app/background.png",
+      "description": "CanoVerse 2026: il festival pop culture di Canosa di Puglia. Gara cosplay, torneo One Piece Card Game, stand, live drawing e musica live.",
+      "location": {
+        "@type": "Place",
+        "name": "Piazza Galluppi",
+        "address": { "@type": "PostalAddress", "addressLocality": "Canosa di Puglia", "addressRegion": "BT", "addressCountry": "IT" }
+      },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": "https://canoverse.vercel.app/" }
+    }
+    </script>
+</head>
+<body class="bg-brand-bg text-brand-accent font-sans antialiased selection:bg-brand-yellow selection:text-black">
+    <!-- Intro splash -->
+    <div id="intro" aria-hidden="true">
+        <span class="intro-kanji font-jp select-none">祭</span>
+        <h2 class="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tighter text-black" style="text-shadow: 6px 6px 0 #FFD600;"><span class="intro-letter" style="animation-delay: 0.25s;">C</span><span class="intro-letter" style="animation-delay: 0.32s;">A</span><span class="intro-letter" style="animation-delay: 0.39s;">N</span><span class="intro-letter" style="animation-delay: 0.46s;">O</span><span class="intro-letter" style="animation-delay: 0.53s;">V</span><span class="intro-letter" style="animation-delay: 0.60s;">E</span><span class="intro-letter" style="animation-delay: 0.67s;">R</span><span class="intro-letter" style="animation-delay: 0.74s;">S</span><span class="intro-letter" style="animation-delay: 0.81s;">E</span></h2>
+        <p class="intro-sub bg-black text-white text-xs md:text-sm font-bold uppercase tracking-widest px-4 py-2" style="transform: rotate(-1.5deg);">Festival Pop Culture — Canosa di Puglia</p>
+    </div>
+
+
+    <!-- ══════════════════════════════════════
+         NAVBAR MINIMAL
+    ══════════════════════════════════════ -->
+    <nav class="fixed top-0 left-0 w-full bg-brand-bg border-b-4 border-black z-50 py-4 px-6 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Logo -->
+            <a href="#hero" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 group hover:text-black transition-colors text-black">
+                <span>CANOVERSE</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-jp text-black">祭</span>
+            </a>
+
+            <!-- Link -->
+            <div class="flex flex-wrap justify-center items-center gap-6 text-xs md:text-sm font-medium tracking-widest uppercase text-black/70">
+                <a href="#evento" class="hover:text-black transition-colors duration-300">L'Evento</a>
+                <a href="#programma" class="hover:text-black transition-colors duration-300">Programma</a>
+                <a href="#orari" class="hover:text-black transition-colors duration-300">Orari</a>
+                <a href="#galleria" class="hover:text-black transition-colors duration-300">Galleria</a>
+                <a href="#tcg" class="hover:text-black transition-colors duration-300">Competizioni</a>
+                <a href="#team" class="hover:text-black transition-colors duration-300">Team</a>
+                <a href="iscrizione.html" class="hover:text-black transition-colors duration-300">Iscriviti</a>
+                <a href="#contatti" class="hover:text-black transition-colors duration-300">Location</a>
+                <a href="#faq" class="hover:text-black transition-colors duration-300">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+         HERO SECTION SLEEK
+    ══════════════════════════════════════ -->
+    <header id="hero" class="relative min-h-screen flex items-center pt-36 pb-16 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <!-- Titolo manifesto -->
+            <div class="lg:col-span-7 text-left">
+                <div class="inline-flex items-center gap-3 border-[3px] border-black bg-white px-4 py-1.5 text-xs font-bold tracking-widest text-black uppercase mb-8 fade-in-up" style="transform: rotate(-2deg); box-shadow: 4px 4px 0 #000;">
+                    <span class="w-2 h-2 bg-black animate-pulse"></span>
+                    Canosa di Puglia · Piazza Galluppi
+                </div>
+                <h1 class="fade-in-up mb-8" style="transition-delay: 100ms;">
+                    <span class="block text-7xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter leading-[0.85] text-black">CANO</span>
+                    <span class="block text-7xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter leading-[0.85]" style="color:#fff; -webkit-text-stroke: 3px #111; text-shadow: 8px 8px 0 #FFD600;">VERSE</span>
+                    <span class="inline-block mt-5 bg-black text-white text-base md:text-xl font-bold uppercase tracking-widest px-4 py-2" style="transform: rotate(-1deg);">Festival Pop Culture — 2026</span>
+                </h1>
+                <p class="max-w-xl text-black text-lg md:text-xl font-light mb-10 fade-in-up" style="transition-delay: 200ms;">
+                    La pop culture atterra in Puglia. Un'esperienza immersiva tra manga, gaming, cosplay e live drawing.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5 fade-in-up" style="transition-delay: 300ms;">
+                    <a href="iscrizione.html" class="bg-brand-yellow text-black text-sm font-bold tracking-widest uppercase px-8 py-4 text-center">Registrati Ora</a>
+                    <a href="#programma" class="bg-white border-[3px] border-black text-black hover:bg-black hover:text-white text-sm font-bold tracking-widest uppercase px-8 py-4 text-center transition-colors duration-200" style="box-shadow: 5px 5px 0 #000;">Scopri il Programma</a>
+                </div>
+            </div>
+
+            <!-- Biglietto evento + countdown -->
+            <div class="lg:col-span-5 fade-in-up" style="transition-delay: 250ms;">
+                <div class="bg-white border-[3px] border-black p-8 relative" style="transform: rotate(2deg); box-shadow: 10px 10px 0 #000;">
+                    <span class="absolute -top-4 -right-4 bg-brand-yellow border-[3px] border-black text-black text-xs font-bold uppercase tracking-widest px-3 py-1" style="transform: rotate(6deg);">Free Entry</span>
+                    <p class="text-xs font-bold uppercase tracking-widest text-black/60 mb-2">Biglietto d'ingresso · 入場券</p>
+                    <p class="text-6xl font-extrabold tracking-tighter text-black leading-none mb-1">05 SET</p>
+                    <p class="text-xl font-bold text-black mb-6">2026 — Ore 20:30</p>
+                    <div class="border-t-[3px] border-dashed border-black pt-6">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-3">Countdown all'apertura</p>
+                        <div class="grid grid-cols-4 gap-2 text-center">
+                            <div class="border-[3px] border-black bg-brand-bg py-3"><span id="cd-days" class="block text-2xl font-extrabold text-black">--</span><span class="text-[10px] font-bold uppercase text-black/60">Giorni</span></div>
+                            <div class="border-[3px] border-black bg-brand-bg py-3"><span id="cd-hours" class="block text-2xl font-extrabold text-black">--</span><span class="text-[10px] font-bold uppercase text-black/60">Ore</span></div>
+                            <div class="border-[3px] border-black bg-brand-bg py-3"><span id="cd-min" class="block text-2xl font-extrabold text-black">--</span><span class="text-[10px] font-bold uppercase text-black/60">Min</span></div>
+                            <div class="border-[3px] border-black bg-brand-bg py-3"><span id="cd-sec" class="block text-2xl font-extrabold text-black">--</span><span class="text-[10px] font-bold uppercase text-black/60">Sec</span></div>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-xs text-black/60 font-medium flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Piazza Galluppi, Canosa di Puglia</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════
+         MARQUEE (Fascia Scorrevole)
+    ══════════════════════════════════════ -->
+    <div class="w-full bg-brand-yellow text-black py-3 overflow-hidden flex whitespace-nowrap border-y-4 border-black select-none">
+        <div class="animate-marquee flex items-center text-sm font-bold tracking-widest uppercase">
+            <span class="mx-4">MANGA</span><span class="mx-2">•</span>
+            <span class="mx-4">COMICS</span><span class="mx-2">•</span>
+            <span class="mx-4">TRADING CARDS</span><span class="mx-2">•</span>
+            <span class="mx-4">BOARD GAMES</span><span class="mx-2">•</span>
+            <span class="mx-4">COSPLAY</span><span class="mx-2">•</span>
+            <span class="mx-4">FIGURES</span><span class="mx-2">•</span>
+            <span class="mx-4">RETRO GAMING</span><span class="mx-2">•</span>
+            <span class="mx-4">ANIME</span><span class="mx-2">•</span>
+            <!-- Duplicato per loop -->
+            <span class="mx-4">MANGA</span><span class="mx-2">•</span>
+            <span class="mx-4">COMICS</span><span class="mx-2">•</span>
+            <span class="mx-4">TRADING CARDS</span><span class="mx-2">•</span>
+            <span class="mx-4">BOARD GAMES</span><span class="mx-2">•</span>
+            <span class="mx-4">COSPLAY</span><span class="mx-2">•</span>
+            <span class="mx-4">FIGURES</span><span class="mx-2">•</span>
+            <span class="mx-4">RETRO GAMING</span><span class="mx-2">•</span>
+            <span class="mx-4">ANIME</span><span class="mx-2">•</span>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         L'EVENTO
+    ══════════════════════════════════════ -->
+    <section id="evento" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="relative aspect-square md:aspect-[4/3] bg-brand-card border-[3px] border-black hover:border-brand-yellow overflow-hidden flex items-center justify-center group fade-in-up transition-colors duration-500">
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-bg via-transparent to-transparent z-10"></div>
+                <!-- Kanji (Pop Culture/Fumetto) come grafica principale -->
+                <div class="text-[10rem] md:text-[14rem] font-jp text-brand-border group-hover:text-brand-yellow/10 group-hover:scale-105 transition-all duration-700">
+                    漫
+                </div>
+                <div class="absolute bottom-6 left-6 z-20">
+                    <p class="text-xs font-medium tracking-widest uppercase text-brand-yellow mb-1">Concept Evento</p>
+                    <p class="text-lg font-bold group-hover:text-brand-yellow transition-colors">La pop culture a Canosa.</p>
+                </div>
+            </div>
+
+            <div class="space-y-8 fade-in-up">
+                <div class="text-xs font-bold tracking-widest text-brand-muted uppercase flex items-center gap-4">
+                    <span class="w-8 h-[1px] bg-brand-yellow"></span> Info
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight">
+                    Un'esperienza<br>visiva e <span class="text-brand-yellow">ludica</span>.
+                </h2>
+                <p class="text-brand-muted leading-relaxed font-light text-lg">
+                    Il <strong>CanoVerse 2026</strong> è molto più di una fiera. Nasce per creare un punto di forte aggregazione per gli appassionati della cultura nerd, del gaming e del cosplay: l'intera area sarà scenografata con poster e illustrazioni dedicate alle icone più celebri di anime e manga.
+                </p>
+                <div class="space-y-3 pt-2">
+                    <div class="flex items-start gap-3 text-sm text-brand-muted">
+                        <i class="fa-solid fa-clock text-brand-yellow mt-1 w-5"></i>
+                        <span><strong class="text-black">Ore 20:30</strong> — Apertura e <strong class="text-black">prima serata</strong>: sigle anime per l'accoglienza e l'esplorazione degli stand</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-brand-muted">
+                        <i class="fa-solid fa-music text-brand-yellow mt-1 w-5"></i>
+                        <span><strong class="text-black">Musica live</strong> a cura di <strong class="text-black">Musikeria</strong>, per accompagnare la serata</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-brand-muted">
+                        <i class="fa-solid fa-compact-disc text-brand-yellow mt-1 w-5"></i>
+                        <span><strong class="text-black">Tarda serata</strong> — musica commerciale fino alla chiusura (ore 00:30 ipotizzata)</span>
+                    </div>
+
+                                </div>
+                <div class="grid grid-cols-2 gap-8 pt-6 border-t-4 border-black">
+                    <div>
+                        <p class="text-2xl font-bold flex items-center gap-3">
+                            <i class="fa-solid fa-ticket text-brand-yellow text-lg"></i> Free
+                        </p>
+                        <p class="text-xs text-brand-muted uppercase tracking-widest mt-2">Ingresso Libero</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold flex items-center gap-3">
+                            <i class="fa-solid fa-trophy text-brand-yellow text-lg"></i> Premi
+                        </p>
+                        <p class="text-xs text-brand-muted uppercase tracking-widest mt-2">Cosplay & TCG</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PROGRAMMA & ATTRAZIONI
+    ══════════════════════════════════════ -->
+    <section id="programma" class="py-24 px-6 border-t-4 border-black bg-[#efe4c8]/95">
+        <div class="max-w-6xl mx-auto">
+            
+            <div class="mb-16 fade-in-up">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase">Catalogo — Attrazioni</h2>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">IL NOSTRO<br>PROGRAMMA</h3>
+            </div>
+
+            <div class="space-y-6">
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
+                    <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">01</span>
+                        <div class="col-span-9 md:col-span-3">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Cosplay & Premi</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Gare Cosplay</h3>
+                        </div>
+                        <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Indossa il tuo costume e vivi la serata: giudici in incognito ti osserveranno e valuteranno personalmente durante l'evento, con premiazione finale a fine giornata.</p>
+                        <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
+                            <span class="text-4xl font-jp text-black/15">装</span>
+                            <div class="flex flex-col md:items-end gap-1"><a href="iscrizione.html" class="text-xs font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline">Iscriviti</a> <a href="cosplay-iscritti.html" class="text-xs font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline">Vedi iscritti</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(0.4deg);">
+                    <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">02</span>
+                        <div class="col-span-9 md:col-span-3">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Gaming & eSports</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Tornei TCG</h3>
+                        </div>
+                        <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Sfida i migliori duellanti. Tornei ufficiali per Pokémon, Yu-Gi-Oh!, Magic e One Piece. Iscrizione obbligatoria, posti limitati.</p>
+                        <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
+                            <span class="text-4xl font-jp text-black/15">遊</span>
+                            <div class="flex flex-col md:items-end gap-1"><a href="#tcg" class="text-xs font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline">Scopri i tornei</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
+                    <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">03</span>
+                        <div class="col-span-9 md:col-span-3">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Art & Live Drawing</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Illustrazioni & Live Drawing</h3>
+                        </div>
+                        <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Postazione dedicata alle arti visive: mostre estemporanee e sessioni di disegno dal vivo aperte al pubblico, a cura dell'illustratore Nicola (Nico45).</p>
+                        <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
+                            <span class="text-4xl font-jp text-black/15">描</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">Live Drawing & Mostre</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(0.4deg);">
+                    <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">04</span>
+                        <div class="col-span-9 md:col-span-3">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Cosplay & Cosmaking</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">CosTalk & Area Cosmaking</h3>
+                        </div>
+                        <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Area cosplay a cura di Martina Tundre: CosTalk alle 21, dove verranno presentate le basi del cosplay con possibilità di visionare alcuni lavori di cosmaking realizzati con tecniche diverse. A seguire Q&A per tutti i dubbi e le curiosità di questo bellissimo ma a volte complesso mondo.</p>
+                        <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
+                            <span class="text-4xl font-jp text-black/15">布</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">CosTalk ore 21:00</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
+                    <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">05</span>
+                        <div class="col-span-9 md:col-span-3">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Shopping & Gadget</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Nerd Shop & Gadget</h3>
+                        </div>
+                        <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Stand commerciali con prodotti a tema nerd e accessori artigianali personalizzati, più una postazione di tatuaggi temporanei a tema anime/manga a cura di Alessandra (Fai Da Tela).</p>
+                        <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
+                            <span class="text-4xl font-jp text-black/15">店</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">Gadget & Tattoo Temporanei</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(0.4deg);">
+                    <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">06</span>
+                        <div class="col-span-9 md:col-span-3">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Boardgames & Socialità</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Area Gioco da Tavolo</h3>
+                        </div>
+                        <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Furore Normannorum, associazione ludica che diffonde il gioco da tavolo come strumento di socializzazione, mette a disposizione una selezione di titoli associativi per un'area di gioco assistito, guidando i partecipanti alla scoperta di dinamiche e regolamenti.</p>
+                        <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
+                            <span class="text-4xl font-jp text-black/15">会</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">Gioco Assistito</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
+                    <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">07</span>
+                        <div class="col-span-9 md:col-span-3">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Live Show & Musica</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Musica Live</h3>
+                        </div>
+                        <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Musica dal vivo a cura di Musikeria, per accompagnare l'intera serata: dalle sigle anime dell'accoglienza fino alla musica commerciale di tarda serata.</p>
+                        <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
+                            <span class="text-4xl font-jp text-black/15">音</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">Musica Live</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         TIMETABLE (Scaletta Serata)
+    ══════════════════════════════════════ -->
+    <section id="orari" class="py-24 px-6 border-t-4 border-black">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-16 fade-in-up">
+                <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Scaletta — 時間割</h2>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">LA SERATA,<br>ORA PER ORA</h3>
+            </div>
+            <div class="relative border-l-4 border-black ml-3 md:ml-6 space-y-10 pl-8 md:pl-12 py-2">
+                <div class="relative fade-in-up">
+                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
+                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(-1deg);">20:30</span>
+                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Apertura</h4>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Accoglienza con sigle anime ed esplorazione libera degli stand: nerd shop, illustrazioni & live drawing, area gioco da tavolo e tatuaggi temporanei.</p>
+                </div>
+                <div class="relative fade-in-up">
+                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
+                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(1deg);">21:00</span>
+                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">CosTalk & Q&A</h4>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Le basi del cosplay e i lavori di cosmaking con Martina Tundre. A seguire domande e risposte aperte al pubblico.</p>
+                </div>
+                <div class="relative fade-in-up">
+                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
+                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(-1deg);">In serata</span>
+                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Torneo One Piece Card Game</h4>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Formato Swiss con finale a eliminazione diretta, giudici certificati al tavolo.</p>
+                </div>
+                <div class="relative fade-in-up">
+                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
+                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(1deg);">Tutta la sera</span>
+                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Gara Cosplay</h4>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">I giudici in incognito circolano tra il pubblico e valutano i costumi durante l'intera serata.</p>
+                </div>
+                <div class="relative fade-in-up">
+                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
+                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(-1deg);">Tarda serata</span>
+                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Musica commerciale</h4>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Musikeria accompagna la chiusura con musica live e commerciale.</p>
+                </div>
+                <div class="relative fade-in-up">
+                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
+                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(1deg);">Fine serata</span>
+                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Premiazioni</h4>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Premiazione della gara cosplay e del torneo TCG.</p>
+                </div>
+                <div class="relative fade-in-up">
+                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
+                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(-1deg);">00:30</span>
+                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Chiusura</h4>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Orario di chiusura indicativo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         TORNEI TCG (Grid Dettagliata)
+    ══════════════════════════════════════ -->
+    <section id="tcg" class="py-24 px-6 border-t-4 border-black max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 fade-in-up">
+            <div>
+                <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Competizioni</h2>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">LE NOSTRE<br>COMPETIZIONI</h3>
+            </div>
+            <p class="text-brand-muted text-sm md:text-base font-light max-w-lg">
+Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo ufficiale One Piece Card Game. Iscrizione obbligatoria per entrambe.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl">
+
+            <!-- Gara Cosplay -->
+            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 8px 8px 0 #000;" style="transition-delay: 200ms;">
+                <div class="h-32 bg-brand-card flex items-center justify-center relative border-b-[3px] border-black group-hover:border-brand-yellow overflow-hidden transition-colors">
+                    <span class="absolute text-[8rem] font-jp text-black/[0.02] group-hover:text-brand-yellow/[0.05] transition-colors">装</span> <!-- Costume -->
+                    <h4 class="relative z-10 font-bold tracking-widest text-lg group-hover:text-brand-yellow transition-colors">GARA COSPLAY</h4>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Categorie</span> <strong class="text-black">Singolo & Gruppo</strong>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Giudici</span> <strong class="text-black">In incognito</strong>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Premiazione</span> <strong class="text-black">Fine serata</strong>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Iscritti</span>
+                        <strong class="text-black">
+                            <span id="cosplay-count">—</span>
+                        </strong>
+                    </div>
+                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-black text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
+                        Iscriviti
+                    </a>
+                    <a href="cosplay-iscritti.html" class="block text-center border-2 border-black/30 text-brand-muted hover:text-brand-yellow hover:border-brand-yellow text-xs font-bold uppercase tracking-widest py-3 transition-colors">
+                        <i class="fa-solid fa-list mr-2"></i>Vedi Iscritti
+                    </a>
+                </div>
+            </div>
+
+            <!-- One Piece -->
+            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 8px 8px 0 #000;" style="transition-delay: 300ms;">
+                <div class="h-32 bg-brand-card flex items-center justify-center relative border-b-[3px] border-black group-hover:border-brand-yellow overflow-hidden transition-colors">
+                    <span class="absolute text-[8rem] font-jp text-black/[0.02] group-hover:text-brand-yellow/[0.05] transition-colors">海</span> <!-- Mare/Pirata -->
+                    <h4 class="relative z-10 font-bold tracking-widest text-lg group-hover:text-brand-yellow transition-colors">ONE PIECE CG</h4>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Formato</span> <strong class="text-black">Standard</strong>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Quota Iscrizione</span> <strong class="text-black">€12</strong>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Posti</span>
+                        <strong class="text-black">
+                            <span id="onepiece-count">—</span> / 16
+                        </strong>
+                    </div>
+                    <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span class="pt-0.5">Premio Partecipazione</span>
+                        <strong class="text-black text-right">Demo Deck Random<br><span class="text-brand-muted font-normal text-[11px]">Luffy Red ST21 / Zoro Green OP12</span></strong>
+                    </div>
+                    <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span class="pt-0.5">Premi</span>
+                        <strong class="text-black text-right">1° 12 buste<br>2° 8 buste<br>3° 4 buste</strong>
+                    </div>
+                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-black text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
+                        Iscriviti
+                    </a>
+                    <a href="partecipanti.html" class="block text-center border-2 border-black/30 text-brand-muted hover:text-brand-yellow hover:border-brand-yellow text-xs font-bold uppercase tracking-widest py-3 transition-colors">
+                        <i class="fa-solid fa-list mr-2"></i>Vedi Iscritti
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 6px 6px 0 #000;">
+                <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Come funziona la Gara Cosplay</strong>
+                <p>Niente sfilata né regolamento formale: dei giudici in incognito circoleranno tra il pubblico durante tutta la serata, osservando e valutando personalmente i costumi. La premiazione avverrà a fine giornata. Categorie Singolo e Gruppo.</p>
+            </div>
+            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 6px 6px 0 #000;">
+                <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Regolamento Torneo TCG</strong>
+                <p>Mazzi validati secondo il ban-list ufficiale vigente al 5 Settembre 2026. Ogni giocatore deve portare il proprio mazzo e i token. Formato Swiss, finale a eliminazione diretta. Giudici certificati presenti. Ogni partecipante riceve, a prescindere dal mazzo con cui gioca, un demo deck in omaggio assegnato a random tra Luffy Red (ST21) e Zoro Green (OP12). Iscrizione €12. Premi: 1° posto 12 buste, 2° posto 8 buste, 3° posto 4 buste.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         GALLERIA (Scorsa Edizione)
+    ══════════════════════════════════════ -->
+    <section id="galleria" class="py-24 px-6 border-t-4 border-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 fade-in-up">
+                <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Album — 写真</h2>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">LA SCORSA<br>EDIZIONE</h3>
+                <p class="text-brand-muted text-sm md:text-base font-light max-w-lg mt-4">Un assaggio dell'atmosfera del festival: cosplay, tavoli da gioco e serata in piazza.</p>
+            </div>
+            <div class="gallery-strip overflow-hidden -mx-6 px-6 py-4">
+                <div class="gallery-track flex w-max">
+                    <div class="flex gap-6 pr-6">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-2.5deg); transition-delay: 0ms;" data-src="gallery/foto-01.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(1.25deg);"></span>
+                    <img src="gallery/foto-01.jpg" alt="Festival — foto 1" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 01 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.8deg); transition-delay: 100ms;" data-src="gallery/foto-02.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.9deg);"></span>
+                    <img src="gallery/foto-02.jpg" alt="Festival — foto 2" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 02 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.2deg); transition-delay: 200ms;" data-src="gallery/foto-03.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.6deg);"></span>
+                    <img src="gallery/foto-03.jpg" alt="Festival — foto 3" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 03 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(2.6deg); transition-delay: 300ms;" data-src="gallery/foto-04.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-1.3deg);"></span>
+                    <img src="gallery/foto-04.jpg" alt="Festival — foto 4" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 04 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.8deg); transition-delay: 0ms;" data-src="gallery/foto-05.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.9deg);"></span>
+                    <img src="gallery/foto-05.jpg" alt="Festival — foto 5" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 05 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.2deg); transition-delay: 100ms;" data-src="gallery/foto-06.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.6deg);"></span>
+                    <img src="gallery/foto-06.jpg" alt="Festival — foto 6" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 06 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-2.2deg); transition-delay: 200ms;" data-src="gallery/foto-07.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(1.1deg);"></span>
+                    <img src="gallery/foto-07.jpg" alt="Festival — foto 7" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 07 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.6deg); transition-delay: 300ms;" data-src="gallery/foto-08.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.8deg);"></span>
+                    <img src="gallery/foto-08.jpg" alt="Festival — foto 8" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 08 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.4deg); transition-delay: 0ms;" data-src="gallery/foto-09.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.7deg);"></span>
+                    <img src="gallery/foto-09.jpg" alt="Festival — foto 9" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 09 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(2.2deg); transition-delay: 100ms;" data-src="gallery/foto-10.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-1.1deg);"></span>
+                    <img src="gallery/foto-10.jpg" alt="Festival — foto 10" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 10 —</figcaption>
+                </figure>
+            
+                    </div>
+                    <div class="flex gap-6 pr-6" aria-hidden="true">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-2.5deg); transition-delay: 0ms;" data-src="gallery/foto-01.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(1.25deg);"></span>
+                    <img src="gallery/foto-01.jpg" alt="Festival — foto 1" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 01 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.8deg); transition-delay: 100ms;" data-src="gallery/foto-02.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.9deg);"></span>
+                    <img src="gallery/foto-02.jpg" alt="Festival — foto 2" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 02 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.2deg); transition-delay: 200ms;" data-src="gallery/foto-03.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.6deg);"></span>
+                    <img src="gallery/foto-03.jpg" alt="Festival — foto 3" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 03 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(2.6deg); transition-delay: 300ms;" data-src="gallery/foto-04.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-1.3deg);"></span>
+                    <img src="gallery/foto-04.jpg" alt="Festival — foto 4" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 04 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.8deg); transition-delay: 0ms;" data-src="gallery/foto-05.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.9deg);"></span>
+                    <img src="gallery/foto-05.jpg" alt="Festival — foto 5" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 05 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.2deg); transition-delay: 100ms;" data-src="gallery/foto-06.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.6deg);"></span>
+                    <img src="gallery/foto-06.jpg" alt="Festival — foto 6" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 06 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-2.2deg); transition-delay: 200ms;" data-src="gallery/foto-07.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(1.1deg);"></span>
+                    <img src="gallery/foto-07.jpg" alt="Festival — foto 7" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 07 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.6deg); transition-delay: 300ms;" data-src="gallery/foto-08.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.8deg);"></span>
+                    <img src="gallery/foto-08.jpg" alt="Festival — foto 8" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 08 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.4deg); transition-delay: 0ms;" data-src="gallery/foto-09.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.7deg);"></span>
+                    <img src="gallery/foto-09.jpg" alt="Festival — foto 9" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 09 —</figcaption>
+                </figure>
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(2.2deg); transition-delay: 100ms;" data-src="gallery/foto-10.jpg">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-1.1deg);"></span>
+                    <img src="gallery/foto-10.jpg" alt="Festival — foto 10" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 10 —</figcaption>
+                </figure>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox galleria -->
+    <div id="lightbox" class="hidden fixed inset-0 z-[90] bg-black/90 items-center justify-center p-4 md:p-10">
+        <button id="lb-close" class="absolute top-5 right-5 bg-brand-yellow border-[3px] border-black text-black w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 4px 4px 0 #000;">✕</button>
+        <button id="lb-prev" class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 bg-white border-[3px] border-black text-black w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 4px 4px 0 #000;">‹</button>
+        <button id="lb-next" class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 bg-white border-[3px] border-black text-black w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 4px 4px 0 #000;">›</button>
+        <img id="lb-img" src="" alt="Foto ingrandita" class="max-h-full max-w-full border-[3px] border-black bg-white p-2" style="box-shadow: 12px 12px 0 #000;">
+    </div>
+
+    <!-- ══════════════════════════════════════
+         ORGANIZZATORI (Team)
+    ══════════════════════════════════════ -->
+    <section id="team" class="py-24 px-6 border-t-4 border-black max-w-6xl mx-auto">
+        <div class="mb-16 fade-in-up">
+            <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Chi c'è dietro le quinte</h2>
+            <h3 class="text-3xl md:text-4xl font-bold tracking-tight">ORGANIZZATORI</h3>
+        </div>
+
+        <div class="team-strip overflow-hidden -mx-6 px-6 py-4">
+            <div class="team-track flex w-max">
+                <div class="flex gap-8 pr-8">
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(-1.5deg);">
+                <img src="manbaga.png" alt="Logo Manbaga" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Antonio Lapia <span class="text-brand-muted font-normal text-sm">(Manbaga)</span></h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Area Commerciale e TCG</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Vendita dei prodotti della sua fumetteria e responsabile dell'area dei giochi di carte collezionabili.</p>
+            </div>
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(1.5deg);">
+                <img src="Nico45Art-Photoroom.png" alt="Logo Nico45" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Nicola <span class="text-brand-muted font-normal text-sm">(Nico45)</span></h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Illustrazione</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Responsabile dello spazio espositivo di arti visive e delle sessioni di disegno dal vivo per il pubblico.</p>
+            </div>
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(-1.5deg);">
+                <img src="faidatela.png" alt="Logo Fai Da Tela" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Alessandra <span class="text-brand-muted font-normal text-sm">(Fai Da Tela)</span></h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Tatuaggi Temporanei e Gadget</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Responsabile della postazione tatuaggi temporanei a tema anime/manga e della vendita di accessori artigianali.</p>
+            </div>
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(1.5deg);">
+                <img src="furore.png" alt="Logo Furore Normannorum" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Furore Normannorum</h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Associazione Ludica</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Associazione ludica che opera con l'obiettivo di diffondere il gioco da tavolo come strumento di socializzazione. Durante la manifestazione mette a disposizione dei giocatori una selezione di titoli associativi per offrire al pubblico un'area di gioco assistito, dove i partecipanti verranno guidati alla scoperta dei giochi, illustrandone dinamiche e regolamenti.</p>
+            </div>
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(-1.5deg);">
+                <img src="Tundre.png" alt="Logo Tundre" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Martina <span class="text-brand-muted font-normal text-sm">(Tundre)</span></h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Settore Cosmaking</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Responsabile dell'area espositiva dedicata alla manifattura dei costumi e all'interazione con il pubblico.</p>
+            </div>
+        
+                </div>
+                <div class="flex gap-8 pr-8" aria-hidden="true">
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(-1.5deg);">
+                <img src="manbaga.png" alt="Logo Manbaga" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Antonio Lapia <span class="text-brand-muted font-normal text-sm">(Manbaga)</span></h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Area Commerciale e TCG</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Vendita dei prodotti della sua fumetteria e responsabile dell'area dei giochi di carte collezionabili.</p>
+            </div>
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(1.5deg);">
+                <img src="Nico45Art-Photoroom.png" alt="Logo Nico45" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Nicola <span class="text-brand-muted font-normal text-sm">(Nico45)</span></h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Illustrazione</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Responsabile dello spazio espositivo di arti visive e delle sessioni di disegno dal vivo per il pubblico.</p>
+            </div>
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(-1.5deg);">
+                <img src="faidatela.png" alt="Logo Fai Da Tela" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Alessandra <span class="text-brand-muted font-normal text-sm">(Fai Da Tela)</span></h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Tatuaggi Temporanei e Gadget</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Responsabile della postazione tatuaggi temporanei a tema anime/manga e della vendita di accessori artigianali.</p>
+            </div>
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(1.5deg);">
+                <img src="furore.png" alt="Logo Furore Normannorum" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Furore Normannorum</h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Associazione Ludica</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Associazione ludica che opera con l'obiettivo di diffondere il gioco da tavolo come strumento di socializzazione. Durante la manifestazione mette a disposizione dei giocatori una selezione di titoli associativi per offrire al pubblico un'area di gioco assistito, dove i partecipanti verranno guidati alla scoperta dei giochi, illustrandone dinamiche e regolamenti.</p>
+            </div>
+            <div class="bg-brand-card p-6 fade-in-up min-w-[280px] max-w-[320px] snap-start flex-shrink-0" style="transform: rotate(-1.5deg);">
+                <img src="Tundre.png" alt="Logo Tundre" class="h-16 w-auto object-contain mb-4">
+                <h4 class="font-bold text-lg">Martina <span class="text-brand-muted font-normal text-sm">(Tundre)</span></h4>
+                <p class="text-xs text-brand-yellow uppercase tracking-widest mt-1 mb-3">Settore Cosmaking</p>
+                <p class="text-sm text-brand-muted font-light leading-relaxed">Responsabile dell'area espositiva dedicata alla manifattura dei costumi e all'interazione con il pubblico.</p>
+            </div>
+        
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         LOCATION & MAPPA
+    ══════════════════════════════════════ -->
+    <section id="contatti" class="py-24 px-6 border-t-4 border-black">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center fade-in-up">
+            
+            <div class="space-y-8">
+                <div class="text-xs font-bold tracking-widest text-brand-yellow uppercase flex items-center gap-4">
+                    <span class="w-8 h-[1px] bg-brand-yellow"></span> 所在地 · Location
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight">
+                    Dove si tiene<br>l'evento.
+                </h2>
+                <p class="text-brand-muted text-lg font-light leading-relaxed">
+                    L'evento si tiene in <strong class="text-black">Piazza Galluppi</strong>, Canosa di Puglia. Canosa di Puglia è facilmente raggiungibile in auto tramite l'autostrada A14; per chi viaggia in treno sono attivi servizi navetta dalle stazioni limitrofe.
+                </p>
+
+                <div class="space-y-4 pt-4 text-sm">
+                    <div class="flex items-center gap-4 text-brand-muted hover:text-brand-yellow transition-colors cursor-pointer">
+                        <i class="fa-solid fa-location-dot text-lg w-6"></i>
+                        <span>Piazza Galluppi, Canosa di Puglia</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-brand-muted hover:text-brand-yellow transition-colors cursor-pointer">
+                        <i class="fa-solid fa-envelope text-lg w-6"></i>
+                        <span>trajan.comic.cosplay@gmail.com</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-brand-muted hover:text-brand-yellow transition-colors cursor-pointer">
+                        <i class="fa-solid fa-phone text-lg w-6"></i>
+                        <span>+39 389 952 5792</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-brand-muted hover:text-brand-yellow transition-colors cursor-pointer">
+                        <i class="fa-brands fa-instagram text-lg w-6"></i>
+                        <span>@arcomix.games_cosplay</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mappa Google Embed: bloccata da Iubenda Cookie Solution finché l'utente non presta consenso -->
+            <div class="bg-brand-card border-[3px] border-black hover:border-brand-yellow transition-colors duration-300 p-2">
+                <iframe
+                    class="_iub_cs_activate w-full h-[360px] block border-0"
+                    src="about:blank"
+                    suppressedsrc="https://www.google.com/maps?q=Piazza+Galluppi%2C+Canosa+di+Puglia%2C+Italia&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Location CanoVerse 2026"></iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════ -->
+    <section id="faq" class="py-24 px-6 border-t-4 border-black bg-[#efe4c8]/95">
+        <div class="max-w-3xl mx-auto">
+            <div class="mb-16 fade-in-up">
+                <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Domande Frequenti</h2>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">FAQ</h3>
+            </div>
+            <div class="space-y-5">
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(-0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                        Quanto costa l'ingresso?
+                        <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Niente biglietto: l'ingresso è <strong>gratuito</strong> per tutti. L'iscrizione serve solo per partecipare alla gara cosplay o al torneo One Piece Card Game.</p>
+                </details>
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                        Devo iscrivermi per partecipare?
+                        <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Solo se vuoi gareggiare: gara cosplay e torneo TCG richiedono l'iscrizione tramite il form ufficiale di questa pagina. Per visitare l'evento basta presentarsi.</p>
+                </details>
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(-0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                        Come arrivo a Piazza Galluppi?
+                        <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Canosa di Puglia è facilmente raggiungibile in auto tramite l'autostrada A14; per chi viaggia in treno sono attivi servizi navetta dalle stazioni limitrofe. Piazza Galluppi si trova nel centro cittadino.</p>
+                </details>
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                        Posso venire in costume con oggetti di scena?
+                        <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Certo, i cosplay sono i benvenuti! Gli oggetti di scena sono ammessi purché non pericolosi: niente lame reali o materiali contundenti. In caso di dubbi scrivici prima a trajan.comic.cosplay@gmail.com.</p>
+                </details>
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(-0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                        Cosa serve per il torneo One Piece?
+                        <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Il tuo mazzo e i token, validati secondo la ban-list ufficiale vigente al 5 Settembre 2026. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve un demo deck in omaggio.</p>
+                </details>
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                        A che ora finisce l'evento?
+                        <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">La chiusura è prevista indicativamente per le 00:30.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SPONSOR (Minimal)
+    ══════════════════════════════════════ -->
+    <section class="py-16 border-t-4 border-black bg-[#efe4c8]/95 text-center px-6">
+        <div class="max-w-6xl mx-auto fade-in-up">
+            <h4 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-8">Partner e Sponsor</h4>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">RENTAL POINT</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">FORGE TRAINING STUDIO</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">CASA DEL CAFFÈ</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">BABY SHOP</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">VENERE PROFUMERIA</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">URBAN STORE</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">DIGITAL PRINT</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">MUSIKERIA</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════ -->
+    <footer class="border-t-4 border-black bg-brand-bg pt-16 pb-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-brand-muted font-light">
+            <div class="flex items-center gap-2">
+                <span class="text-brand-yellow font-bold">CANOVERSE</span>
+                <span class="mx-2 opacity-30">|</span>
+                <span>© 2026 Canosa di Puglia. Tutti i diritti riservati.</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="https://www.iubenda.com/privacy-policy/98185773" class="iubenda-white iubenda-noiframe iubenda-embed hover:text-brand-yellow transition-colors" title="Privacy Policy" target="_blank">Privacy Policy</a>
+                <a href="https://www.iubenda.com/privacy-policy/98185773/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed hover:text-brand-yellow transition-colors" title="Cookie Policy" target="_blank">Cookie Policy</a>
+                <a href="#" class="iubenda-cs-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════
+         SCRIPT
+    ══════════════════════════════════════ -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="src/js/firebase-config.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="src/js/formHandler.js"></script>
+    <script src="src/js/scrollObserver.js"></script>
+    <script src="src/js/navigation.js"></script>
+    <script>
+        function initMovingBackground() {
+            const body = document.body;
+            const maxShift = 150;
+            const updateBackground = () => {
+                const scrollY = window.scrollY;
+                const shift = Math.min(scrollY * 0.25, maxShift);
+                body.style.backgroundPosition = `center calc(${shift}px)`;
+            };
+            window.addEventListener('scroll', updateBackground, { passive: true });
+            updateBackground();
+        }
+
+        initScrollAnimations();
+        initSmoothScrollLinks();
+        initMovingBackground();
+
+        db.collection('registrations')
+            .where('category', '==', 'tcg_onepiece')
+            .onSnapshot((snapshot) => {
+                const el = document.getElementById('onepiece-count');
+                if (el) el.textContent = snapshot.size;
+            });
+
+        db.collection('registrations')
+            .where('category', 'in', ['cosplay_singolo', 'cosplay_gruppo'])
+            .onSnapshot((snapshot) => {
+                const el = document.getElementById('cosplay-count');
+                if (el) el.textContent = snapshot.size;
+            });
+    </script>
+
+    <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    <script>
+        (function () {
+            var target = new Date('2026-09-05T20:30:00+02:00').getTime();
+            function pad(n) { return String(n).padStart(2, '0'); }
+            function tick() {
+                var d = Math.max(0, target - Date.now());
+                var el = function (id) { return document.getElementById(id); };
+                if (!el('cd-days')) return;
+                el('cd-days').textContent = Math.floor(d / 86400000);
+                el('cd-hours').textContent = pad(Math.floor(d / 3600000) % 24);
+                el('cd-min').textContent = pad(Math.floor(d / 60000) % 60);
+                el('cd-sec').textContent = pad(Math.floor(d / 1000) % 60);
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
+    </script>
+    <script>
+        (function () {
+            var intro = document.getElementById('intro');
+            if (!intro) return;
+            document.body.style.overflow = 'hidden';
+            setTimeout(function () {
+                intro.remove();
+                document.body.style.overflow = '';
+            }, 2850);
+        })();
+    </script>
+    <script>
+        (function () {
+            var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+            var lb = document.getElementById('lightbox');
+            var img = document.getElementById('lb-img');
+            if (!lb || !items.length) return;
+            var cur = 0;
+            function show(i) {
+                cur = (i + items.length) % items.length;
+                img.src = items[cur].getAttribute('data-src');
+            }
+            function open(i) { show(i); lb.classList.remove('hidden'); lb.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+            function close() { lb.classList.add('hidden'); lb.classList.remove('flex'); document.body.style.overflow = ''; }
+            items.forEach(function (el, i) { el.addEventListener('click', function () { open(i); }); });
+            document.getElementById('lb-close').addEventListener('click', close);
+            document.getElementById('lb-prev').addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
+            document.getElementById('lb-next').addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
+            lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+            document.addEventListener('keydown', function (e) {
+                if (lb.classList.contains('hidden')) return;
+                if (e.key === 'Escape') close();
+                if (e.key === 'ArrowLeft') show(cur - 1);
+                if (e.key === 'ArrowRight') show(cur + 1);
+            });
+        })();
+    </script>
+</body>
+</html>

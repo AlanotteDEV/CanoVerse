@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.gstatic.com https://cdn.jsdelivr.net https://*.iubenda.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://*.iubenda.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https://*.iubenda.com; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://*.iubenda.com; frame-src https://www.google.com https://*.iubenda.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
+    <title>Iscritti Torneo One Piece — CanoVerse 2026</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Lista aggiornata in tempo reale degli iscritti al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:url" content="https://canoverse.vercel.app/partecipanti.html">
+    <meta property="og:title" content="Iscritti Torneo One Piece — CanoVerse 2026">
+    <meta property="og:description" content="Lista aggiornata in tempo reale degli iscritti al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
+    <meta property="og:image" content="https://canoverse.vercel.app/background.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Iscritti Torneo One Piece — CanoVerse 2026">
+    <meta name="twitter:description" content="Lista aggiornata in tempo reale degli iscritti al Torneo One Piece Card Game di CanoVerse 2026.">
+    <meta name="twitter:image" content="https://canoverse.vercel.app/background.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="src/css/fonts.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        jp: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#f6efe0',
+                            card: '#fffdf5',
+                            border: '#000000',
+                            muted: '#57503d',
+                            accent: '#111111',
+                            yellow: '#FFD600',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            overflow-x: hidden;
+            background-color: #f6efe0;
+            background-image:
+                linear-gradient(180deg, rgba(246,239,224,0.82) 0%, rgba(246,239,224,0.6) 40%, rgba(246,239,224,0.85) 100%),
+                url('background.png');
+            background-size: 130% auto;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-blend-mode: normal;
+            min-height: 100vh;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    
+        /* ── Stile poster brutalist ── */
+        h1, h2, h3 { font-weight: 900 !important; }
+        .bg-brand-card {
+            border: 3px solid #000 !important;
+            box-shadow: 8px 8px 0 #000;
+        }
+        a.bg-brand-yellow, button.bg-brand-yellow {
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0 #000;
+            border-radius: 0 !important;
+        }
+        a.bg-brand-yellow:hover, button.bg-brand-yellow:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 #000;
+        }
+    
+        /* leggibilità del giallo su carta */
+        .text-brand-yellow { color: #8a6d00; }
+        h2.text-brand-yellow, h4.text-brand-yellow, p.text-brand-yellow {
+            background: #FFD600; color: #111 !important;
+            display: inline-block; padding: 2px 10px;
+            border: 2px solid #000; box-shadow: 3px 3px 0 #000;
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-accent font-sans antialiased">
+
+    <nav class="fixed top-0 left-0 w-full bg-brand-bg border-b-4 border-black z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-black hover:text-black/60 transition-colors">
+                <i class="fa-solid fa-arrow-left text-sm"></i>
+                <span>CANOVERSE</span>
+            </a>
+            <a href="iscrizione.html" class="bg-brand-yellow text-black text-xs font-bold tracking-widest uppercase px-5 py-2 hover:bg-yellow-400 transition-colors">
+                Iscriviti
+            </a>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 px-6 max-w-3xl mx-auto">
+
+        <!-- Header -->
+        <div class="mb-12">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl font-jp text-black/15">海</span>
+                <div>
+                    <p class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-1">Torneo TCG</p>
+                    <h1 class="text-3xl md:text-4xl font-bold tracking-tight">One Piece Card Game</h1>
+                </div>
+            </div>
+            <p class="text-brand-muted text-sm mt-4">Lista aggiornata in tempo reale degli iscritti al torneo.</p>
+            <p class="text-brand-muted text-xs mt-2">Nome e personaggio/gioco scelto sono resi pubblici in questa pagina agli iscritti al torneo. Consulta la <a href="https://www.iubenda.com/privacy-policy/98185773" class="iubenda-white iubenda-noiframe iubenda-embed underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Privacy Policy</a> per i dettagli sul trattamento dei tuoi dati.</p>
+        </div>
+
+        <!-- Area Admin -->
+        <div class="mb-10 p-4 bg-brand-card/50 border border-brand-border">
+            <div id="admin-logged-out" class="flex flex-wrap items-center gap-2">
+                <input id="admin-email" type="email" placeholder="Email admin" class="bg-brand-bg border border-brand-border text-xs p-2 text-black placeholder:text-brand-muted focus:outline-none focus:border-brand-yellow flex-1 min-w-[140px]">
+                <input id="admin-password" type="password" placeholder="Password" class="bg-brand-bg border border-brand-border text-xs p-2 text-black placeholder:text-brand-muted focus:outline-none focus:border-brand-yellow flex-1 min-w-[120px]">
+                <button id="admin-login-btn" class="text-xs font-bold uppercase tracking-widest border border-brand-border px-3 py-2 hover:border-brand-yellow hover:text-brand-yellow transition-colors">Accedi come Admin</button>
+            </div>
+            <div id="admin-logged-in" class="hidden items-center gap-3">
+                <span class="text-xs text-brand-muted">Admin: <span id="admin-email-label" class="text-brand-yellow"></span></span>
+                <button id="admin-logout-btn" class="text-xs font-bold uppercase tracking-widest border border-brand-border px-3 py-2 hover:border-red-400 hover:text-red-400 transition-colors">Esci</button>
+            </div>
+            <p id="admin-error" class="hidden text-xs text-red-400 mt-2"></p>
+        </div>
+
+        <!-- Contatore posti -->
+        <div class="mb-10 p-6 bg-brand-card border border-brand-border flex items-center justify-between">
+            <div>
+                <p class="text-xs font-bold tracking-widest text-brand-muted uppercase mb-1">Posti occupati</p>
+                <p class="text-4xl font-bold">
+                    <span id="count">—</span>
+                    <span class="text-brand-muted font-light text-2xl"> / 16</span>
+                </p>
+            </div>
+            <div id="status-badge" class="text-xs font-bold tracking-widest uppercase px-4 py-2 border hidden"></div>
+        </div>
+
+        <!-- Lista iscritti -->
+        <div>
+            <div class="flex items-center justify-between mb-6 border-b border-brand-border pb-4">
+                <h2 class="text-xs font-bold tracking-widest text-brand-muted uppercase">Lista Iscritti</h2>
+                <span class="text-xs text-brand-muted">Aggiornata in tempo reale</span>
+            </div>
+
+            <div id="lista-iscritti" class="space-y-3">
+                <p class="text-brand-muted text-sm py-8 text-center">Caricamento...</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-brand-border bg-brand-bg pt-8 pb-8 px-6 text-center">
+        <div class="flex items-center justify-center gap-6 text-xs text-brand-muted">
+            <a href="https://www.iubenda.com/privacy-policy/98185773" class="iubenda-white iubenda-noiframe iubenda-embed hover:text-brand-yellow transition-colors" title="Privacy Policy" target="_blank">Privacy Policy</a>
+            <a href="https://www.iubenda.com/privacy-policy/98185773/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed hover:text-brand-yellow transition-colors" title="Cookie Policy" target="_blank">Cookie Policy</a>
+            <a href="#" class="iubenda-cs-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
+        </div>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="src/js/firebase-config.js"></script>
+
+    <script>
+        const MAX = 16;
+        let isAdmin = false;
+        let lastDocs = [];
+
+        function getCategoryLabel(cat) {
+            const labels = {
+                tcg_onepiece: 'One Piece Card Game',
+                cosplay_singolo: 'Cosplay Singolo',
+                cosplay_gruppo: 'Cosplay Gruppo',
+            };
+            return labels[cat] || cat;
+        }
+
+        function renderList() {
+            const lista = document.getElementById('lista-iscritti');
+            const docs = lastDocs;
+
+            if (docs.length === 0) {
+                lista.innerHTML = '<p class="text-brand-muted text-sm py-8 text-center">Nessun iscritto ancora. Sii il primo!</p>';
+                return;
+            }
+
+            lista.innerHTML = '';
+            let i = 1;
+            docs.forEach((d) => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center gap-4 p-4 bg-brand-card border border-brand-border';
+                row.innerHTML = `
+                    <span class="text-xs font-bold text-brand-muted w-6 text-center">${i}</span>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-semibold text-sm truncate">${escapeHtml(d.name)}</p>
+                        ${d.character ? `<p class="text-xs text-brand-muted truncate">${escapeHtml(d.character)}</p>` : ''}
+                    </div>
+                    <span class="text-xs text-brand-muted hidden sm:block">One Piece TCG</span>
+                    ${isAdmin ? `<button data-id="${d.id}" class="delete-btn text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 border border-red-400/40 hover:border-red-400 px-3 py-2 transition-colors"><i class="fa-solid fa-trash"></i></button>` : ''}
+                `;
+                lista.appendChild(row);
+                i++;
+            });
+
+            lista.querySelectorAll('.delete-btn').forEach((btn) => {
+                btn.addEventListener('click', async () => {
+                    if (!confirm('Rimuovere questo iscritto dal torneo?')) return;
+                    btn.disabled = true;
+                    try {
+                        await db.collection('registrations').doc(btn.dataset.id).delete();
+                    } catch (err) {
+                        console.error(err);
+                        alert('Errore durante la rimozione. Riprova.');
+                        btn.disabled = false;
+                    }
+                });
+            });
+        }
+
+        db.collection('registrations')
+            .where('category', '==', 'tcg_onepiece')
+            .onSnapshot((snapshot) => {
+                const count = snapshot.size;
+                const countEl = document.getElementById('count');
+                const badge = document.getElementById('status-badge');
+
+                countEl.textContent = count;
+
+                badge.classList.remove('hidden');
+                if (count >= MAX) {
+                    badge.textContent = 'Posti Esauriti';
+                    badge.className = 'text-xs font-bold tracking-widest uppercase px-4 py-2 border border-red-400 text-red-400';
+                } else {
+                    badge.textContent = (MAX - count) + ' posti liberi';
+                    badge.className = 'text-xs font-bold tracking-widest uppercase px-4 py-2 border border-brand-yellow text-brand-yellow';
+                }
+
+                const docs = [];
+                snapshot.forEach((doc) => docs.push({ id: doc.id, ...doc.data() }));
+                docs.sort((a, b) => {
+                    const ta = a.timestamp ? a.timestamp.toMillis() : 0;
+                    const tb = b.timestamp ? b.timestamp.toMillis() : 0;
+                    return ta - tb;
+                });
+
+                lastDocs = docs;
+                renderList();
+            }, (error) => {
+                console.error(error);
+                document.getElementById('lista-iscritti').innerHTML =
+                    '<p class="text-red-400 text-sm py-8 text-center">Errore nel caricamento. Controlla la configurazione Firebase.</p>';
+            });
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        if (auth) {
+            auth.onAuthStateChanged((user) => {
+                isAdmin = !!user;
+                document.getElementById('admin-logged-out').classList.toggle('hidden', isAdmin);
+                document.getElementById('admin-logged-in').classList.toggle('hidden', !isAdmin);
+                document.getElementById('admin-logged-in').classList.toggle('flex', isAdmin);
+                if (isAdmin) document.getElementById('admin-email-label').textContent = user.email;
+                renderList();
+            });
+
+            document.getElementById('admin-login-btn').addEventListener('click', async () => {
+                const email = document.getElementById('admin-email').value.trim();
+                const password = document.getElementById('admin-password').value;
+                const errorEl = document.getElementById('admin-error');
+                errorEl.classList.add('hidden');
+                try {
+                    await auth.signInWithEmailAndPassword(email, password);
+                    document.getElementById('admin-password').value = '';
+                } catch (err) {
+                    console.error(err);
+                    errorEl.textContent = 'Accesso non riuscito. Controlla email e password.';
+                    errorEl.classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('admin-logout-btn').addEventListener('click', () => auth.signOut());
+        }
+    </script>
+
+    <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Contatore atomico dei posti occupati al torneo One Piece Card Game.
+    // Il documento meta/tcg_onepiece_count DEVE esistere già (va creato una
+    // tantum a mano dalla Firebase Console, vedi istruzioni di migrazione)
+    // con { count: <numero di iscrizioni tcg_onepiece già esistenti> }.
+    match /meta/tcg_onepiece_count {
+      allow read: if true;
+      allow create: if false;
+      allow update: if request.resource.data.keys().hasOnly(['count']) &&
+                       request.resource.data.count == resource.data.count + 1 &&
+                       resource.data.count < 16;
+      allow delete: if false;
+    }
+
+    match /registrations/{docId} {
+      allow read: if true;
+
+      allow create: if
+        request.resource.data.keys().hasOnly(['name', 'character', 'category', 'timestamp']) &&
+        request.resource.data.name is string &&
+        request.resource.data.name.size() > 0 &&
+        request.resource.data.name.size() <= 80 &&
+        request.resource.data.category in ['cosplay_singolo', 'cosplay_gruppo', 'tcg_onepiece'] &&
+        (!('character' in request.resource.data) ||
+          (request.resource.data.character is string && request.resource.data.character.size() <= 80)) &&
+        request.resource.data.timestamp == request.time &&
+        // Per il torneo One Piece, la creazione è ammessa solo se il
+        // contatore sopra ha già superato la sua validazione (< 16 prima
+        // dell'incremento): le due scritture avvengono nella stessa
+        // transazione lato client, quindi se il contatore viene rifiutato
+        // l'intera transazione (incluso questo documento) fallisce.
+        (request.resource.data.category != 'tcg_onepiece' ||
+          get(/databases/$(database)/documents/meta/tcg_onepiece_count).data.count <= 16);
+
+      allow update, delete: if request.auth != null
+                            && request.auth.token.email == 'trajan.comic.cosplay@gmail.com';
+    }
+  }
+}

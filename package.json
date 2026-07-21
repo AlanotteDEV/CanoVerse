@@ -1,0 +1,24 @@
+{
+  "name": "festival",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Trajan Comics & Cosplay 2026 - Festival landing page",
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "src/js/**/*.js"
+    ],
+    "coverageDirectory": "coverage"
+  }
+}
