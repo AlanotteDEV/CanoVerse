@@ -1,5 +1,5 @@
 {
-  "name": "festival",
+  "name": "canoverse",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "Trajan Comics & Cosplay 2026 - Festival landing page",
+  "description": "CanoVerse 2026 — festival pop culture di Canosa di Puglia (landing page + iscrizioni)",
   "devDependencies": {
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1"
