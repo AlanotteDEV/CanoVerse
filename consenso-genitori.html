@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════════
+  BOZZA — Modulo di consenso genitoriale (da firmare al check-in).
+  Titolare: Manbaga Comics & Games di Lapia Antonio Carmine.
+  ⚠️ DA SOTTOPORRE A REVISIONE LEGALE PRIMA DELL'USO DEFINITIVO.
+  ════════════════════════════════════════════════════════════════════
+-->
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <title>Modulo Consenso Genitoriale — CanoVerse 2026</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Modulo di consenso del genitore/tutore per l'iscrizione di un minore a CanoVerse 2026.">
+    <meta name="robots" content="noindex">
+
+    <script src="src/js/tailwind.min.js"></script>
+    <link href="src/css/fonts.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/fontawesome.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                fontFamily: { sans: ['Inter', 'sans-serif'], jp: ['Noto Sans JP', 'sans-serif'] },
+                colors: { brand: { bg: '#f6efe0', card: '#fffdf5', border: '#000000', muted: '#57503d', accent: '#111111', yellow: '#FFD600' } }
+            } }
+        }
+    </script>
+
+    <style>
+        body { background: #f6efe0; color: #111; }
+        h1, h2, h3 { font-weight: 900 !important; }
+        .doc { background: #fff; border: 3px solid #000; box-shadow: 8px 8px 0 #000; }
+        .doc h2 { font-size: 1.05rem; margin-top: 1.6rem; margin-bottom: .6rem; border-bottom: 2px solid #000; padding-bottom: .3rem; }
+        .doc p, .doc li, .doc label { font-size: .92rem; line-height: 1.6; color: #1a1a1a; }
+        .field { display: flex; align-items: flex-end; gap: .5rem; margin: .55rem 0; flex-wrap: wrap; }
+        .field .lbl { font-weight: 700; white-space: nowrap; }
+        .line { flex: 1 1 140px; border-bottom: 1.5px dotted #333; min-height: 1.4rem; }
+        .chk { display: flex; align-items: flex-start; gap: .6rem; margin: .7rem 0; }
+        .chk .square { flex: 0 0 auto; width: 18px; height: 18px; border: 2px solid #000; margin-top: 2px; }
+        .sig { margin-top: 1.2rem; display: flex; gap: 2rem; flex-wrap: wrap; }
+        .sig .col { flex: 1 1 200px; }
+        .sig .sigline { border-bottom: 1.5px solid #000; height: 2.4rem; }
+        .note { font-size: .78rem; color: #555; }
+        .btn-print {
+            background: #FFD600; border: 3px solid #000; box-shadow: 4px 4px 0 #000;
+            font-weight: 800; padding: .7rem 1.4rem; cursor: pointer; text-transform: uppercase;
+            letter-spacing: .05em; font-size: .8rem;
+        }
+        .btn-print:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+
+        @media print {
+            body { background: #fff; }
+            .no-print { display: none !important; }
+            .doc { border: none; box-shadow: none; margin: 0; padding: 0; max-width: 100%; }
+            @page { margin: 16mm; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <div class="no-print bg-brand-bg border-b-4 border-black py-3 px-6 flex items-center justify-between sticky top-0 z-10">
+        <a href="index.html" class="text-lg font-bold tracking-widest uppercase flex items-center gap-2 text-black hover:text-black/60">
+            <i class="fa-solid fa-arrow-left text-sm"></i><span>CANOVERSE</span>
+        </a>
+        <button class="btn-print" onclick="window.print()"><i class="fa-solid fa-print mr-2"></i>Stampa modulo</button>
+    </div>
+
+    <div class="max-w-3xl mx-auto my-8 px-6">
+        <div class="doc p-8 md:p-10">
+
+            <div class="flex items-start justify-between gap-4 mb-2">
+                <div>
+                    <p class="text-xs font-bold tracking-widest uppercase text-brand-muted mb-1">CanoVerse 2026 · Canosa di Puglia</p>
+                    <h1 class="text-2xl md:text-3xl font-black tracking-tight">Consenso del Genitore / Tutore</h1>
+                    <p class="text-sm text-brand-muted">per l’iscrizione di un minore all’evento</p>
+                </div>
+                <span class="bg-brand-yellow border-2 border-black text-xs font-bold uppercase px-3 py-1" style="box-shadow:3px 3px 0 #000;">Minori</span>
+            </div>
+
+            <p class="note mt-3">Titolare del trattamento: <strong>Manbaga Comics &amp; Games di Lapia Antonio Carmine</strong> — Via Padre Reginaldo Giuliani, 21, Canosa di Puglia (BT) — P.IVA 09055430723 — trajan.comic.cosplay@gmail.com. Riferimenti: artt. 6, 7 e 8 del Regolamento (UE) 2016/679 (GDPR).</p>
+
+            <h2>1. Dati del minore</h2>
+            <div class="field"><span class="lbl">Nome e cognome:</span><span class="line"></span></div>
+            <div class="field"><span class="lbl">Nome d’arte (opzionale):</span><span class="line"></span></div>
+            <div class="field"><span class="lbl">Data di nascita:</span><span class="line" style="flex-basis:120px;"></span><span class="lbl">Personaggio / gioco:</span><span class="line"></span></div>
+            <div class="field"><span class="lbl">Gara / categoria:</span><span class="line"></span></div>
+
+            <h2>2. Dati del genitore / tutore</h2>
+            <div class="field"><span class="lbl">Nome e cognome:</span><span class="line"></span></div>
+            <div class="field"><span class="lbl">In qualità di:</span><span class="line" style="flex-basis:140px;"></span><span class="note">(genitore / tutore legale)</span></div>
+            <div class="field"><span class="lbl">Documento d’identità n.:</span><span class="line"></span></div>
+            <div class="field"><span class="lbl">Telefono:</span><span class="line" style="flex-basis:140px;"></span><span class="lbl">Email:</span><span class="line"></span></div>
+
+            <h2>3. Dichiarazioni e consensi</h2>
+            <p>Il/la sottoscritto/a, in qualità di esercente la responsabilità genitoriale sul minore sopra indicato:</p>
+
+            <div class="chk"><span class="square"></span><label><strong>Autorizza la partecipazione</strong> del minore all’evento CanoVerse 2026 e alle attività a cui è iscritto.</label></div>
+            <div class="chk"><span class="square"></span><label><strong>Presta il consenso al trattamento dei dati personali</strong> del minore (nome, personaggio, categoria, ed eventuale email) per la gestione dell’iscrizione, ai sensi degli artt. 6 e 8 GDPR.</label></div>
+            <div class="chk"><span class="square"></span><label><strong>Presta il consenso alla pubblicazione</strong> del <strong>nome</strong> e del <strong>personaggio</strong> del minore nelle liste degli iscritti pubblicate sul sito dell’evento.</label></div>
+            <div class="chk"><span class="square"></span><label><strong>Presta il consenso a foto e riprese video</strong> del minore effettuate durante l’evento e alla loro eventuale pubblicazione nei canali ufficiali dell’organizzazione (sito e social). <span class="note">(Facoltativo — barrare solo se si acconsente.)</span></label></div>
+            <div class="chk"><span class="square"></span><label>Dichiara di aver letto l’<strong>Informativa Privacy</strong> (disponibile su <em>privacy.html</em> del sito) e di essere consapevole di poter <strong>revocare i consensi</strong> e chiedere la rimozione dei dati in qualsiasi momento scrivendo al Titolare.</label></div>
+
+            <div class="sig">
+                <div class="col">
+                    <div class="field" style="margin-bottom:.2rem;"><span class="lbl">Luogo e data:</span></div>
+                    <div class="sigline"></div>
+                </div>
+                <div class="col">
+                    <div class="field" style="margin-bottom:.2rem;"><span class="lbl">Firma del genitore / tutore:</span></div>
+                    <div class="sigline"></div>
+                </div>
+            </div>
+
+            <p class="note mt-6">Il presente modulo viene conservato dall’organizzazione per il tempo necessario alla gestione dell’evento e cancellato al termine dello stesso, salvo obblighi di legge. I consensi facoltativi possono essere negati senza pregiudicare la partecipazione del minore.</p>
+        </div>
+    </div>
+
+    <!-- Cookie consent (banner GDPR self-hosted) -->
+    <script src="src/js/cookieConsent.js"></script>
+</body>
+</html>

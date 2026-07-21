@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════════
+  BOZZA — Informativa Privacy self-hosted, allineata ai trattamenti reali
+  del sito CanoVerse (form → Firebase Firestore + EmailJS, Google Maps,
+  CDN, minori). Titolare: Manbaga Comics & Games di Lapia Antonio Carmine.
+
+  ⚠️ DA SOTTOPORRE A REVISIONE LEGALE PRIMA DELLA PUBBLICAZIONE DEFINITIVA.
+  Verificare in particolare: tempi di conservazione, basi giuridiche,
+  elenco completo dei responsabili/sub-responsabili e garanzie per i
+  trasferimenti extra-UE (SCC).
+  ════════════════════════════════════════════════════════════════════
+-->
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://api.emailjs.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <title>Informativa Privacy — CanoVerse 2026</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Informativa sul trattamento dei dati personali del sito CanoVerse 2026 (Manbaga Comics & Games di Lapia Antonio Carmine).">
+    <meta name="robots" content="index, follow">
+
+    <script src="src/js/tailwind.min.js"></script>
+    <link href="src/css/fonts.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/fontawesome.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        jp: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#f6efe0',
+                            card: '#fffdf5',
+                            border: '#000000',
+                            muted: '#57503d',
+                            accent: '#111111',
+                            yellow: '#FFD600',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            overflow-x: hidden;
+            background-color: #f6efe0;
+            background-image:
+                linear-gradient(180deg, rgba(246,239,224,0.9) 0%, rgba(246,239,224,0.8) 40%, rgba(246,239,224,0.92) 100%),
+                url('background.png');
+            background-size: 130% auto;
+            background-position: center top;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        h1, h2, h3 { font-weight: 900 !important; }
+        /* Documento legale: tipografia leggibile */
+        .legal h2 {
+            font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: .75rem;
+            border-bottom: 3px solid #000; padding-bottom: .4rem;
+        }
+        .legal h3 { font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: .4rem; font-weight: 800 !important; }
+        .legal p, .legal li { color: #3d3826; line-height: 1.7; font-size: .95rem; }
+        .legal p { margin-bottom: .9rem; }
+        .legal ul { list-style: disc; padding-left: 1.4rem; margin-bottom: 1rem; }
+        .legal li { margin-bottom: .4rem; }
+        .legal a { color: #8a6d00; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+        .legal a:hover { color: #111; }
+        .legal table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .85rem; }
+        .legal th, .legal td { border: 2px solid #000; padding: .55rem .7rem; text-align: left; vertical-align: top; }
+        .legal th { background: #FFD600; font-weight: 800; }
+        .legal .box {
+            background: #fffdf5; border: 3px solid #000; box-shadow: 6px 6px 0 #000;
+            padding: 1.2rem 1.4rem; margin: 1.2rem 0;
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-accent font-sans antialiased">
+
+    <nav class="fixed top-0 left-0 w-full glass-nav bg-brand-bg border-b-4 border-black z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-black hover:text-black/60 transition-colors">
+                <i class="fa-solid fa-arrow-left text-sm"></i>
+                <span>CANOVERSE</span>
+            </a>
+            <span class="bg-brand-yellow border-[3px] border-black text-black text-xs font-bold tracking-widest uppercase px-4 py-1.5" style="box-shadow: 3px 3px 0 #000; transform: rotate(-1.5deg);">Privacy</span>
+        </div>
+    </nav>
+
+    <section class="pt-36 pb-24 px-6">
+        <div class="max-w-3xl mx-auto legal">
+            <h1 class="text-3xl md:text-4xl font-black tracking-tight mb-3">Informativa sulla Privacy</h1>
+            <p class="text-sm text-brand-muted">Ai sensi degli artt. 13-14 del Regolamento (UE) 2016/679 (“GDPR”) e del D.Lgs. 196/2003 come modificato dal D.Lgs. 101/2018.</p>
+            <p class="text-sm text-brand-muted">Ultimo aggiornamento: <strong>21 luglio 2026</strong></p>
+
+            <div class="box">
+                <h3 class="!mt-0">Titolare del Trattamento</h3>
+                <p class="!mb-1"><strong>MANBAGA COMICS &amp; GAMES di Lapia Antonio Carmine</strong></p>
+                <p class="!mb-1">Via Padre Reginaldo Giuliani, 21 — Canosa di Puglia (BT)</p>
+                <p class="!mb-1">P.IVA: 09055430723</p>
+                <p class="!mb-0">Email di contatto: <a href="mailto:trajan.comic.cosplay@gmail.com">trajan.comic.cosplay@gmail.com</a></p>
+            </div>
+
+            <h2>1. Quali dati raccogliamo e perché</h2>
+
+            <h3>a) Dati che ci fornisci con il modulo di iscrizione</h3>
+            <p>Quando ti iscrivi alla Gara Cosplay o al Torneo One Piece Card Game tramite il modulo del sito, raccogliamo:</p>
+            <ul>
+                <li><strong>Nome o nome d’arte</strong> (obbligatorio)</li>
+                <li><strong>Indirizzo email</strong> (obbligatorio)</li>
+                <li><strong>Personaggio / gioco</strong> (facoltativo)</li>
+                <li><strong>Categoria</strong> di iscrizione (obbligatorio)</li>
+                <li><strong>Note aggiuntive</strong> (facoltative)</li>
+            </ul>
+            <p><strong>Finalità:</strong> gestire la tua iscrizione, organizzare l’evento, comunicarti informazioni e il regolamento, e contarti tra i partecipanti.</p>
+            <p><strong>Base giuridica:</strong> il tuo consenso e l’esecuzione delle misure organizzative da te richieste con l’iscrizione (art. 6, par. 1, lett. a e b, GDPR).</p>
+
+            <h3>b) Pubblicazione nelle liste iscritti</h3>
+            <p>Il tuo <strong>nome/nome d’arte</strong> e il <strong>personaggio</strong> scelto vengono mostrati pubblicamente, in tempo reale, nelle pagine con l’elenco dei partecipanti alla gara/torneo. <strong>L’indirizzo email e le note non vengono mai pubblicati.</strong></p>
+            <p><strong>Base giuridica:</strong> il tuo consenso (art. 6, par. 1, lett. a, GDPR), prestato al momento dell’iscrizione. Puoi chiedere in qualsiasi momento la rimozione del tuo nominativo dalle liste.</p>
+
+            <h3>c) Dati di navigazione e log tecnici</h3>
+            <p>Per il solo funzionamento e la sicurezza del sito, i sistemi informatici e i fornitori tecnici (hosting e CDN) raccolgono automaticamente dati come indirizzo IP, tipo di browser e sistema operativo, orari e pagine visitate. Questi dati sono trattati in forma aggregata per finalità tecniche e di sicurezza.</p>
+
+            <h3>d) Mappa Google Maps</h3>
+            <p>La pagina principale include una mappa di Google Maps che viene caricata <strong>solo dopo il tuo consenso</strong> ai contenuti di terze parti (vedi <a href="cookie.html">Cookie Policy</a>). Attivandola, Google può trattare i tuoi dati (incluso l’indirizzo IP) come titolare autonomo o contitolare.</p>
+
+            <h2>2. Come trattiamo i tuoi dati</h2>
+            <p>I dati dell’iscrizione sono gestiti in questo modo:</p>
+            <ul>
+                <li>Nome, personaggio, categoria e data/ora vengono salvati nel database <strong>Google Cloud Firestore</strong> (Firebase).</li>
+                <li>L’intero modulo (nome, <strong>email</strong>, personaggio, categoria, note) viene inviato via <strong>EmailJS</strong> alla casella email dell’organizzatore. <strong>L’email non viene salvata nel database</strong>: transita solo come messaggio verso l’organizzatore.</li>
+            </ul>
+            <p>Il trattamento avviene con strumenti elettronici, con misure di sicurezza adeguate a ridurre i rischi di perdita, accesso non autorizzato o uso illecito.</p>
+
+            <h2>3. Destinatari e responsabili del trattamento</h2>
+            <p>Per erogare il servizio ci avvaliamo di fornitori terzi che trattano i dati per nostro conto (responsabili ex art. 28 GDPR) o come titolari autonomi:</p>
+            <table>
+                <thead><tr><th>Fornitore</th><th>Ruolo / servizio</th><th>Sede</th></tr></thead>
+                <tbody>
+                    <tr><td>Google Ireland Ltd / Google LLC</td><td>Database iscrizioni (Firebase Cloud Firestore) e mappa (Google Maps)</td><td>Irlanda / USA</td></tr>
+                    <tr><td>EmailJS, Inc.</td><td>Invio delle email di iscrizione all’organizzatore</td><td>USA</td></tr>
+                    <tr><td>Vercel Inc.</td><td>Hosting del sito</td><td>USA</td></tr>
+                    <tr><td>Cloudflare, Inc.</td><td>Rete di distribuzione contenuti (CDN) e sicurezza</td><td>USA</td></tr>
+                    <tr><td>Fonticons, Inc. (Font Awesome)</td><td>Icone del sito</td><td>USA</td></tr>
+                    <tr><td>Tailwind Labs / jsDelivr</td><td>Librerie di stile e script (CDN)</td><td>USA / internazionale</td></tr>
+                </tbody>
+            </table>
+            <p>I dati non sono diffusi ad altri soggetti, salvo la pubblicazione delle liste iscritti descritta al punto 1(b) e gli obblighi di legge.</p>
+
+            <h2>4. Trasferimenti extra-UE</h2>
+            <p>Alcuni fornitori (Google, EmailJS, Vercel, Cloudflare, Fonticons) hanno sede o server negli <strong>Stati Uniti</strong>. Eventuali trasferimenti avvengono sulla base di garanzie adeguate previste dal GDPR (es. clausole contrattuali standard o decisioni di adeguatezza applicabili). Puoi richiederci informazioni sulle garanzie adottate.</p>
+
+            <h2>5. Per quanto tempo conserviamo i dati</h2>
+            <p>Applichiamo il principio di minimizzazione e conserviamo i dati per il tempo strettamente necessario:</p>
+            <ul>
+                <li><strong>Dati di iscrizione</strong> (nome/nome d’arte, personaggio, categoria) e <strong>liste pubbliche</strong> degli iscritti: cancellati <strong>al termine dell’evento</strong> a cui ti sei iscritto.</li>
+                <li><strong>Email di iscrizione</strong> ricevute dall’organizzatore: eliminate <strong>al termine dell’evento</strong>, salvo eventuali obblighi di legge.</li>
+                <li><strong>Registro dei consensi cookie</strong>: conservato per <strong>24 mesi</strong> come prova della conformità, poi cancellato.</li>
+            </ul>
+
+            <h2>6. Minori</h2>
+            <p>L’evento è aperto anche ai minori. L’iscrizione di un minore e la <strong>pubblicazione del suo nome nelle liste</strong> sono ammesse <strong>solo con il consenso di chi esercita la responsabilità genitoriale</strong> (genitore o tutore). Al momento dell’iscrizione il minore dichiara di avere almeno 16 anni oppure di aver ottenuto tale consenso; il consenso del genitore/tutore viene inoltre <strong>raccolto tramite apposito modulo firmato al check-in</strong> dell’evento (vedi <a href="consenso-genitori.html">Modulo di consenso genitoriale</a>). Il genitore/tutore può in ogni momento chiedere l’accesso, la modifica o la rimozione dei dati del minore scrivendo al Titolare.</p>
+
+            <h2>7. I tuoi diritti</h2>
+            <p>In qualsiasi momento hai diritto di:</p>
+            <ul>
+                <li>accedere ai tuoi dati e ottenerne copia;</li>
+                <li>chiederne la rettifica o la cancellazione (“diritto all’oblio”);</li>
+                <li>chiedere la limitazione del trattamento od opporti al trattamento;</li>
+                <li>ottenere la portabilità dei dati;</li>
+                <li><strong>revocare il consenso</strong> in qualsiasi momento, senza pregiudicare la liceità del trattamento precedente;</li>
+                <li>proporre reclamo al <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.</li>
+            </ul>
+            <p>Per esercitare i tuoi diritti scrivi a <a href="mailto:trajan.comic.cosplay@gmail.com">trajan.comic.cosplay@gmail.com</a>.</p>
+
+            <h2>8. Cookie e strumenti di tracciamento</h2>
+            <p>Il sito utilizza cookie e strumenti simili. Per i dettagli e per gestire le tue scelte consulta la <a href="cookie.html">Cookie Policy</a> oppure apri il pannello <a href="#" class="cookie-preferences-link">Preferenze Cookie</a>.</p>
+
+            <h2>9. Modifiche</h2>
+            <p>Il Titolare può aggiornare questa informativa. La versione in vigore è sempre pubblicata su questa pagina con la data di ultimo aggiornamento.</p>
+
+            <div class="box">
+                <p class="!mb-0 text-sm"><strong>Nota tecnica:</strong> il sito non salva l’email nel database (solo nome, personaggio, categoria e data/ora), applicando il principio di minimizzazione dei dati.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t-4 border-black bg-brand-bg pt-10 pb-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-muted font-light">
+            <div class="flex items-center gap-2">
+                <span class="text-brand-yellow font-bold">CANOVERSE</span>
+                <span class="mx-2 opacity-30">|</span>
+                <span>© 2026 Canosa di Puglia. Tutti i diritti riservati.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+                <a href="privacy.html" class="hover:text-brand-yellow transition-colors">Privacy Policy</a>
+                <a href="cookie.html" class="hover:text-brand-yellow transition-colors">Cookie Policy</a>
+                <a href="#" class="cookie-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
+                <a href="index.html" class="font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline text-black">← Torna al sito</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie consent (banner GDPR self-hosted) -->
+    <script src="src/js/cookieConsent.js"></script>
+</body>
+</html>

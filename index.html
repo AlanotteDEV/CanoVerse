@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.gstatic.com https://cdn.jsdelivr.net https://*.iubenda.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://*.iubenda.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https://*.iubenda.com; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://*.iubenda.com; frame-src https://www.google.com https://*.iubenda.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <!-- iubenda widget disattivato temporaneamente — banner cookie ora gestito da src/js/cookieConsent.js. Per riattivarlo togliere il commento.
     <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
+    -->
     <title>CanoVerse 2026 - Canosa di Puglia</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description" content="CanoVerse 2026: il festival pop culture di Canosa di Puglia. Sabato 5 Settembre, Piazza Galluppi. Gara cosplay, torneo One Piece Card Game, stand, gadget e live drawing.">
@@ -20,13 +22,13 @@
     <meta name="twitter:image" content="https://canoverse.vercel.app/background.png">
     
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="src/js/tailwind.min.js"></script>
     
     <!-- Font Inter e Noto Sans JP: self-hosted (nessuna richiesta a Google, nessun trasferimento IP a terzi) -->
     <link href="src/css/fonts.css" rel="stylesheet">
 
     <!-- FontAwesome per le icone -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="src/css/fontawesome.min.css">
     
     <script>
         tailwind.config = {
@@ -976,8 +978,8 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
                 <span>© 2026 Canosa di Puglia. Tutti i diritti riservati.</span>
             </div>
             <div class="flex items-center gap-6">
-                <a href="https://www.iubenda.com/privacy-policy/98185773" class="iubenda-white iubenda-noiframe iubenda-embed hover:text-brand-yellow transition-colors" title="Privacy Policy" target="_blank">Privacy Policy</a>
-                <a href="https://www.iubenda.com/privacy-policy/98185773/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed hover:text-brand-yellow transition-colors" title="Cookie Policy" target="_blank">Cookie Policy</a>
+                <a href="privacy.html" class="hover:text-brand-yellow transition-colors" title="Privacy Policy" target="_blank">Privacy Policy</a>
+                <a href="cookie.html" class="hover:text-brand-yellow transition-colors" title="Cookie Policy" target="_blank">Cookie Policy</a>
                 <a href="#" class="iubenda-cs-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
             </div>
         </div>
@@ -1025,7 +1027,9 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
             });
     </script>
 
+    <!-- iubenda loader disattivato temporaneamente. Per riattivarlo togliere il commento.
     <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    -->
     <script>
         (function () {
             var target = new Date('2026-09-05T20:30:00+02:00').getTime();
@@ -1080,5 +1084,8 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
             });
         })();
     </script>
+
+    <!-- Cookie consent (banner GDPR self-hosted) -->
+    <script src="src/js/cookieConsent.js"></script>
 </body>
 </html>

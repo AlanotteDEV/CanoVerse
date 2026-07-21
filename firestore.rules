@@ -38,5 +38,28 @@ service cloud.firestore {
       allow update, delete: if request.auth != null
                             && request.auth.token.email == 'trajan.comic.cosplay@gmail.com';
     }
+
+    // Registro dei consensi cookie (prova ex art. 7 GDPR). Chiunque può
+    // creare un record di consenso (vincolato nei campi e senza dati
+    // identificativi); solo l'admin può leggerlo; nessuno può modificarlo
+    // o cancellarlo, per garantirne l'integrità come prova.
+    match /cookie_consents/{docId} {
+      allow read: if request.auth != null
+                  && request.auth.token.email == 'trajan.comic.cosplay@gmail.com';
+
+      allow create: if
+        request.resource.data.keys().hasOnly(['necessary', 'statistics', 'thirdparty', 'policyVersion', 'page', 'userAgent', 'timestamp']) &&
+        request.resource.data.necessary == true &&
+        request.resource.data.statistics is bool &&
+        request.resource.data.thirdparty is bool &&
+        request.resource.data.policyVersion is int &&
+        request.resource.data.page is string &&
+        request.resource.data.page.size() <= 200 &&
+        request.resource.data.userAgent is string &&
+        request.resource.data.userAgent.size() <= 400 &&
+        request.resource.data.timestamp == request.time;
+
+      allow update, delete: if false;
+    }
   }
 }

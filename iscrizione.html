@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.gstatic.com https://cdn.jsdelivr.net https://*.iubenda.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://*.iubenda.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https://*.iubenda.com; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://*.iubenda.com; frame-src https://www.google.com https://*.iubenda.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <!-- iubenda widget disattivato temporaneamente — banner cookie ora gestito da src/js/cookieConsent.js. Per riattivarlo togliere il commento.
     <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
+    -->
     <title>Iscrizione — CanoVerse 2026</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description" content="Iscriviti alla Gara Cosplay o al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
@@ -19,10 +21,10 @@
     <meta name="twitter:description" content="Iscriviti alla Gara Cosplay o al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
     <meta name="twitter:image" content="https://canoverse.vercel.app/background.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="src/js/tailwind.min.js"></script>
 
     <link href="src/css/fonts.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="src/css/fontawesome.min.css">
 
     <script>
         tailwind.config = {
@@ -152,12 +154,15 @@
                     </p>
                     <label class="flex items-start gap-3 text-xs text-brand-muted cursor-pointer">
                         <input type="checkbox" id="privacy-consent" required class="mt-0.5 accent-brand-yellow">
-                        <span>Ho letto l'<a href="https://www.iubenda.com/privacy-policy/98185773" class="iubenda-white iubenda-noiframe iubenda-embed underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Informativa Privacy</a> e acconsento al trattamento dei miei dati per la gestione dell'iscrizione all'evento. *</span>
+                        <span>Ho letto l'<a href="privacy.html" class="underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Informativa Privacy</a> e acconsento al trattamento dei miei dati per la gestione dell'iscrizione all'evento. *</span>
                     </label>
                     <label class="flex items-start gap-3 text-xs text-brand-muted cursor-pointer">
                         <input type="checkbox" id="age-consent" required class="mt-0.5 accent-brand-yellow">
                         <span>Dichiaro di avere almeno 16 anni, oppure di aver ottenuto il consenso di un genitore/tutore alla mia iscrizione e al trattamento dei miei dati (necessario per i minorenni, art. 8 GDPR). *</span>
                     </label>
+                    <p class="text-xs text-brand-muted leading-relaxed">
+                        <i class="fa-solid fa-circle-info mr-1"></i>Se sei minorenne, scarica e porta al check-in il <a href="consenso-genitori.html" class="underline hover:text-brand-yellow" target="_blank">modulo di consenso genitoriale</a> firmato da un genitore o tutore.
+                    </p>
                 </div>
 
                 <button type="submit" class="w-full bg-brand-yellow text-black hover:bg-yellow-400 text-sm font-semibold tracking-widest uppercase px-8 py-4 transition-colors duration-300 mt-4">
@@ -182,7 +187,12 @@
                 <span class="mx-2 opacity-30">|</span>
                 <span>© 2026 Canosa di Puglia. Tutti i diritti riservati.</span>
             </div>
-            <a href="index.html" class="font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline text-black">← Torna al sito</a>
+            <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+                <a href="privacy.html" class="hover:text-brand-yellow transition-colors" title="Privacy Policy" target="_blank">Privacy Policy</a>
+                <a href="cookie.html" class="hover:text-brand-yellow transition-colors" title="Cookie Policy" target="_blank">Cookie Policy</a>
+                <a href="#" class="cookie-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
+                <a href="index.html" class="font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline text-black">← Torna al sito</a>
+            </div>
         </div>
     </footer>
 
@@ -193,6 +203,11 @@
     <script src="src/js/formHandler.js"></script>
     <script src="src/js/scrollObserver.js"></script>
     <script>initScrollAnimations();</script>
+    <!-- iubenda loader disattivato temporaneamente. Per riattivarlo togliere il commento.
     <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    -->
+
+    <!-- Cookie consent (banner GDPR self-hosted) -->
+    <script src="src/js/cookieConsent.js"></script>
 </body>
 </html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════════
+  BOZZA — Cookie Policy self-hosted, allineata alle categorie del banner
+  (src/js/cookieConsent.js) e ai servizi realmente usati dal sito.
+
+  ⚠️ DA SOTTOPORRE A REVISIONE LEGALE PRIMA DELLA PUBBLICAZIONE DEFINITIVA.
+  Se in futuro vengono attivati strumenti statistici o altri servizi,
+  aggiornare la tabella e le categorie qui sotto.
+  ════════════════════════════════════════════════════════════════════
+-->
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://api.emailjs.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <title>Cookie Policy — CanoVerse 2026</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Informativa sui cookie e strumenti di tracciamento del sito CanoVerse 2026.">
+    <meta name="robots" content="index, follow">
+
+    <script src="src/js/tailwind.min.js"></script>
+    <link href="src/css/fonts.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/fontawesome.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        jp: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#f6efe0',
+                            card: '#fffdf5',
+                            border: '#000000',
+                            muted: '#57503d',
+                            accent: '#111111',
+                            yellow: '#FFD600',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            overflow-x: hidden;
+            background-color: #f6efe0;
+            background-image:
+                linear-gradient(180deg, rgba(246,239,224,0.9) 0%, rgba(246,239,224,0.8) 40%, rgba(246,239,224,0.92) 100%),
+                url('background.png');
+            background-size: 130% auto;
+            background-position: center top;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        h1, h2, h3 { font-weight: 900 !important; }
+        .legal h2 {
+            font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: .75rem;
+            border-bottom: 3px solid #000; padding-bottom: .4rem;
+        }
+        .legal h3 { font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: .4rem; font-weight: 800 !important; }
+        .legal p, .legal li { color: #3d3826; line-height: 1.7; font-size: .95rem; }
+        .legal p { margin-bottom: .9rem; }
+        .legal ul { list-style: disc; padding-left: 1.4rem; margin-bottom: 1rem; }
+        .legal li { margin-bottom: .4rem; }
+        .legal a { color: #8a6d00; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+        .legal a:hover { color: #111; }
+        .legal table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .82rem; }
+        .legal th, .legal td { border: 2px solid #000; padding: .55rem .7rem; text-align: left; vertical-align: top; }
+        .legal th { background: #FFD600; font-weight: 800; }
+        .legal .box {
+            background: #fffdf5; border: 3px solid #000; box-shadow: 6px 6px 0 #000;
+            padding: 1.2rem 1.4rem; margin: 1.2rem 0;
+        }
+        .legal .pill {
+            display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .06em;
+            text-transform: uppercase; padding: 2px 9px; border: 2px solid #000; margin-left: .5rem;
+        }
+        .pill-on { background: #FFD600; }
+        .pill-opt { background: #fff; }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-accent font-sans antialiased">
+
+    <nav class="fixed top-0 left-0 w-full glass-nav bg-brand-bg border-b-4 border-black z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-black hover:text-black/60 transition-colors">
+                <i class="fa-solid fa-arrow-left text-sm"></i>
+                <span>CANOVERSE</span>
+            </a>
+            <span class="bg-brand-yellow border-[3px] border-black text-black text-xs font-bold tracking-widest uppercase px-4 py-1.5" style="box-shadow: 3px 3px 0 #000; transform: rotate(-1.5deg);">Cookie</span>
+        </div>
+    </nav>
+
+    <section class="pt-36 pb-24 px-6">
+        <div class="max-w-3xl mx-auto legal">
+            <h1 class="text-3xl md:text-4xl font-black tracking-tight mb-3">Cookie Policy</h1>
+            <p class="text-sm text-brand-muted">Redatta secondo le Linee guida del Garante Privacy sull’uso dei cookie (10 giugno 2021) e la direttiva ePrivacy.</p>
+            <p class="text-sm text-brand-muted">Ultimo aggiornamento: <strong>21 luglio 2026</strong></p>
+
+            <h2>1. Cosa sono i cookie</h2>
+            <p>I cookie sono piccoli file di testo che i siti salvano sul tuo dispositivo. Insieme ad altri strumenti simili (es. <em>localStorage</em>) permettono di far funzionare il sito, ricordare le tue scelte o abilitare contenuti di terze parti. Il Titolare del trattamento è <strong>Manbaga Comics &amp; Games di Lapia Antonio Carmine</strong> (vedi <a href="privacy.html">Privacy Policy</a>).</p>
+
+            <h2>2. Le categorie che usiamo</h2>
+
+            <h3>Necessari <span class="pill pill-on">Sempre attivi</span></h3>
+            <p>Indispensabili al funzionamento del sito e ai servizi da te richiesti; non richiedono consenso. Includono la memorizzazione della tua scelta sui cookie, il funzionamento del modulo di iscrizione e del database, oltre agli strumenti tecnici dei fornitori di hosting e distribuzione contenuti.</p>
+
+            <h3>Statistici <span class="pill pill-opt">Opzionali · disattivi</span></h3>
+            <p>Servirebbero ad analizzare in forma aggregata e anonima l’uso del sito. <strong>Al momento non è attivo alcuno strumento statistico:</strong> la categoria è predisposta per un eventuale uso futuro e, in tal caso, sarà attivata solo previo tuo consenso.</p>
+
+            <h3>Terze parti <span class="pill pill-opt">Opzionali · su consenso</span></h3>
+            <p>Abilitano contenuti forniti da servizi esterni. Nel nostro caso la <strong>mappa di Google Maps</strong>, che viene caricata solo dopo il tuo consenso e può installare cookie propri e trasferire dati a Google.</p>
+
+            <h2>3. Elenco dei cookie e degli strumenti</h2>
+            <table>
+                <thead><tr><th>Strumento</th><th>Fornitore</th><th>Categoria</th><th>Finalità</th></tr></thead>
+                <tbody>
+                    <tr><td><code>canoverse_cookie_consent</code> (localStorage)</td><td>Sito (prima parte)</td><td>Necessari</td><td>Memorizza le tue scelte sui cookie (durata: 180 giorni)</td></tr>
+                    <tr><td>Firebase Cloud Firestore</td><td>Google</td><td>Necessari</td><td>Salva le iscrizioni e mostra i contatori dei posti in tempo reale</td></tr>
+                    <tr><td>EmailJS</td><td>EmailJS, Inc.</td><td>Necessari</td><td>Invia il modulo di iscrizione all’organizzatore (attivo solo all’invio)</td></tr>
+                    <tr><td><code>_cfuvid</code>, <code>cf_clearance</code></td><td>Cloudflare, Inc.</td><td>Necessari</td><td>Sicurezza e distribuzione dei contenuti (CDN)</td></tr>
+                    <tr><td>Font Awesome</td><td>Fonticons, Inc.</td><td>Necessari</td><td>Visualizzazione delle icone</td></tr>
+                    <tr><td>Tailwind CSS / jsDelivr</td><td>Tailwind Labs / jsDelivr</td><td>Necessari</td><td>Stili e librerie del sito (CDN)</td></tr>
+                    <tr><td>Google Maps</td><td>Google</td><td>Terze parti</td><td>Mappa interattiva della location (solo previo consenso)</td></tr>
+                </tbody>
+            </table>
+            <p class="text-sm text-brand-muted"><em>Alcuni strumenti “necessari” sono forniti da terze parti tramite CDN e comportano la trasmissione dell’indirizzo IP al relativo fornitore per il solo funzionamento tecnico del sito.</em></p>
+
+            <h2>4. Come gestire il consenso</h2>
+            <p>Al primo accesso compare un banner che ti permette di <strong>accettare tutti</strong>, <strong>rifiutare tutti</strong> (restano solo i necessari) o <strong>personalizzare</strong> le categorie. Nessun cookie non necessario viene attivato senza il tuo consenso.</p>
+            <p>Puoi modificare o revocare le tue scelte in qualsiasi momento — con la stessa facilità con cui le hai prestate — aprendo il pannello <a href="#" class="cookie-preferences-link">Preferenze Cookie</a>, disponibile in fondo a ogni pagina. La tua scelta viene ricordata per <strong>180 giorni</strong>, dopodiché il banner viene riproposto.</p>
+
+            <div class="box">
+                <p class="!mb-2 font-bold">Vuoi cambiare idea adesso?</p>
+                <p class="!mb-0"><a href="#" class="cookie-preferences-link">→ Apri le Preferenze Cookie</a></p>
+            </div>
+
+            <h2>5. Gestione dal browser</h2>
+            <p>Puoi bloccare o cancellare i cookie anche dalle impostazioni del tuo browser. La disattivazione dei cookie necessari può però compromettere alcune funzioni del sito. Guide ufficiali:
+                <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a>,
+                <a href="https://support.mozilla.org/it/kb/protezione-antitracciamento-avanzata-firefox-desktop" target="_blank" rel="noopener">Firefox</a>,
+                <a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a>,
+                <a href="https://support.microsoft.com/it-it/microsoft-edge" target="_blank" rel="noopener">Edge</a>.
+            </p>
+
+            <h2>6. Aggiornamenti</h2>
+            <p>Questa Cookie Policy può essere aggiornata: la versione in vigore è sempre pubblicata su questa pagina con la data di ultimo aggiornamento. Per i dettagli sul trattamento dei dati personali consulta la <a href="privacy.html">Privacy Policy</a>.</p>
+        </div>
+    </section>
+
+    <footer class="border-t-4 border-black bg-brand-bg pt-10 pb-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-muted font-light">
+            <div class="flex items-center gap-2">
+                <span class="text-brand-yellow font-bold">CANOVERSE</span>
+                <span class="mx-2 opacity-30">|</span>
+                <span>© 2026 Canosa di Puglia. Tutti i diritti riservati.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+                <a href="privacy.html" class="hover:text-brand-yellow transition-colors">Privacy Policy</a>
+                <a href="cookie.html" class="hover:text-brand-yellow transition-colors">Cookie Policy</a>
+                <a href="#" class="cookie-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
+                <a href="index.html" class="font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline text-black">← Torna al sito</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie consent (banner GDPR self-hosted) -->
+    <script src="src/js/cookieConsent.js"></script>
+</body>
+</html>
