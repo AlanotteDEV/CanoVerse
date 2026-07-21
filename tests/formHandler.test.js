@@ -202,6 +202,73 @@ describe('formHandler', () => {
     });
   });
 
+  // ── handleFormSubmit (anti-bot honeypot + tempo minimo) ───────────
+
+  describe('handleFormSubmit — anti-bot honeypot', () => {
+    let sendMock;
+
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <form id="cosplayForm" onsubmit="handleFormSubmit(event)">
+          <div class="hp-field"><input id="website" name="website" value="" /></div>
+          <input id="name" value="Mario" />
+          <input id="email" value="mario@example.com" />
+          <input id="character" value="" />
+          <select id="type"><option value="cosplay_singolo" selected>Cosplay Singolo</option></select>
+          <textarea id="message"></textarea>
+          <input type="checkbox" id="privacy-consent" checked />
+          <input type="checkbox" id="age-consent" checked />
+          <button type="submit">Invia</button>
+        </form>
+        <div id="successMessage" class="hidden"></div>
+      `;
+      Element.prototype.scrollIntoView = jest.fn();
+      window.alert = jest.fn();
+      sendMock = jest.fn().mockResolvedValue({});
+      window.emailjs = { init: jest.fn(), send: sendMock };
+      window.emailjsInitDone = false;
+      window.firebase = {
+        firestore: { FieldValue: { serverTimestamp: jest.fn(() => 'MOCK_TIMESTAMP') } },
+      };
+      window.db = {
+        collection: jest.fn(() => ({ add: jest.fn().mockResolvedValue({ id: 'mock-id' }) })),
+      };
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+      delete window.emailjs;
+      delete window.emailjsInitDone;
+      delete window.firebase;
+      delete window.db;
+      delete window.alert;
+    });
+
+    test('blocks the submission when the honeypot field is filled (no email, no save)', async () => {
+      document.getElementById('website').value = 'http://spam.example';
+      const event = { preventDefault: jest.fn() };
+      const result = await handleFormSubmit(event);
+      expect(sendMock).not.toHaveBeenCalled();
+      expect(result).toBe(true); // finto esito positivo per non allertare il bot
+      expect(document.getElementById('cosplayForm').style.display).toBe('none');
+    });
+
+    test('blocks a submission that arrives too fast (bot timing)', async () => {
+      jest.spyOn(Date, 'now').mockReturnValue(0); // tempo trascorso "negativo" → troppo veloce
+      const event = { preventDefault: jest.fn() };
+      await handleFormSubmit(event);
+      expect(sendMock).not.toHaveBeenCalled();
+    });
+
+    test('lets a genuine submission through (empty honeypot, enough time elapsed)', async () => {
+      jest.spyOn(Date, 'now').mockReturnValue(Number.MAX_SAFE_INTEGER); // molto tempo trascorso
+      const event = { preventDefault: jest.fn() };
+      await handleFormSubmit(event);
+      expect(sendMock).toHaveBeenCalledTimes(1);
+      expect(document.getElementById('successMessage').classList.contains('hidden')).toBe(false);
+    });
+  });
+
   // ── isValidEmail ──────────────────────────────────────────────────
 
   describe('isValidEmail', () => {

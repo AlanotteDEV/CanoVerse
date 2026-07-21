@@ -7,6 +7,14 @@ const emailJsConfig = {
 
 const ONE_PIECE_MAX = 16;
 
+// ── Anti-bot ────────────────────────────────────────────────────────
+// Tempo minimo (ms) tra il caricamento del form e l'invio: sotto questa
+// soglia l'invio è quasi certamente automatizzato. Un utente reale impiega
+// diversi secondi (compila i campi + spunta i due checkbox di consenso).
+const MIN_SUBMIT_MS = 1500;
+// Istante in cui lo script è stato valutato (≈ form pronto in pagina).
+const formReadyAt = Date.now();
+
 function initEmailJS() {
   if (window.emailjs && !window.emailjsInitDone) {
     emailjs.init(emailJsConfig.publicKey);
@@ -75,6 +83,22 @@ async function handleFormSubmit(event) {
   const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
   if (!form || !successMsg) return false;
+
+  // ── Filtro anti-bot (honeypot + tempo minimo) ──
+  // Attivo solo se il markup honeypot è presente (pagina reale); nei test
+  // unitari il campo non c'è e il controllo viene saltato.
+  const honeypot = form.querySelector('#website');
+  if (honeypot) {
+    const tooFast = (Date.now() - formReadyAt) < MIN_SUBMIT_MS;
+    if (honeypot.value.trim() !== '' || tooFast) {
+      // Probabile bot: mostra un finto esito positivo senza inviare email
+      // né salvare nulla su Firestore, così l'automazione non capisce di
+      // essere stata bloccata.
+      form.style.display = 'none';
+      successMsg.classList.remove('hidden');
+      return true;
+    }
+  }
 
   const name = form.querySelector('#name');
   const email = form.querySelector('#email');
