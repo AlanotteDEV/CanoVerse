@@ -168,14 +168,24 @@
         @keyframes teamScroll { to { transform: translateX(-50%); } }
         .team-strip:hover .team-track { animation-play-state: paused; }
         @media (prefers-reduced-motion: reduce) { .team-track { animation: none; } }
+    
+        /* ── Programma "coming soon" ── */
+        .program-blur {
+            filter: blur(7px) saturate(.75);
+            opacity: .5;
+            pointer-events: none;
+            user-select: none;
+        }
+        .program-veil { z-index: 2; }
+        @media (max-width: 640px) { .program-blur { filter: blur(5px) saturate(.75); } }
     </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Festival",
       "name": "CanoVerse 2026",
-      "startDate": "2026-09-05T20:30:00+02:00",
-      "endDate": "2026-09-06T00:30:00+02:00",
+      "startDate": "2026-09-05T10:30:00+02:00",
+      "endDate": "2026-09-05T23:30:00+02:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "isAccessibleForFree": true,
@@ -214,7 +224,6 @@
             <div class="flex flex-wrap justify-center items-center gap-6 text-xs md:text-sm font-medium tracking-widest uppercase text-black/70">
                 <a href="#evento" class="hover:text-black transition-colors duration-300">L'Evento</a>
                 <a href="#programma" class="hover:text-black transition-colors duration-300">Programma</a>
-                <a href="#orari" class="hover:text-black transition-colors duration-300">Orari</a>
                 <a href="#galleria" class="hover:text-black transition-colors duration-300">Galleria</a>
                 <a href="#tcg" class="hover:text-black transition-colors duration-300">Competizioni</a>
                 <a href="#team" class="hover:text-black transition-colors duration-300">Team</a>
@@ -257,7 +266,7 @@
                     <span class="absolute -top-4 -right-4 bg-brand-yellow border-[3px] border-black text-black text-xs font-bold uppercase tracking-widest px-3 py-1" style="transform: rotate(6deg);">Free Entry</span>
                     <p class="text-xs font-bold uppercase tracking-widest text-black/60 mb-2">Biglietto d'ingresso · 入場券</p>
                     <p class="text-6xl font-extrabold tracking-tighter text-black leading-none mb-1">05 SET</p>
-                    <p class="text-xl font-bold text-black mb-6">2026 — Ore 20:30</p>
+                    <p class="text-xl font-bold text-black mb-6">2026 — Ore 10:30–23:30</p>
                     <div class="border-t-[3px] border-dashed border-black pt-6">
                         <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-3">Countdown all'apertura</p>
                         <div class="grid grid-cols-4 gap-2 text-center">
@@ -329,7 +338,7 @@
                 <div class="space-y-3 pt-2">
                     <div class="flex items-start gap-3 text-sm text-brand-muted">
                         <i class="fa-solid fa-clock text-brand-yellow mt-1 w-5"></i>
-                        <span><strong class="text-black">Ore 20:30</strong> — Apertura e <strong class="text-black">prima serata</strong>: sigle anime per l'accoglienza e l'esplorazione degli stand</span>
+                        <span><strong class="text-black">Ore 10:30</strong> — <strong class="text-black">Apertura</strong>: accoglienza con sigle anime ed esplorazione libera degli stand</span>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-brand-muted">
                         <i class="fa-solid fa-music text-brand-yellow mt-1 w-5"></i>
@@ -337,7 +346,7 @@
                     </div>
                     <div class="flex items-start gap-3 text-sm text-brand-muted">
                         <i class="fa-solid fa-compact-disc text-brand-yellow mt-1 w-5"></i>
-                        <span><strong class="text-black">Tarda serata</strong> — musica commerciale fino alla chiusura (ore 00:30 ipotizzata)</span>
+                        <span><strong class="text-black">Sera</strong> — musica commerciale fino alla <strong class="text-black">chiusura alle ore 23:30</strong></span>
                     </div>
 
                                 </div>
@@ -367,12 +376,14 @@
             
             <div class="mb-16 fade-in-up">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase">Catalogo — Attrazioni</h2>
+                    <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase">In arrivo — 近日公開</h2>
                 </div>
                 <h3 class="text-3xl md:text-4xl font-bold tracking-tight">IL NOSTRO<br>PROGRAMMA</h3>
             </div>
 
-            <div class="space-y-6">
+            <div class="program-locked-wrap relative">
+                <!-- Contenuto reale del programma: temporaneamente offuscato in attesa dell'annuncio -->
+                <div class="program-blur space-y-6" aria-hidden="true" inert>
                 <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
                     <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
                         <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">01</span>
@@ -473,60 +484,18 @@
                 </div>
 
                             </div>
-        </div>
-    </section>
 
-    <!-- ══════════════════════════════════════
-         TIMETABLE (Scaletta Serata)
-    ══════════════════════════════════════ -->
-    <section id="orari" class="py-24 px-6 border-t-4 border-black">
-        <div class="max-w-4xl mx-auto">
-            <div class="mb-16 fade-in-up">
-                <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Scaletta — 時間割</h2>
-                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">LA SERATA,<br>ORA PER ORA</h3>
-            </div>
-            <div class="relative border-l-4 border-black ml-3 md:ml-6 space-y-10 pl-8 md:pl-12 py-2">
-                <div class="relative fade-in-up">
-                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
-                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(-1deg);">20:30</span>
-                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Apertura</h4>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Accoglienza con sigle anime ed esplorazione libera degli stand: nerd shop, illustrazioni & live drawing, area gioco da tavolo e tatuaggi temporanei.</p>
-                </div>
-                <div class="relative fade-in-up">
-                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
-                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(1deg);">21:00</span>
-                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">CosTalk & Q&A</h4>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Le basi del cosplay e i lavori di cosmaking con Martina Tundre. A seguire domande e risposte aperte al pubblico.</p>
-                </div>
-                <div class="relative fade-in-up">
-                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
-                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(-1deg);">In serata</span>
-                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Torneo One Piece Card Game</h4>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Formato Swiss con finale a eliminazione diretta, giudici certificati al tavolo.</p>
-                </div>
-                <div class="relative fade-in-up">
-                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
-                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(1deg);">Tutta la sera</span>
-                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Gara Cosplay</h4>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">I giudici in incognito circolano tra il pubblico e valutano i costumi durante l'intera serata.</p>
-                </div>
-                <div class="relative fade-in-up">
-                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
-                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(-1deg);">Tarda serata</span>
-                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Musica commerciale</h4>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Musikeria accompagna la chiusura con musica live e commerciale.</p>
-                </div>
-                <div class="relative fade-in-up">
-                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
-                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(1deg);">Fine serata</span>
-                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Premiazioni</h4>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Premiazione della gara cosplay e del torneo TCG.</p>
-                </div>
-                <div class="relative fade-in-up">
-                    <span class="absolute -left-[3.35rem] md:-left-[4.35rem] top-1 w-5 h-5 bg-brand-yellow border-[3px] border-black"></span>
-                    <span class="inline-block bg-black text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-2" style="transform: rotate(-1deg);">00:30</span>
-                    <h4 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight text-black">Chiusura</h4>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed mt-1 max-w-xl">Orario di chiusura indicativo.</p>
+                <!-- Overlay Coming Soon -->
+                <div class="program-veil absolute inset-0 flex items-center justify-center p-4">
+                    <div class="text-center bg-white border-[3px] border-black px-8 py-10 md:px-14 md:py-12 max-w-lg" style="box-shadow: 12px 12px 0 #000; transform: rotate(-1.5deg);">
+                        <span class="inline-block bg-brand-yellow border-[3px] border-black text-black text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 py-1 mb-5" style="transform: rotate(2deg);">Top secret · 極秘</span>
+                        <h4 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter leading-none text-black mb-4">Coming<br>Soon</h4>
+                        <p class="text-sm md:text-base text-brand-muted font-light leading-relaxed mb-6">Il programma completo di CanoVerse 2026 è in arrivo.<br class="hidden md:block"> Stiamo mettendo a punto gli ultimi dettagli: <strong class="text-black">torna presto</strong> per scoprire tutte le attrazioni.</p>
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                            <a href="iscrizione.html" class="bg-brand-yellow text-black text-xs font-bold tracking-widest uppercase px-6 py-3">Iscriviti ora</a>
+                            <a href="#tcg" class="bg-white border-[3px] border-black text-black hover:bg-black hover:text-white text-xs font-bold tracking-widest uppercase px-6 py-3 transition-colors duration-200" style="box-shadow: 4px 4px 0 #000;">Le competizioni</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -542,11 +511,11 @@
                 <h3 class="text-3xl md:text-4xl font-bold tracking-tight">LE NOSTRE<br>COMPETIZIONI</h3>
             </div>
             <p class="text-brand-muted text-sm md:text-base font-light max-w-lg">
-Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo ufficiale One Piece Card Game. Iscrizione obbligatoria per entrambe.
+Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP o siediti al tavolo per il torneo ufficiale One Piece Card Game. Iscrizione obbligatoria per tutte e tre.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
 
             <!-- Gara Cosplay -->
             <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 8px 8px 0 #000;" style="transition-delay: 200ms;">
@@ -579,6 +548,42 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
                 </div>
             </div>
 
+            <!-- Contest K-POP -->
+            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 8px 8px 0 #000;">
+                <div class="h-32 bg-brand-card flex items-center justify-center relative border-b-[3px] border-black overflow-hidden">
+                    <span class="absolute text-[8rem] font-jp text-black/[0.02]">舞</span> <!-- Danza -->
+                    <h4 class="relative z-10 font-bold tracking-widest text-lg">CONTEST K-POP</h4>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Disciplina</span> <strong class="text-black">Dance / Performance</strong>
+                    </div>
+                    <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span class="pt-0.5">Giuria</span>
+                        <strong class="text-black text-right">Giuria qualificata<br><span class="text-brand-muted font-normal text-[11px]">Esperti del settore</span></strong>
+                    </div>
+                    <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span class="pt-0.5">In palio</span>
+                        <strong class="text-black text-right">Buono Amazon<br><span class="text-brand-muted font-normal text-[11px]">Per il vincitore</span></strong>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Iscritti</span>
+                        <strong class="text-black">
+                            <span id="kpop-count">—</span>
+                        </strong>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
+                        <span>Premiazione</span> <strong class="text-black">Fine serata</strong>
+                    </div>
+                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-black text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
+                        Iscriviti
+                    </a>
+                    <a href="kpop-iscritti.html" class="block text-center border-2 border-black/30 text-brand-muted hover:text-brand-yellow hover:border-brand-yellow text-xs font-bold uppercase tracking-widest py-3 transition-colors">
+                        <i class="fa-solid fa-list mr-2"></i>Vedi Iscritti
+                    </a>
+                </div>
+            </div>
+
             <!-- One Piece -->
             <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 8px 8px 0 #000;" style="transition-delay: 300ms;">
                 <div class="h-32 bg-brand-card flex items-center justify-center relative border-b-[3px] border-black group-hover:border-brand-yellow overflow-hidden transition-colors">
@@ -599,12 +604,12 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
                         </strong>
                     </div>
                     <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
-                        <span class="pt-0.5">Premio Partecipazione</span>
-                        <strong class="text-black text-right">Demo Deck Random<br><span class="text-brand-muted font-normal text-[11px]">Luffy Red ST21 / Zoro Green OP12</span></strong>
+                        <span class="pt-0.5">Partecipazione</span>
+                        <strong class="text-black text-right">1 bustina a testa<br><span class="text-brand-muted font-normal text-[11px]">Espansione corrente</span></strong>
                     </div>
                     <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span class="pt-0.5">Premi</span>
-                        <strong class="text-black text-right">1° 12 buste<br>2° 8 buste<br>3° 4 buste</strong>
+                        <strong class="text-black text-right">1° Box OP17<br>2° 10 bustine<br>3° 4 bustine</strong>
                     </div>
                     <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-black text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
                         Iscriviti
@@ -617,14 +622,18 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
 
         </div>
 
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 6px 6px 0 #000;">
                 <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Come funziona la Gara Cosplay</strong>
                 <p>Niente sfilata né regolamento formale: dei giudici in incognito circoleranno tra il pubblico durante tutta la serata, osservando e valutando personalmente i costumi. La premiazione avverrà a fine giornata. Categorie Singolo e Gruppo.</p>
             </div>
             <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 6px 6px 0 #000;">
+                <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Contest K-POP</strong>
+                <p>Esibizioni di dance cover e performance K-POP, aperte a singoli e gruppi. Le esibizioni sono valutate da una <strong class="text-black">giuria qualificata</strong>, composta da esperti del settore, secondo criteri di tecnica, sincronia, presenza scenica e fedeltà alla coreografia originale. Il vincitore riceve un <strong class="text-black">buono Amazon</strong>. Porta la tua base musicale; iscrizione gratuita tramite il modulo del sito. Il giudizio della giuria è insindacabile.</p>
+            </div>
+            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 6px 6px 0 #000;">
                 <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Regolamento Torneo TCG</strong>
-                <p>Mazzi validati secondo il ban-list ufficiale vigente al 5 Settembre 2026. Ogni giocatore deve portare il proprio mazzo e i token. Formato Swiss, finale a eliminazione diretta. Giudici certificati presenti. Ogni partecipante riceve, a prescindere dal mazzo con cui gioca, un demo deck in omaggio assegnato a random tra Luffy Red (ST21) e Zoro Green (OP12). Iscrizione €12. Premi: 1° posto 12 buste, 2° posto 8 buste, 3° posto 4 buste.</p>
+                <p>Mazzi validati secondo il ban-list ufficiale vigente al 5 Settembre 2026. Ogni giocatore deve portare il proprio mazzo e i token. Formato Swiss, finale a eliminazione diretta. Giudici certificati presenti. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve <strong class="text-black">una bustina dell'espansione corrente</strong>. Premi: <strong class="text-black">1° posto un Box OP17</strong>, 2° posto 10 bustine, 3° posto 4 bustine.</p>
             </div>
         </div>
     </section>
@@ -865,7 +874,7 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
                     </div>
                     <div class="flex items-center gap-4 text-brand-muted hover:text-brand-yellow transition-colors cursor-pointer">
                         <i class="fa-solid fa-envelope text-lg w-6"></i>
-                        <span>trajan.comic.cosplay@gmail.com</span>
+                        <span>Canoversecomicscosplay@gmail.com</span>
                     </div>
                     <div class="flex items-center gap-4 text-brand-muted hover:text-brand-yellow transition-colors cursor-pointer">
                         <i class="fa-solid fa-phone text-lg w-6"></i>
@@ -907,14 +916,21 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
                         Quanto costa l'ingresso?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
-                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Niente biglietto: l'ingresso è <strong>gratuito</strong> per tutti. L'iscrizione serve solo per partecipare alla gara cosplay o al torneo One Piece Card Game.</p>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Niente biglietto: l'ingresso è <strong>gratuito</strong> per tutti. L'iscrizione serve solo per partecipare alla gara cosplay, al contest K-POP o al torneo One Piece Card Game.</p>
                 </details>
                 <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
                     <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
                         Devo iscrivermi per partecipare?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
-                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Solo se vuoi gareggiare: gara cosplay e torneo TCG richiedono l'iscrizione tramite il form ufficiale di questa pagina. Per visitare l'evento basta presentarsi.</p>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Solo se vuoi gareggiare: gara cosplay, contest K-POP e torneo TCG richiedono l'iscrizione tramite il form ufficiale. Per visitare l'evento basta presentarsi.</p>
+                </details>
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                        Come funziona il contest K-POP?
+                        <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Puoi esibirti in dance cover o performance K-POP, da solo o in gruppo. Una <strong>giuria qualificata</strong> composta da esperti del settore valuta tecnica, sincronia, presenza scenica e fedeltà alla coreografia. Il vincitore riceve un <strong>buono Amazon</strong>. Partecipazione gratuita: basta iscriversi dal form e portare la propria base musicale.</p>
                 </details>
                 <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(-0.3deg);">
                     <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
@@ -928,41 +944,22 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
                         Posso venire in costume con oggetti di scena?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
-                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Certo, i cosplay sono i benvenuti! Gli oggetti di scena sono ammessi purché non pericolosi: niente lame reali o materiali contundenti. In caso di dubbi scrivici prima a trajan.comic.cosplay@gmail.com.</p>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Certo, i cosplay sono i benvenuti! Gli oggetti di scena sono ammessi purché non pericolosi: niente lame reali o materiali contundenti. In caso di dubbi scrivici prima a Canoversecomicscosplay@gmail.com.</p>
                 </details>
                 <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(-0.3deg);">
                     <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
                         Cosa serve per il torneo One Piece?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
-                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Il tuo mazzo e i token, validati secondo la ban-list ufficiale vigente al 5 Settembre 2026. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve un demo deck in omaggio.</p>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Il tuo mazzo e i token, validati secondo la ban-list ufficiale vigente al 5 Settembre 2026. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve una bustina dell'espansione corrente; in palio un Box OP17 per il primo classificato, 10 bustine per il secondo e 4 per il terzo.</p>
                 </details>
                 <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
                     <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
-                        A che ora finisce l'evento?
+                        Che orari fa il festival?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
-                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">La chiusura è prevista indicativamente per le 00:30.</p>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Il festival è aperto dalle <strong>10:30</strong> alle <strong>23:30</strong>.</p>
                 </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════════════════════════════════
-         SPONSOR (Minimal)
-    ══════════════════════════════════════ -->
-    <section class="py-16 border-t-4 border-black bg-[#efe4c8]/95 text-center px-6">
-        <div class="max-w-6xl mx-auto fade-in-up">
-            <h4 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-8">Partner e Sponsor</h4>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
-                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">RENTAL POINT</span>
-                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">FORGE TRAINING STUDIO</span>
-                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">CASA DEL CAFFÈ</span>
-                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">BABY SHOP</span>
-                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">VENERE PROFUMERIA</span>
-                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">URBAN STORE</span>
-                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">DIGITAL PRINT</span>
-                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">MUSIKERIA</span>
             </div>
         </div>
     </section>
@@ -1023,6 +1020,13 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
             });
 
         db.collection('registrations')
+            .where('category', '==', 'kpop')
+            .onSnapshot((snapshot) => {
+                const el = document.getElementById('kpop-count');
+                if (el) el.textContent = snapshot.size;
+            });
+
+        db.collection('registrations')
             .where('category', 'in', ['cosplay_singolo', 'cosplay_gruppo'])
             .onSnapshot((snapshot) => {
                 const el = document.getElementById('cosplay-count');
@@ -1035,7 +1039,7 @@ Indossa il tuo costume per la gara cosplay o siediti al tavolo per il torneo uff
     -->
     <script>
         (function () {
-            var target = new Date('2026-09-05T20:30:00+02:00').getTime();
+            var target = new Date('2026-09-05T10:30:00+02:00').getTime();
             function pad(n) { return String(n).padStart(2, '0'); }
             function tick() {
                 var d = Math.max(0, target - Date.now());

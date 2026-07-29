@@ -100,6 +100,31 @@
             display: inline-block; padding: 2px 10px;
             border: 2px solid #000; box-shadow: 3px 3px 0 #000;
         }
+    
+        /* ── Form: massima leggibilità ── */
+        .form-field {
+            background: #ffffff;
+            font-family: inherit;
+            transition: box-shadow .15s ease, border-color .15s ease;
+        }
+        .form-field::placeholder { color: #6b6350; opacity: 1; }
+        .form-field:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 4px #FFD600;
+        }
+        .form-select {
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, #111 50%), linear-gradient(135deg, #111 50%, transparent 50%);
+            background-position: calc(100% - 22px) 55%, calc(100% - 15px) 55%;
+            background-size: 7px 7px, 7px 7px;
+            background-repeat: no-repeat;
+            padding-right: 46px;
+            cursor: pointer;
+        }
+        .form-select:invalid { color: #6b6350; }
+        .form-check { width: 20px; height: 20px; flex-shrink: 0; cursor: pointer; }
+        label[for] { cursor: pointer; }
     </style>
 </head>
 <body class="bg-brand-bg text-brand-accent font-sans antialiased">
@@ -130,27 +155,30 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
-                        <label class="text-xs font-semibold text-brand-muted uppercase tracking-wider" for="name">Nome o Nome d'Arte *</label>
-                        <input class="w-full bg-brand-bg border-[3px] border-black p-4 text-sm text-brand-accent focus:border-brand-yellow focus:outline-none transition-colors duration-200" type="text" id="name" required placeholder="Es. Luffy D. Monkey">
+                        <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="name">Nome o Nome d'Arte *</label>
+                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-black" type="text" id="name" required placeholder="Es. Luffy D. Monkey">
                     </div>
                     <div class="space-y-2">
-                        <label class="text-xs font-semibold text-brand-muted uppercase tracking-wider" for="email">Indirizzo Email *</label>
-                        <input class="w-full bg-brand-bg border-[3px] border-black p-4 text-sm text-brand-accent focus:border-brand-yellow focus:outline-none transition-colors duration-200" type="email" id="email" required placeholder="Es. mail@esempio.it">
+                        <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="email">Indirizzo Email *</label>
+                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-black" type="email" id="email" required placeholder="Es. mail@esempio.it">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
-                        <label class="text-xs font-semibold text-brand-muted uppercase tracking-wider" for="character">Personaggio / Gioco</label>
-                        <input class="w-full bg-brand-bg border-[3px] border-black p-4 text-sm text-brand-accent focus:border-brand-yellow focus:outline-none transition-colors duration-200" type="text" id="character" placeholder="Opzionale">
+                        <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="character">Personaggio / Gioco / Brano K-POP</label>
+                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-black" type="text" id="character" placeholder="Es. personaggio, mazzo o brano/gruppo K-POP">
                     </div>
                     <div class="space-y-2">
-                        <label class="text-xs font-semibold text-brand-muted uppercase tracking-wider" for="type">Categoria *</label>
-                        <select class="w-full bg-brand-bg border-[3px] border-black p-4 text-sm text-brand-muted focus:text-brand-yellow focus:border-brand-yellow focus:outline-none transition-colors duration-200 appearance-none rounded-none" id="type" required>
+                        <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="type">Categoria *</label>
+                        <select class="form-field form-select w-full border-[3px] border-black p-4 text-base text-black rounded-none" id="type" required>
                             <option value="" disabled selected>— Seleziona —</option>
                             <optgroup label="Cosplay">
                                 <option value="cosplay_singolo">Singolo Cosplayer</option>
                                 <option value="cosplay_gruppo">Gruppo Cosplay</option>
+                            </optgroup>
+                            <optgroup label="Contest K-POP">
+                                <option value="kpop">Contest K-POP (Dance)</option>
                             </optgroup>
                             <optgroup label="Torneo TCG">
                                 <option value="tcg_onepiece">One Piece Card Game</option>
@@ -160,23 +188,23 @@
                 </div>
 
                 <div class="space-y-2">
-                    <label class="text-xs font-semibold text-brand-muted uppercase tracking-wider" for="message">Note Aggiuntive</label>
-                    <textarea class="w-full bg-brand-bg border-[3px] border-black p-4 text-sm text-brand-accent h-32 focus:border-brand-yellow focus:outline-none transition-colors duration-200 resize-none" id="message" placeholder="Richieste per cosplay, note sul mazzo..."></textarea>
+                    <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="message">Note Aggiuntive</label>
+                    <textarea class="form-field w-full border-[3px] border-black p-4 text-base text-black h-32 resize-none" id="message" placeholder="Richieste per cosplay, note sul mazzo..."></textarea>
                 </div>
 
                 <div class="space-y-3 pt-2 border-t-4 border-black">
-                    <p class="text-xs text-brand-muted leading-relaxed">
-                        Il tuo nome e il personaggio scelto verranno mostrati pubblicamente in tempo reale nella lista iscritti della gara/torneo a cui ti registri.
+                    <p class="text-sm text-black/80 leading-relaxed">
+                        Il tuo nome e il personaggio scelto verranno mostrati pubblicamente in tempo reale nella lista iscritti della gara/contest/torneo a cui ti registri.
                     </p>
-                    <label class="flex items-start gap-3 text-xs text-brand-muted cursor-pointer">
-                        <input type="checkbox" id="privacy-consent" required class="mt-0.5 accent-brand-yellow">
+                    <label class="flex items-start gap-3 text-sm text-black cursor-pointer leading-relaxed">
+                        <input type="checkbox" id="privacy-consent" required class="form-check mt-0.5 accent-black">
                         <span>Ho letto l'<a href="privacy.html" class="underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Informativa Privacy</a> e acconsento al trattamento dei miei dati per la gestione dell'iscrizione all'evento. *</span>
                     </label>
-                    <label class="flex items-start gap-3 text-xs text-brand-muted cursor-pointer">
-                        <input type="checkbox" id="age-consent" required class="mt-0.5 accent-brand-yellow">
+                    <label class="flex items-start gap-3 text-sm text-black cursor-pointer leading-relaxed">
+                        <input type="checkbox" id="age-consent" required class="form-check mt-0.5 accent-black">
                         <span>Dichiaro di avere almeno 16 anni, oppure di aver ottenuto il consenso di un genitore/tutore alla mia iscrizione e al trattamento dei miei dati (necessario per i minorenni, art. 8 GDPR). *</span>
                     </label>
-                    <p class="text-xs text-brand-muted leading-relaxed">
+                    <p class="text-sm text-black/80 leading-relaxed">
                         <i class="fa-solid fa-circle-info mr-1"></i>Se sei minorenne, scarica e porta al check-in il <a href="consenso-genitori.html" class="underline hover:text-brand-yellow" target="_blank">modulo di consenso genitoriale</a> firmato da un genitore o tutore.
                     </p>
                 </div>

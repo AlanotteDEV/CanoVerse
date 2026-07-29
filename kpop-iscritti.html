@@ -7,18 +7,18 @@
     <!-- iubenda widget disattivato temporaneamente — banner cookie ora gestito da src/js/cookieConsent.js. Per riattivarlo togliere il commento.
     <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
     -->
-    <title>Iscritti Torneo One Piece — CanoVerse 2026</title>
+    <title>Iscritti Contest K-POP — CanoVerse 2026</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <meta name="description" content="Lista aggiornata in tempo reale degli iscritti al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
+    <meta name="description" content="Lista aggiornata in tempo reale degli iscritti al Contest K-POP di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="it_IT">
-    <meta property="og:url" content="https://canoverse.vercel.app/partecipanti.html">
-    <meta property="og:title" content="Iscritti Torneo One Piece — CanoVerse 2026">
-    <meta property="og:description" content="Lista aggiornata in tempo reale degli iscritti al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
+    <meta property="og:url" content="https://canoverse.vercel.app/kpop-iscritti.html">
+    <meta property="og:title" content="Iscritti Contest K-POP — CanoVerse 2026">
+    <meta property="og:description" content="Lista aggiornata in tempo reale degli iscritti al Contest K-POP di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
     <meta property="og:image" content="https://canoverse.vercel.app/background.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Iscritti Torneo One Piece — CanoVerse 2026">
-    <meta name="twitter:description" content="Lista aggiornata in tempo reale degli iscritti al Torneo One Piece Card Game di CanoVerse 2026.">
+    <meta name="twitter:title" content="Iscritti Contest K-POP — CanoVerse 2026">
+    <meta name="twitter:description" content="Lista aggiornata in tempo reale degli iscritti al Contest K-POP di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
     <meta name="twitter:image" content="https://canoverse.vercel.app/background.png">
 
     <script src="src/js/tailwind.min.js"></script>
@@ -120,14 +120,14 @@
         <!-- Header -->
         <div class="mb-12">
             <div class="flex items-center gap-3 mb-4">
-                <span class="text-3xl font-jp text-black/15">海</span>
+                <span class="text-3xl font-jp text-black/15">舞</span>
                 <div>
-                    <p class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-1">Torneo TCG</p>
-                    <h1 class="text-3xl md:text-4xl font-bold tracking-tight">One Piece Card Game</h1>
+                    <p class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-1">Dance & Premi</p>
+                    <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Contest K-POP</h1>
                 </div>
             </div>
-            <p class="text-brand-muted text-sm mt-4">Lista aggiornata in tempo reale degli iscritti al torneo.</p>
-            <p class="text-brand-muted text-xs mt-2">Nome e personaggio/gioco scelto sono resi pubblici in questa pagina agli iscritti al torneo. Consulta la <a href="privacy.html" class="underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Privacy Policy</a> per i dettagli sul trattamento dei tuoi dati.</p>
+            <p class="text-brand-muted text-sm mt-4">Lista aggiornata in tempo reale degli iscritti al contest K-POP. Le esibizioni sono valutate da una giuria qualificata; in palio un buono Amazon per il vincitore.</p>
+            <p class="text-brand-muted text-xs mt-2">Nome e brano/gruppo scelto sono resi pubblici in questa pagina agli iscritti al contest. Consulta la <a href="privacy.html" class="underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Privacy Policy</a> per i dettagli sul trattamento dei tuoi dati.</p>
         </div>
 
         <!-- Area Admin -->
@@ -144,16 +144,17 @@
             <p id="admin-error" class="hidden text-xs text-red-400 mt-2"></p>
         </div>
 
-        <!-- Contatore posti -->
-        <div class="mb-10 p-6 bg-brand-card border border-brand-border flex items-center justify-between">
-            <div>
-                <p class="text-xs font-bold tracking-widest text-brand-muted uppercase mb-1">Posti occupati</p>
-                <p class="text-4xl font-bold">
-                    <span id="count">—</span>
-                    <span class="text-brand-muted font-light text-2xl"> / 16</span>
-                </p>
+        <!-- Contatori -->
+        <div class="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-6 bg-brand-card border border-brand-border flex flex-col justify-center">
+                <p class="text-xs font-bold tracking-widest text-brand-muted uppercase mb-1">Totale Iscritti</p>
+                <p class="text-4xl font-bold"><span id="count-totale">—</span></p>
             </div>
-            <div id="status-badge" class="text-xs font-bold tracking-widest uppercase px-4 py-2 border hidden"></div>
+            <div class="p-6 bg-brand-card border border-brand-border flex flex-col justify-center">
+                <p class="text-xs font-bold tracking-widest text-brand-muted uppercase mb-1">In palio</p>
+                <p class="text-lg font-bold leading-tight">Buono Amazon</p>
+                <p class="text-xs text-brand-muted mt-1">Giuria qualificata · premiazione a fine serata</p>
+            </div>
         </div>
 
         <!-- Lista iscritti -->
@@ -179,7 +180,6 @@
         </div>
     </footer>
 
-    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <!-- App Check (anti-abuso). Attivo solo dopo aver inserito la Site Key reCAPTCHA in firebase-config.js — vedi SICUREZZA-SETUP.md -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-check-compat.js"></script>
@@ -188,18 +188,8 @@
     <script src="src/js/firebase-config.js"></script>
 
     <script>
-        const MAX = 16;
         let isAdmin = false;
         let lastDocs = [];
-
-        function getCategoryLabel(cat) {
-            const labels = {
-                tcg_onepiece: 'One Piece Card Game',
-                cosplay_singolo: 'Cosplay Singolo',
-                cosplay_gruppo: 'Cosplay Gruppo',
-            };
-            return labels[cat] || cat;
-        }
 
         function renderList() {
             const lista = document.getElementById('lista-iscritti');
@@ -221,7 +211,9 @@
                         <p class="font-semibold text-sm truncate">${escapeHtml(d.name)}</p>
                         ${d.character ? `<p class="text-xs text-brand-muted truncate">${escapeHtml(d.character)}</p>` : ''}
                     </div>
-                    <span class="text-xs text-brand-muted hidden sm:block">One Piece TCG</span>
+                    <span class="text-xs font-bold uppercase tracking-widest px-3 py-1 border border-brand-yellow text-brand-yellow">
+                        K-POP
+                    </span>
                     ${isAdmin ? `<button data-id="${d.id}" class="delete-btn text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 border border-red-400/40 hover:border-red-400 px-3 py-2 transition-colors"><i class="fa-solid fa-trash"></i></button>` : ''}
                 `;
                 lista.appendChild(row);
@@ -230,7 +222,7 @@
 
             lista.querySelectorAll('.delete-btn').forEach((btn) => {
                 btn.addEventListener('click', async () => {
-                    if (!confirm('Rimuovere questo iscritto dal torneo?')) return;
+                    if (!confirm('Rimuovere questo iscritto dal contest K-POP?')) return;
                     btn.disabled = true;
                     try {
                         await db.collection('registrations').doc(btn.dataset.id).delete();
@@ -244,30 +236,19 @@
         }
 
         db.collection('registrations')
-            .where('category', '==', 'tcg_onepiece')
+            .where('category', '==', 'kpop')
             .onSnapshot((snapshot) => {
-                const count = snapshot.size;
-                const countEl = document.getElementById('count');
-                const badge = document.getElementById('status-badge');
-
-                countEl.textContent = count;
-
-                badge.classList.remove('hidden');
-                if (count >= MAX) {
-                    badge.textContent = 'Posti Esauriti';
-                    badge.className = 'text-xs font-bold tracking-widest uppercase px-4 py-2 border border-red-400 text-red-400';
-                } else {
-                    badge.textContent = (MAX - count) + ' posti liberi';
-                    badge.className = 'text-xs font-bold tracking-widest uppercase px-4 py-2 border border-brand-yellow text-brand-yellow';
-                }
-
                 const docs = [];
-                snapshot.forEach((doc) => docs.push({ id: doc.id, ...doc.data() }));
+                snapshot.forEach((doc) => {
+                    docs.push({ id: doc.id, ...doc.data() });
+                });
                 docs.sort((a, b) => {
                     const ta = a.timestamp ? a.timestamp.toMillis() : 0;
                     const tb = b.timestamp ? b.timestamp.toMillis() : 0;
                     return ta - tb;
                 });
+
+                document.getElementById('count-totale').textContent = snapshot.size;
 
                 lastDocs = docs;
                 renderList();

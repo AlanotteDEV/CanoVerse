@@ -23,7 +23,7 @@ service cloud.firestore {
         request.resource.data.name is string &&
         request.resource.data.name.size() > 0 &&
         request.resource.data.name.size() <= 80 &&
-        request.resource.data.category in ['cosplay_singolo', 'cosplay_gruppo', 'tcg_onepiece'] &&
+        request.resource.data.category in ['cosplay_singolo', 'cosplay_gruppo', 'kpop', 'tcg_onepiece'] &&
         (!('character' in request.resource.data) ||
           (request.resource.data.character is string && request.resource.data.character.size() <= 80)) &&
         request.resource.data.timestamp == request.time &&
@@ -36,7 +36,7 @@ service cloud.firestore {
           get(/databases/$(database)/documents/meta/tcg_onepiece_count).data.count <= 16);
 
       allow update, delete: if request.auth != null
-                            && request.auth.token.email == 'trajan.comic.cosplay@gmail.com';
+                            && request.auth.token.email == 'Canoversecomicscosplay@gmail.com';
     }
 
     // Registro dei consensi cookie (prova ex art. 7 GDPR). Chiunque può
@@ -45,7 +45,7 @@ service cloud.firestore {
     // o cancellarlo, per garantirne l'integrità come prova.
     match /cookie_consents/{docId} {
       allow read: if request.auth != null
-                  && request.auth.token.email == 'trajan.comic.cosplay@gmail.com';
+                  && request.auth.token.email == 'Canoversecomicscosplay@gmail.com';
 
       allow create: if
         request.resource.data.keys().hasOnly(['necessary', 'statistics', 'thirdparty', 'policyVersion', 'page', 'userAgent', 'timestamp']) &&

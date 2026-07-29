@@ -2,7 +2,7 @@ const emailJsConfig = {
   publicKey: '7l_HAZEX9KJId_NRw',
   serviceId: 'service_lhtetiu',
   templateId: 'template_8ogqjxg',
-  recipientEmail: 'trajan.comic.cosplay@gmail.com',
+  recipientEmail: 'Canoversecomicscosplay@gmail.com',
 };
 
 const ONE_PIECE_MAX = 16;

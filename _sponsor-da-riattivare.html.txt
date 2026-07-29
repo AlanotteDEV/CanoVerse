@@ -1,0 +1,22 @@
+<!-- Sezione PARTNER E SPONSOR rimossa temporaneamente dalla home.
+     Per riattivarla: reinserire questo blocco in index.html subito prima
+     del commento 'FOOTER' (deve restare l'ultima sezione della pagina). -->
+
+    <!-- ══════════════════════════════════════
+         SPONSOR (Minimal)
+    ══════════════════════════════════════ -->
+    <section class="py-16 border-t-4 border-black bg-[#efe4c8]/95 text-center px-6">
+        <div class="max-w-6xl mx-auto fade-in-up">
+            <h4 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-8">Partner e Sponsor</h4>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">RENTAL POINT</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">FORGE TRAINING STUDIO</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">CASA DEL CAFFÈ</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">BABY SHOP</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">VENERE PROFUMERIA</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">URBAN STORE</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">DIGITAL PRINT</span>
+                <span class="text-sm font-bold tracking-widest uppercase text-brand-muted">MUSIKERIA</span>
+            </div>
+        </div>
+    </section>
