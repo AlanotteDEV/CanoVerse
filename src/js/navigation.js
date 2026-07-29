@@ -52,6 +52,42 @@ function initSmoothScrollLinks() {
   return bound;
 }
 
+function initMobileMenu() {
+  const toggle = document.querySelector('[data-mobile-nav-toggle]');
+  const menu = document.querySelector('[data-mobile-nav]');
+
+  if (!toggle || !menu) {
+    return false;
+  }
+
+  const setExpanded = (expanded) => {
+    toggle.setAttribute('aria-expanded', String(expanded));
+    toggle.classList.toggle('active', expanded);
+    menu.classList.toggle('hidden', !expanded);
+    menu.classList.toggle('flex', expanded);
+  };
+
+  toggle.addEventListener('click', () => {
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    setExpanded(!isExpanded);
+  });
+
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      setExpanded(false);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      setExpanded(false);
+    }
+  });
+
+  setExpanded(false);
+  return true;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { scrollToSection, getAnchorHash, initSmoothScrollLinks };
+  module.exports = { scrollToSection, getAnchorHash, initSmoothScrollLinks, initMobileMenu };
 }

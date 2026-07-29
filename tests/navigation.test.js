@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { scrollToSection, getAnchorHash, initSmoothScrollLinks } = require('../src/js/navigation');
+const { scrollToSection, getAnchorHash, initSmoothScrollLinks, initMobileMenu } = require('../src/js/navigation');
 
 describe('navigation', () => {
   beforeEach(() => {
@@ -133,6 +133,34 @@ describe('navigation', () => {
 
       expect(clickEvent.preventDefault).toHaveBeenCalled();
       expect(section.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
+    });
+  });
+
+  describe('initMobileMenu', () => {
+    test('should toggle the mobile menu and update aria-expanded', () => {
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: 375
+      });
+
+      document.body.innerHTML = `
+        <button data-mobile-nav-toggle aria-expanded="false"></button>
+        <div data-mobile-nav class="hidden flex-col"></div>
+      `;
+
+      const button = document.querySelector('[data-mobile-nav-toggle]');
+      const nav = document.querySelector('[data-mobile-nav]');
+
+      const result = initMobileMenu();
+
+      expect(result).toBe(true);
+      expect(nav.classList.contains('hidden')).toBe(true);
+
+      button.click();
+
+      expect(button.getAttribute('aria-expanded')).toBe('true');
+      expect(nav.classList.contains('hidden')).toBe(false);
     });
   });
 });
