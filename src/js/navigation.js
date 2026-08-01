@@ -84,6 +84,18 @@ function initMobileMenu() {
     }
   });
 
+  // chiusura toccando fuori dal menu
+  document.addEventListener('click', (e) => {
+    if (toggle.getAttribute('aria-expanded') !== 'true') return;
+    if (menu.contains(e.target) || toggle.contains(e.target)) return;
+    setExpanded(false);
+  });
+
+  // chiusura con il tasto Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setExpanded(false);
+  });
+
   setExpanded(false);
   return true;
 }

@@ -297,3 +297,68 @@ details summary { color: #fff !important; }
   width: 20px; height: 20px; flex-shrink: 0; cursor: pointer;
   accent-color: var(--cv-cyan);
 }
+
+/* ══════════════════════════════════════════════════════════
+   Menu mobile
+   ══════════════════════════════════════════════════════════ */
+.nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 46px;
+  height: 42px;
+  padding: 0 10px;
+  background: rgba(44, 232, 200, .08);
+  border: 2px solid var(--cv-cyan);
+  box-shadow: 0 0 12px rgba(44, 232, 200, .35);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  height: 2.5px;
+  width: 100%;
+  background: var(--cv-cyan);
+  box-shadow: 0 0 6px rgba(44, 232, 200, .9);
+  transition: transform .25s ease, opacity .2s ease;
+}
+/* le tre barrette diventano una X */
+.nav-toggle.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+@media (max-width: 767px) {
+  /* pannello a tendina: fondo pieno, non trasparente */
+  .nav-panel {
+    background: #0d0620 !important;
+    border-top: 2px solid var(--cv-cyan);
+    border-bottom: 2px solid var(--cv-cyan);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .65), 0 0 24px rgba(44, 232, 200, .28);
+    padding: 0;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+  .nav-panel .nav-list { width: 100%; }
+  /* voci a tutta larghezza, comode da toccare */
+  .nav-panel .nav-list a {
+    display: block;
+    width: 100%;
+    padding: 15px 22px;
+    font-size: .95rem;
+    letter-spacing: .12em;
+    color: #fff;
+    border-bottom: 1px solid rgba(44, 232, 200, .18);
+  }
+  .nav-panel .nav-list a:last-child { border-bottom: none; }
+  .nav-panel .nav-list a:active,
+  .nav-panel .nav-list a:hover {
+    background: rgba(44, 232, 200, .14);
+    color: var(--cv-cyan);
+  }
+}
+
+/* su desktop il pulsante non esiste */
+@media (min-width: 768px) {
+  .nav-toggle { display: none !important; }
+}
