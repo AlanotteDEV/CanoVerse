@@ -1,0 +1,299 @@
+/* ══════════════════════════════════════════════════════════════════
+   CanoVerse — Tema Synthwave / Retrowave
+   Palette e look ispirati alla locandina ufficiale:
+   nero profondo, magenta neon, teal, griglia prospettica anni '80.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --cv-bg:        #07030f;   /* nero-viola profondo */
+  --cv-bg-2:      #0d0620;   /* nero-viola più chiaro */
+  --cv-panel:     #150a2b;   /* pannelli/finestre */
+  --cv-panel-2:   #0f2b33;   /* pannelli teal (come i box della locandina) */
+  --cv-magenta:   #ff2d95;   /* magenta neon */
+  --cv-magenta-2: #ff6ec7;   /* magenta chiaro */
+  --cv-teal:      #19a7b5;   /* teal */
+  --cv-cyan:      #2ce8c8;   /* verde-ciano griglia */
+  --cv-ink:       #ffffff;
+  --cv-muted:     #c3b3e6;   /* testo secondario lilla */
+  --cv-chrome:    #c9c9d4;   /* grigio "finestra" retro */
+}
+
+/* ── Sfondo: gradiente notte + griglia prospettica + sole ── */
+body {
+  overflow-x: hidden;
+  background-color: var(--cv-bg);
+  color: var(--cv-ink);
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  /* pianeta neon + razzo (il "Verse") sopra il cielo notturno */
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    url('../img/bg-logo.png'),
+    radial-gradient(ellipse 62% 42% at 50% 42%, rgba(44, 232, 200, .24) 0%, rgba(44, 232, 200, 0) 72%),
+    radial-gradient(ellipse 90% 55% at 50% 104%, rgba(255, 45, 149, .18) 0%, rgba(255, 45, 149, 0) 70%),
+    linear-gradient(180deg, #07030f 0%, #0b1030 45%, #0d1a33 70%, #07030f 100%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position: 50% 40%, center, center, center;
+  background-size: min(78vmin, 760px) auto, cover, cover, cover;
+  animation: verseDrift 26s ease-in-out infinite alternate;
+}
+
+@keyframes verseDrift {
+  from { background-position: 50% 39%, center, center, center; }
+  to   { background-position: 50% 42%, center, center, center; }
+}
+
+/* griglia neon anche in alto, come nella locandina */
+html::before {
+  content: '';
+  position: fixed;
+  left: -25%;
+  right: -25%;
+  top: 0;
+  height: 30vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .45;
+  background-image:
+    repeating-linear-gradient(to right, rgba(44, 232, 200, .5) 0 1px, transparent 1px 84px),
+    repeating-linear-gradient(to bottom, rgba(44, 232, 200, .38) 0 1px, transparent 1px 56px);
+  transform: perspective(340px) rotateX(-70deg);
+  transform-origin: top center;
+  mask-image: linear-gradient(to top, transparent 0%, #000 55%, #000 100%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 55%, #000 100%);
+}
+
+body::after {
+  /* griglia prospettica in basso */
+  content: '';
+  position: fixed;
+  left: -25%;
+  right: -25%;
+  bottom: 0;
+  height: 42vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .55;
+  background-image:
+    repeating-linear-gradient(to right, rgba(44, 232, 200, .5) 0 1px, transparent 1px 84px),
+    repeating-linear-gradient(to bottom, rgba(255, 45, 149, .38) 0 1px, transparent 1px 60px);
+  transform: perspective(340px) rotateX(70deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 100%);
+}
+
+/* ── Tipografia ── */
+.font-retro,
+h1, h2, h3, h4,
+.cv-window-title,
+nav a, .uppercase.tracking-widest {
+  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', 'Segoe UI Mono', Consolas, 'Courier New', monospace;
+}
+h1, h2, h3 { letter-spacing: .02em; }
+
+/* ── Titolo neon ── */
+.cv-neon {
+  color: #fff;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 14px var(--cv-magenta),
+    0 0 30px var(--cv-magenta),
+    0 0 60px var(--cv-magenta);
+}
+.cv-neon-cyan {
+  color: #fff;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 14px var(--cv-cyan),
+    0 0 32px var(--cv-cyan);
+}
+
+/* ══ Riquadri stile "finestra" retro ══
+   Applicati automaticamente ai contenitori del sito (.bg-white,
+   .bg-brand-card) per replicare i box della locandina.           */
+.bg-white,
+.bg-brand-card,
+.cv-window {
+  background: var(--cv-panel) !important;
+  border: 2px solid var(--cv-cyan) !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .6), 0 0 18px rgba(44, 232, 200, .32) !important;
+  border-radius: 0 !important;
+  position: relative;
+  color: var(--cv-ink);
+}
+
+/* barra del titolo con i tre pulsantini, come nella locandina */
+.cv-window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--cv-teal);
+  border-bottom: 2px solid rgba(0, 0, 0, .5);
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.cv-window-bar.is-teal { background: var(--cv-teal); }
+.cv-window-bar.is-pink { background: var(--cv-magenta); }
+.cv-window-btns { display: flex; gap: 4px; flex-shrink: 0; }
+.cv-window-btns i {
+  width: 13px; height: 12px;
+  background: var(--cv-chrome);
+  border: 1px solid #2b2b3a;
+  display: inline-block;
+}
+
+/* ── Bordi/testi ereditati dal vecchio tema ── */
+.border-black { border-color: var(--cv-cyan) !important; }
+.border-brand-border { border-color: var(--cv-cyan) !important; }
+.border-black\/30, .border-black\/20 { border-color: rgba(44, 232, 200, .32) !important; }
+.border-dashed { border-color: rgba(44, 232, 200, .5) !important; }
+
+.text-brand-muted { color: var(--cv-muted) !important; }
+.text-brand-accent { color: var(--cv-ink) !important; }
+
+/* accento (ex giallo) → magenta neon */
+.text-brand-yellow { color: var(--cv-cyan) !important; }
+h2.text-brand-yellow, h4.text-brand-yellow, p.text-brand-yellow,
+strong.text-brand-yellow, span.text-brand-yellow.uppercase {
+  background: var(--cv-teal);
+  color: #fff !important;
+  display: inline-block;
+  padding: 3px 10px;
+  border: 2px solid rgba(0, 0, 0, .5);
+  box-shadow: 0 0 14px rgba(44, 232, 200, .45);
+}
+.bg-brand-yellow {
+  background: var(--cv-teal) !important;
+  color: #fff !important;
+  border-color: var(--cv-cyan) !important;
+}
+.bg-brand-bg { background-color: transparent !important; }
+
+/* ── Pulsanti ── */
+a.bg-brand-yellow, button.bg-brand-yellow, .cv-btn {
+  border: 2px solid #fff !important;
+  box-shadow: 0 0 14px rgba(44, 232, 200, .75), inset 0 0 12px rgba(255, 255, 255, .15) !important;
+  border-radius: 0 !important;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+a.bg-brand-yellow:hover, button.bg-brand-yellow:hover, .cv-btn:hover {
+  background: var(--cv-magenta) !important;
+  box-shadow: 0 0 24px rgba(255, 45, 149, .95) !important;
+  transform: translateY(-2px);
+}
+
+/* ── Navbar ── */
+nav.glass-nav, nav {
+  background: rgba(7, 3, 15, .85) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--cv-cyan) !important;
+  box-shadow: 0 2px 20px rgba(44, 232, 200, .3);
+}
+
+/* ── Footer ── */
+footer {
+  background: rgba(7, 3, 15, .9) !important;
+  border-top: 2px solid var(--cv-cyan) !important;
+}
+
+/* ── Form ── */
+.form-field, .admin-field {
+  background: rgba(255, 255, 255, .06) !important;
+  border: 2px solid var(--cv-teal) !important;
+  color: var(--cv-ink) !important;
+}
+.form-field::placeholder, .admin-field::placeholder { color: #9d90bd !important; }
+.form-field:focus, .admin-field:focus {
+  outline: none;
+  border-color: var(--cv-cyan) !important;
+  box-shadow: 0 0 0 3px rgba(44, 232, 200, .3), 0 0 18px rgba(44, 232, 200, .5) !important;
+}
+/* menu a tendina: freccina disegnata in alto a destra, non uno sfondo pieno */
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: rgba(255, 255, 255, .06) !important;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #2ce8c8 50%),
+    linear-gradient(135deg, #2ce8c8 50%, transparent 50%) !important;
+  background-position:
+    calc(100% - 22px) calc(50% + 2px),
+    calc(100% - 15px) calc(50% + 2px) !important;
+  background-size: 7px 7px, 7px 7px !important;
+  background-repeat: no-repeat, no-repeat !important;
+  padding-right: 46px;
+  cursor: pointer;
+  color: var(--cv-ink) !important;
+}
+.form-select:invalid { color: #9d90bd !important; }
+.form-select option, .form-select optgroup { background: #150a2b; color: #fff; }
+.form-check { accent-color: var(--cv-cyan); }
+label { color: var(--cv-ink); }
+
+/* ── Sezioni: separatori neon ── */
+.border-t-4 { border-top-color: var(--cv-cyan) !important; }
+section { position: relative; }
+
+/* ── Documenti legali ── */
+.legal p, .legal li { color: var(--cv-muted) !important; }
+.legal h2 { border-bottom-color: var(--cv-cyan) !important; color: #fff; }
+.legal h3 { color: #fff; }
+.legal a { color: var(--cv-cyan) !important; }
+.legal a:hover { color: var(--cv-magenta-2) !important; }
+.legal .box {
+  background: var(--cv-panel) !important;
+  border: 2px solid var(--cv-cyan) !important;
+  box-shadow: 0 0 18px rgba(44, 232, 200, .28) !important;
+}
+.legal th { background: var(--cv-teal) !important; color: #fff !important; border-color: rgba(0,0,0,.5) !important; }
+.legal td { border-color: rgba(44, 232, 200, .32) !important; color: var(--cv-muted); }
+.legal strong { color: #fff; }
+
+/* ── Marquee ── */
+.animate-marquee { color: #fff; }
+
+/* ── Galleria: cornice neon al posto della polaroid ── */
+.gallery-item {
+  background: var(--cv-panel) !important;
+  border: 2px solid var(--cv-cyan) !important;
+  box-shadow: 0 0 16px rgba(44, 232, 200, .45) !important;
+}
+.gallery-item:hover {
+  box-shadow: 0 0 26px rgba(44, 232, 200, .9) !important;
+}
+#lightbox { background: rgba(4, 2, 10, .95) !important; }
+#lb-img { background: var(--cv-panel) !important; border-color: var(--cv-cyan) !important; }
+
+/* ── FAQ ── */
+details summary { color: #fff !important; }
+.faq-arrow { color: var(--cv-cyan); }
+
+/* ── Riduzione movimento ── */
+@media (prefers-reduced-motion: reduce) {
+  body::after { transform: none; opacity: .25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+}
+
+/* caselle di spunta ben visibili sul fondo scuro */
+.form-check {
+  width: 20px; height: 20px; flex-shrink: 0; cursor: pointer;
+  accent-color: var(--cv-cyan);
+}

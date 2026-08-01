@@ -8,24 +8,25 @@
     <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
     -->
     <title>CanoVerse 2026 - Canosa di Puglia</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon-logo.png">
     <meta name="description" content="CanoVerse 2026: il festival pop culture di Canosa di Puglia. Sabato 5 Settembre, Piazza Galluppi. Gara cosplay, torneo One Piece Card Game, stand, gadget e live drawing.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="it_IT">
     <meta property="og:url" content="https://canoverse.vercel.app/index.html">
     <meta property="og:title" content="CanoVerse 2026 - Canosa di Puglia">
     <meta property="og:description" content="Il festival pop culture di Canosa di Puglia: gara cosplay, torneo One Piece Card Game, stand, gadget e live drawing. Sabato 5 Settembre 2026, Piazza Galluppi.">
-    <meta property="og:image" content="https://canoverse.vercel.app/background.png">
+    <meta property="og:image" content="https://canoverse.vercel.app/social-preview-logo.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CanoVerse 2026 - Canosa di Puglia">
     <meta name="twitter:description" content="Il festival pop culture di Canosa di Puglia: gara cosplay, torneo One Piece Card Game, stand, gadget e live drawing. Sabato 5 Settembre 2026.">
-    <meta name="twitter:image" content="https://canoverse.vercel.app/background.png">
+    <meta name="twitter:image" content="https://canoverse.vercel.app/social-preview-logo.png">
     
     <!-- Tailwind CSS -->
     <script src="src/js/tailwind.min.js"></script>
     
     <!-- Font Inter e Noto Sans JP: self-hosted (nessuna richiesta a Google, nessun trasferimento IP a terzi) -->
     <link href="src/css/fonts.css" rel="stylesheet">
+    <link href="src/css/synthwave.css" rel="stylesheet">
 
     <!-- FontAwesome per le icone -->
     <link rel="stylesheet" href="src/css/fontawesome.min.css">
@@ -40,12 +41,12 @@
                     },
                     colors: {
                         brand: {
-                            bg: '#f6efe0',       /* Sfondo principale (quasi nero, tinta gialla) */
-                            card: '#fffdf5',     /* Sfondo card (giallo scurissimo) */
-                            border: '#000000',   /* Bordi leggeri (giallo scuro) */
-                            muted: '#57503d',    /* Testo secondario (giallo sabbia chiaro) */
-                            accent: '#111111',   /* Testo nero inchiostro */
-                            yellow: '#FFD600',   /* Accento giallo comics */
+                            bg: '#07030f',
+                            card: '#150a2b',
+                            border: '#2ce8c8',
+                            muted: '#c3b3e6',
+                            accent: '#ffffff',
+                            yellow: '#19a7b5',
                         }
                     }
                 }
@@ -69,19 +70,6 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-        /* Disabilita scroll orizzontale */
-        body {
-            overflow-x: hidden;
-            background-image:
-                linear-gradient(180deg, rgba(246,239,224,0.82) 0%, rgba(246,239,224,0.6) 40%, rgba(246,239,224,0.85) 100%),
-                url('background.png');
-            background-size: 130% auto;
-            background-position: center top;
-            background-attachment: scroll;
-            background-repeat: no-repeat;
-            background-blend-mode: normal;
-            min-height: 100vh;
-        }
 
         /* Scroll fade-in minimal */
         .fade-in-up {
@@ -93,70 +81,116 @@
             opacity: 1;
             transform: translateY(0);
         }
-    
-        /* ── Stile poster brutalist ── */
-        h1, h2, h3 { font-weight: 900 !important; }
-        .bg-brand-card {
-            border: 3px solid #000 !important;
-            box-shadow: 8px 8px 0 #000;
-        }
-        a.bg-brand-yellow, button.bg-brand-yellow {
-            border: 3px solid #000;
-            box-shadow: 5px 5px 0 #000;
-            border-radius: 0 !important;
-        }
-        a.bg-brand-yellow:hover, button.bg-brand-yellow:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 3px 3px 0 #000;
-        }
-    
-        /* leggibilità del giallo su carta */
-        .text-brand-yellow { color: #8a6d00; }
-        h2.text-brand-yellow, h4.text-brand-yellow, p.text-brand-yellow {
-            background: #FFD600; color: #111 !important;
-            display: inline-block; padding: 2px 10px;
-            border: 2px solid #000; box-shadow: 3px 3px 0 #000;
-        }
-    
-        strong.text-brand-yellow, span.text-brand-yellow.uppercase {
-            background: #FFD600; color: #111 !important;
-            display: inline-block; padding: 1px 8px;
-            border: 2px solid #000;
-        }
         details[open] .faq-arrow { transform: rotate(45deg); }
         details summary::-webkit-details-marker { display: none; }
     
-        /* ── Intro splash ── */
+        /* ── Intro: mappamondo + razzo che parte ── */
         #intro {
             position: fixed; inset: 0; z-index: 100;
-            background: #f6efe0;
+            background: radial-gradient(ellipse at 50% 45%, #17093a 0%, #07030f 70%);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 1.5rem; overflow: hidden;
-            animation: introOut .65s cubic-bezier(.77,0,.18,1) 2.1s forwards;
+            gap: 1.2rem; overflow: hidden;
+            animation: introOut .7s cubic-bezier(.77,0,.18,1) 3.85s forwards;
         }
         @keyframes introOut { to { transform: translateY(-101%); } }
-        #intro .intro-kanji {
-            font-size: clamp(5rem, 18vw, 9rem); line-height: 1;
-            color: #111; opacity: 0;
-            animation: stampIn .5s .1s cubic-bezier(.2,1.4,.4,1) forwards;
+
+        .intro-stage { position: relative; width: min(88vw, 720px); aspect-ratio: 9/7; }
+        .intro-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+        /* il globo compare */
+        .i-globe { opacity: 0; transform-box: fill-box; transform-origin: center;
+                   animation: iGlobeIn .8s .1s cubic-bezier(.2,1.1,.4,1) forwards; }
+        @keyframes iGlobeIn  { 0% { opacity: 0; transform: scale(.6) rotate(-8deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
+
+        /* i cerchi si disegnano */
+        .i-draw { stroke-dasharray: 1300; stroke-dashoffset: 1300; animation: iDraw 1s .25s ease forwards; }
+        .i-d2 { animation-delay: .35s } .i-d3 { animation-delay: .42s } .i-d4 { animation-delay: .49s }
+        .i-d5 { animation-delay: .56s } .i-d6 { animation-delay: .63s } .i-d7 { animation-delay: .70s }
+        @keyframes iDraw { to { stroke-dashoffset: 0; } }
+
+        .i-stars { opacity: 0; animation: iFade .8s .1s ease forwards; }
+        @keyframes iFade { to { opacity: .85; } }
+
+        /* la scia si allunga dietro al razzo */
+        .i-trail { stroke-dasharray: 666; stroke-dashoffset: 666; opacity: 1;
+                   animation: iTrailIn 1.55s .95s cubic-bezier(.42,0,.5,1) forwards, iFadeOut .5s 2.7s ease forwards; }
+        @keyframes iTrailIn { from { stroke-dashoffset: 666; } to { stroke-dashoffset: 0; } }
+        @keyframes iFadeOut { to { opacity: 0; } }
+
+        /* il razzo parte dal globo e vola via */
+        .i-rocket {
+            offset-path: path('M212 468 C 300 508, 425 486, 548 404 S 700 300, 786 208');
+            offset-rotate: auto;
+            offset-distance: 0%;
+            opacity: 0;
+            animation: iLaunch 1.55s .95s cubic-bezier(.42,0,.5,1) forwards;
         }
-        @keyframes stampIn {
-            0% { opacity: 0; transform: scale(2.8) rotate(-10deg); }
-            100% { opacity: 1; transform: scale(1) rotate(-3deg); }
+        @keyframes iLaunch {
+            0%   { offset-distance: 0%;   opacity: 0; }
+            6%   { opacity: 1; }
+            92%  { opacity: 1; }
+            100% { offset-distance: 100%; opacity: .85; }
         }
-        #intro .intro-letter {
-            display: inline-block; opacity: 0;
-            transform: translateY(45px) rotate(8deg);
-            animation: letterIn .45s cubic-bezier(.2,1.4,.4,1) forwards;
+        .i-flame { animation: iFlicker .12s linear infinite alternate; transform-box: fill-box; transform-origin: center; }
+        @keyframes iFlicker { to { transform: scaleX(1.18); opacity: .75; } }
+
+        /* la scritta neon si accende alla fine, come un'insegna */
+        .intro-mark {
+            position: absolute; left: 50%; top: 52%;
+            transform: translate(-50%, -50%) rotate(-4deg);
+            display: flex; flex-direction: column; align-items: center; gap: .2rem;
+            width: max-content; pointer-events: none;
         }
-        @keyframes letterIn { to { opacity: 1; transform: none; } }
-        #intro .intro-sub {
-            opacity: 0; animation: letterIn .4s 1s cubic-bezier(.2,1.4,.4,1) forwards;
+        .intro-word {
+            font-family: ui-monospace, 'Cascadia Mono', Consolas, 'Courier New', monospace;
+            font-weight: 900;
+            font-size: clamp(2.4rem, 9vw, 5.2rem);
+            letter-spacing: .04em;
+            color: #fff;
+            opacity: 0;
+            animation: neonOn 1.1s 2.45s forwards;
         }
+        .intro-tag {
+            font-family: ui-monospace, 'Cascadia Mono', Consolas, 'Courier New', monospace;
+            font-weight: 700;
+            font-size: clamp(.7rem, 2.1vw, 1.15rem);
+            letter-spacing: .34em;
+            text-transform: uppercase;
+            color: #fff;
+            opacity: 0;
+            animation: neonOnPink .7s 3.0s forwards;
+        }
+        /* accensione con sfarfallio, come un neon vero */
+        @keyframes neonOn {
+            0%   { opacity: 0; text-shadow: none; }
+            8%   { opacity: 1; text-shadow: 0 0 6px #fff, 0 0 18px #2ce8c8; }
+            12%  { opacity: .25; text-shadow: none; }
+            18%  { opacity: 1; text-shadow: 0 0 6px #fff, 0 0 22px #2ce8c8, 0 0 44px #2ce8c8; }
+            24%  { opacity: .4;  text-shadow: 0 0 4px #fff; }
+            30%  { opacity: 1;  text-shadow: 0 0 6px #fff, 0 0 20px #2ce8c8, 0 0 40px #2ce8c8; }
+            38%  { opacity: .7;  text-shadow: 0 0 5px #fff, 0 0 14px #2ce8c8; }
+            100% { opacity: 1;
+                   text-shadow: 0 0 7px #fff, 0 0 16px #2ce8c8, 0 0 34px #2ce8c8, 0 0 68px rgba(44,232,200,.7); }
+        }
+        @keyframes neonOnPink {
+            0%   { opacity: 0; text-shadow: none; }
+            25%  { opacity: 1; text-shadow: 0 0 6px #fff, 0 0 18px #ff2d95; }
+            35%  { opacity: .4; }
+            100% { opacity: 1; text-shadow: 0 0 6px #fff, 0 0 16px #ff2d95, 0 0 34px #ff2d95; }
+        }
+
+        .intro-sub {
+            background: #ff2d95; color: #fff;
+            box-shadow: 0 0 18px rgba(255,45,149,.8);
+            transform: rotate(-1.5deg);
+            opacity: 0; animation: iSubIn .5s 3.35s ease forwards;
+        }
+        @keyframes iSubIn { to { opacity: 1; } }
+
         @media (prefers-reduced-motion: reduce) { #intro { display: none; } }
     
         .gallery-item { transition: transform .25s ease, box-shadow .25s ease, opacity 0.7s ease; }
-        .gallery-item:hover { transform: rotate(0deg) scale(1.03) !important; box-shadow: 12px 12px 0 #000 !important; z-index: 5; }
+        .gallery-item:hover { transform: rotate(0deg) scale(1.03) !important; box-shadow: 0 0 26px rgba(44,232,200,.9) !important; z-index: 5; }
         #lightbox.flex { display: flex; }
     
         .gallery-track { animation: galleryScroll 55s linear infinite; }
@@ -168,8 +202,6 @@
         @keyframes teamScroll { to { transform: translateX(-50%); } }
         .team-strip:hover .team-track { animation-play-state: paused; }
         @media (prefers-reduced-motion: reduce) { .team-track { animation: none; } }
-    
-        /* ── Programma "coming soon" ── */
         .program-blur {
             filter: blur(7px) saturate(.75);
             opacity: .5;
@@ -193,6 +225,13 @@
             .hero-card #cd-days, .hero-card #cd-hours, .hero-card #cd-min, .hero-card #cd-sec { font-size: 1.2rem; }
             section { padding-top: 4rem; padding-bottom: 4rem; }
         }
+    
+        .hero-logo { filter: drop-shadow(0 0 26px rgba(255,45,149,.55)); }
+        .nav-logo  { filter: drop-shadow(0 0 10px rgba(255,45,149,.6)); }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
     </style>
     <script type="application/ld+json">
     {
@@ -204,7 +243,7 @@
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "isAccessibleForFree": true,
-      "image": "https://canoverse.vercel.app/background.png",
+      "image": "https://canoverse.vercel.app/social-preview-logo.png",
       "description": "CanoVerse 2026: il festival pop culture di Canosa di Puglia. Gara cosplay, torneo One Piece Card Game, stand, live drawing e musica live.",
       "location": {
         "@type": "Place",
@@ -215,14 +254,84 @@
     }
     </script>
 </head>
-<body class="bg-brand-bg text-brand-accent font-sans antialiased selection:bg-brand-yellow selection:text-black">
+<body class="bg-brand-bg text-brand-accent font-sans antialiased selection:bg-brand-yellow selection:text-white">
     <!-- Intro splash -->
     <div id="intro" aria-hidden="true">
-        <span class="intro-kanji font-jp select-none">祭</span>
-        <h2 class="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tighter text-black" style="text-shadow: 6px 6px 0 #FFD600;"><span class="intro-letter" style="animation-delay: 0.25s;">C</span><span class="intro-letter" style="animation-delay: 0.32s;">A</span><span class="intro-letter" style="animation-delay: 0.39s;">N</span><span class="intro-letter" style="animation-delay: 0.46s;">O</span><span class="intro-letter" style="animation-delay: 0.53s;">V</span><span class="intro-letter" style="animation-delay: 0.60s;">E</span><span class="intro-letter" style="animation-delay: 0.67s;">R</span><span class="intro-letter" style="animation-delay: 0.74s;">S</span><span class="intro-letter" style="animation-delay: 0.81s;">E</span></h2>
-        <p class="intro-sub bg-black text-white text-xs md:text-sm font-bold uppercase tracking-widest px-4 py-2" style="transform: rotate(-1.5deg);">Festival Pop Culture — Canosa di Puglia</p>
-    </div>
+        <div class="intro-stage">
+            <svg class="intro-svg" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="iGlowM" x="-70%" y="-70%" width="240%" height="240%">
+                        <feGaussianBlur stdDeviation="7" result="b"/>
+                        <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <radialGradient id="iCore" cx="42%" cy="38%" r="70%">
+                        <stop offset="0%" stop-color="#ff2d95" stop-opacity=".75"/>
+                        <stop offset="60%" stop-color="#b01f7d" stop-opacity=".45"/>
+                        <stop offset="100%" stop-color="#1a0b33" stop-opacity=".1"/>
+                    </radialGradient>
+                    <linearGradient id="iTrail" x1="0" y1="1" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#2ce8c8" stop-opacity="0"/>
+                        <stop offset="60%" stop-color="#2ce8c8" stop-opacity=".7"/>
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity=".95"/>
+                    </linearGradient>
+                </defs>
 
+                <!-- stelle -->
+                <g class="i-stars" fill="#fff">
+                    <circle cx="80" cy="90" r="2"/><circle cx="230" cy="52" r="1.5"/>
+                    <circle cx="800" cy="120" r="2.2"/><circle cx="700" cy="60" r="1.4"/>
+                    <circle cx="120" cy="560" r="1.8"/><circle cx="820" cy="520" r="1.6"/>
+                    <circle cx="420" cy="40" r="1.5"/><circle cx="60" cy="330" r="1.6"/>
+                </g>
+
+                <!-- mappamondo -->
+                <g transform="translate(420 400)"><g class="i-globe">
+                    <circle r="180" fill="url(#iCore)"/>
+                    <circle class="i-draw i-d1" r="180" fill="none" stroke="#2ce8c8" stroke-width="3.5" filter="url(#iGlowM)"/>
+                    <g fill="none" stroke="#2ce8c8" stroke-width="2.2" opacity=".8">
+                        <ellipse class="i-draw i-d2" rx="45"  ry="180"/>
+                        <ellipse class="i-draw i-d3" rx="100" ry="180"/>
+                        <ellipse class="i-draw i-d4" rx="150" ry="180"/>
+                    </g>
+                    <g fill="none" stroke="#ff6ec7" stroke-width="2.2" opacity=".75">
+                        <ellipse class="i-draw i-d5" rx="180" ry="45"/>
+                        <ellipse class="i-draw i-d6" rx="180" ry="100"/>
+                        <ellipse class="i-draw i-d7" rx="180" ry="150"/>
+                    </g>
+                </g></g>
+
+                <!-- scia del razzo -->
+                <path class="i-trail" d="M212 468 C 300 508, 425 486, 548 404 S 700 300, 786 208"
+                      fill="none" stroke="url(#iTrail)" stroke-width="6" stroke-linecap="round" filter="url(#iGlowM)"/>
+
+                <!-- razzo -->
+                <g class="i-rocket">
+                    <g transform="rotate(-40) scale(.85)" filter="url(#iGlowM)">
+                        <g class="i-flame">
+                            <path d="M-30 0 C -52 -10, -76 -6, -98 0 C -76 6, -52 10, -30 0 Z" fill="#ff2d95" opacity=".55"/>
+                            <path d="M-30 0 C -46 -8, -62 -5, -76 0 C -62 5, -46 8, -30 0 Z" fill="#ff6ec7" opacity=".85"/>
+                            <path d="M-30 0 C -40 -4, -50 -2, -58 0 C -50 2, -40 4, -30 0 Z" fill="#fff"/>
+                        </g>
+                        <path d="M-30 -13 L-20 -15 L-20 15 L-30 13 Z" fill="#150a2b" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+                        <path d="M-20 -14 C -30 -30, -20 -44, -2 -48 C 2 -34, -4 -22, -14 -14 Z" fill="#150a2b" stroke="#ff6ec7" stroke-width="3.5" stroke-linejoin="round"/>
+                        <path d="M-20 14 C -30 30, -20 44, -2 48 C 2 34, -4 22, -14 14 Z" fill="#150a2b" stroke="#ff6ec7" stroke-width="3.5" stroke-linejoin="round"/>
+                        <path d="M-20 -16 C 14 -20, 46 -16, 68 -8 C 78 -5, 84 -2, 88 0 C 84 2, 78 5, 68 8 C 46 16, 14 20, -20 16 Z"
+                              fill="#150a2b" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+                        <path d="M22 -18.5 C 30 -12, 30 12, 22 18.5" fill="none" stroke="#ff2d95" stroke-width="3.5"/>
+                        <path d="M68 -8 C 78 -5, 84 -2, 88 0 C 84 2, 78 5, 68 8 Z" fill="#ff2d95" opacity=".55"/>
+                        <circle cx="0" cy="0" r="11" fill="#2ce8c8" opacity=".95"/>
+                        <circle cx="0" cy="0" r="11" fill="none" stroke="#fff" stroke-width="3.5"/>
+                    </g>
+                </g>
+            </svg>
+
+            <div class="intro-mark">
+                <span class="intro-word">CANOVERSE</span>
+                <span class="intro-tag">Comics and Games</span>
+            </div>
+        </div>
+        <p class="intro-sub text-xs md:text-sm font-bold uppercase tracking-widest px-4 py-2">Festival Pop Culture — Canosa di Puglia</p>
+    </div>
 
     <!-- ══════════════════════════════════════
          NAVBAR MINIMAL
@@ -230,12 +339,11 @@
     <nav class="fixed top-0 left-0 w-full bg-brand-bg border-b-4 border-black z-50 py-3 px-4 md:px-6 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 md:gap-4">
             <!-- Logo -->
-            <a href="#hero" class="text-lg md:text-xl font-bold tracking-widest uppercase flex items-center gap-2 group hover:text-black transition-colors text-black">
-                <span>CANOVERSE</span>
-                <span class="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-jp text-black">祭</span>
+            <a href="#hero" class="flex items-center group" aria-label="CanoVerse — home">
+                <img src="logo.png" alt="CanoVerse" class="nav-logo h-10 md:h-12 w-auto">
             </a>
 
-            <button data-mobile-nav-toggle class="md:hidden inline-flex flex-col items-center justify-center gap-1 border-[3px] border-black bg-white p-2 text-black" aria-expanded="false" aria-label="Apri menu navigazione">
+            <button data-mobile-nav-toggle class="md:hidden inline-flex flex-col items-center justify-center gap-1 border-[3px] border-black bg-white p-2 text-white" aria-expanded="false" aria-label="Apri menu navigazione">
                 <span class="block h-0.5 w-5 bg-black transition-all"></span>
                 <span class="block h-0.5 w-5 bg-black transition-all"></span>
                 <span class="block h-0.5 w-5 bg-black transition-all"></span>
@@ -243,15 +351,15 @@
 
             <!-- Link -->
             <div data-mobile-nav class="hidden md:flex nav-links flex-col md:flex-row absolute md:static left-0 top-full w-full md:w-auto bg-brand-bg border-t-4 md:border-t-0 border-black p-4 md:p-0 shadow-[8px_8px_0_#000] md:shadow-none">
-                <div class="flex flex-wrap justify-center items-center gap-3 md:gap-6 text-[10px] md:text-sm font-medium tracking-widest uppercase text-black/70">
-                    <a href="#evento" class="hover:text-black transition-colors duration-300">L'Evento</a>
-                    <a href="#programma" class="hover:text-black transition-colors duration-300">Programma</a>
-                    <a href="#galleria" class="hover:text-black transition-colors duration-300">Galleria</a>
-                    <a href="#tcg" class="hover:text-black transition-colors duration-300">Competizioni</a>
-                    <a href="#team" class="hover:text-black transition-colors duration-300">Team</a>
-                    <a href="iscrizione.html" class="hover:text-black transition-colors duration-300">Iscriviti</a>
-                    <a href="#contatti" class="hover:text-black transition-colors duration-300">Location</a>
-                    <a href="#faq" class="hover:text-black transition-colors duration-300">FAQ</a>
+                <div class="flex flex-wrap justify-center items-center gap-3 md:gap-6 text-[10px] md:text-sm font-medium tracking-widest uppercase text-white/70">
+                    <a href="#evento" class="hover:text-white transition-colors duration-300">L'Evento</a>
+                    <a href="#programma" class="hover:text-white transition-colors duration-300">Programma</a>
+                    <a href="#galleria" class="hover:text-white transition-colors duration-300">Galleria</a>
+                    <a href="#tcg" class="hover:text-white transition-colors duration-300">Competizioni</a>
+                    <a href="#team" class="hover:text-white transition-colors duration-300">Team</a>
+                    <a href="iscrizione.html" class="hover:text-white transition-colors duration-300">Iscriviti</a>
+                    <a href="#contatti" class="hover:text-white transition-colors duration-300">Location</a>
+                    <a href="#faq" class="hover:text-white transition-colors duration-300">FAQ</a>
                 </div>
             </div>
         </div>
@@ -265,41 +373,47 @@
 
             <!-- Titolo manifesto -->
             <div class="lg:col-span-7 text-left">
-                <div class="hero-badge inline-flex items-center gap-3 border-[3px] border-black bg-white px-4 py-1.5 text-xs font-bold tracking-widest text-black uppercase mb-8 fade-in-up" style="transform: rotate(-2deg); box-shadow: 4px 4px 0 #000;">
-                    <span class="w-2 h-2 bg-black animate-pulse"></span>
+                <div class="hero-badge inline-flex items-center gap-3 border-2 px-4 py-2 text-xs font-bold tracking-widest uppercase mb-8 fade-in-up" style="border-color:#2ce8c8; background:rgba(15,43,51,.7); color:#fff; box-shadow:0 0 16px rgba(44,232,200,.5);">
+                    <span class="w-2 h-2 animate-pulse" style="background:#2ce8c8;"></span>
                     Canosa di Puglia · Piazza Galluppi
                 </div>
                 <h1 class="fade-in-up mb-8" style="transition-delay: 100ms;">
-                    <span class="block text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.85] text-black">CANO</span>
-                    <span class="block text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.85]" style="color:#fff; -webkit-text-stroke: 3px #111; text-shadow: 8px 8px 0 #FFD600;">VERSE</span>
-                    <span class="inline-block mt-5 bg-black text-white text-base md:text-xl font-bold uppercase tracking-widest px-4 py-2" style="transform: rotate(-1deg);">Festival Pop Culture — 2026</span>
+                    <span class="cv-neon-cyan block text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.85]">CANO</span>
+                    <span class="cv-neon block text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.85]">VERSE</span>
+                    <span class="inline-block mt-5 text-base md:text-xl font-bold uppercase tracking-widest px-4 py-2" style="background:#19a7b5; color:#fff; box-shadow:0 0 20px rgba(44,232,200,.6);">Comics &amp; Games — 2026</span>
                 </h1>
-                <p class="hero-copy max-w-xl text-black text-lg md:text-xl font-light mb-10 fade-in-up" style="transition-delay: 200ms;">
+                <p class="hero-copy max-w-xl text-white text-lg md:text-xl font-light mb-10 fade-in-up" style="transition-delay: 200ms;">
                     La pop culture atterra in Puglia. Un'esperienza immersiva tra manga, gaming, cosplay e live drawing.
                 </p>
                 <div class="hero-actions flex flex-col sm:flex-row gap-5 fade-in-up" style="transition-delay: 300ms;">
-                    <a href="iscrizione.html" class="bg-brand-yellow text-black text-sm font-bold tracking-widest uppercase px-8 py-4 text-center">Registrati Ora</a>
-                    <a href="#programma" class="bg-white border-[3px] border-black text-black hover:bg-black hover:text-white text-sm font-bold tracking-widest uppercase px-8 py-4 text-center transition-colors duration-200" style="box-shadow: 5px 5px 0 #000;">Scopri il Programma</a>
+                    <a href="iscrizione.html" class="bg-brand-yellow text-white text-sm font-bold tracking-widest uppercase px-8 py-4 text-center">Registrati Ora</a>
+                    <a href="#programma" class="cv-btn text-sm font-bold tracking-widest uppercase px-8 py-4 text-center" style="background:rgba(15,43,51,.85); border:2px solid #2ce8c8 !important; color:#fff; box-shadow:0 0 14px rgba(44,232,200,.6) !important;">Scopri il Programma</a>
                 </div>
             </div>
 
             <!-- Biglietto evento + countdown -->
             <div class="lg:col-span-5 fade-in-up" style="transition-delay: 250ms;">
-                <div class="hero-card bg-white border-[3px] border-black p-8 relative" style="transform: rotate(2deg); box-shadow: 10px 10px 0 #000;">
-                    <span class="absolute -top-4 -right-4 bg-brand-yellow border-[3px] border-black text-black text-xs font-bold uppercase tracking-widest px-3 py-1" style="transform: rotate(6deg);">Free Entry</span>
-                    <p class="text-xs font-bold uppercase tracking-widest text-black/60 mb-2">Biglietto d'ingresso · 入場券</p>
-                    <p class="text-6xl font-extrabold tracking-tighter text-black leading-none mb-1">05 SET</p>
-                    <p class="text-xl font-bold text-black mb-6">2026 — Ore 10:30–23:30</p>
+                <div class="hero-card cv-window relative">
+                    <div class="cv-window-bar is-teal">
+                        <span class="cv-window-title">canoverse.exe</span>
+                        <span class="cv-window-btns"><i></i><i></i><i></i></span>
+                    </div>
+                    <div class="p-7">
+                    <span class="absolute -top-3 -right-3 text-xs font-bold uppercase tracking-widest px-3 py-1" style="background:#19a7b5; color:#fff; border:2px solid #fff; box-shadow:0 0 16px rgba(44,232,200,.85); transform: rotate(6deg);">Ingresso Free</span>
+                    <p class="text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Biglietto d'ingresso · 入場券</p>
+                    <p class="text-6xl font-extrabold tracking-tighter text-white leading-none mb-1">05 SET</p>
+                    <p class="text-xl font-bold text-white mb-6">2026 — Ore 10:30–23:30</p>
                     <div class="border-t-[3px] border-dashed border-black pt-6">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-3">Countdown all'apertura</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Countdown all'apertura</p>
                         <div class="grid grid-cols-4 gap-2 text-center">
-                            <div class="border-[3px] border-black bg-brand-bg py-3"><span id="cd-days" class="block text-2xl font-extrabold text-black">--</span><span class="text-[10px] font-bold uppercase text-black/60">Giorni</span></div>
-                            <div class="border-[3px] border-black bg-brand-bg py-3"><span id="cd-hours" class="block text-2xl font-extrabold text-black">--</span><span class="text-[10px] font-bold uppercase text-black/60">Ore</span></div>
-                            <div class="border-[3px] border-black bg-brand-bg py-3"><span id="cd-min" class="block text-2xl font-extrabold text-black">--</span><span class="text-[10px] font-bold uppercase text-black/60">Min</span></div>
-                            <div class="border-[3px] border-black bg-brand-bg py-3"><span id="cd-sec" class="block text-2xl font-extrabold text-black">--</span><span class="text-[10px] font-bold uppercase text-black/60">Sec</span></div>
+                            <div class="py-3" style="border:2px solid #2ce8c8; background:rgba(44,232,200,.08);"><span id="cd-days" class="block text-2xl font-extrabold text-white">--</span><span class="text-[10px] font-bold uppercase text-white/70">Giorni</span></div>
+                            <div class="py-3" style="border:2px solid #2ce8c8; background:rgba(44,232,200,.08);"><span id="cd-hours" class="block text-2xl font-extrabold text-white">--</span><span class="text-[10px] font-bold uppercase text-white/70">Ore</span></div>
+                            <div class="py-3" style="border:2px solid #2ce8c8; background:rgba(44,232,200,.08);"><span id="cd-min" class="block text-2xl font-extrabold text-white">--</span><span class="text-[10px] font-bold uppercase text-white/70">Min</span></div>
+                            <div class="py-3" style="border:2px solid #2ce8c8; background:rgba(44,232,200,.08);"><span id="cd-sec" class="block text-2xl font-extrabold text-white">--</span><span class="text-[10px] font-bold uppercase text-white/70">Sec</span></div>
                         </div>
                     </div>
-                    <p class="mt-6 text-xs text-black/60 font-medium flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Piazza Galluppi, Canosa di Puglia</p>
+                    <p class="mt-6 text-xs text-white/70 font-medium flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Piazza Galluppi, Canosa di Puglia</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -308,7 +422,7 @@
     <!-- ══════════════════════════════════════
          MARQUEE (Fascia Scorrevole)
     ══════════════════════════════════════ -->
-    <div class="w-full bg-brand-yellow text-black py-3 overflow-hidden flex whitespace-nowrap border-y-4 border-black select-none">
+    <div class="w-full bg-brand-yellow text-white py-3 overflow-hidden flex whitespace-nowrap border-y-4 border-black select-none">
         <div class="animate-marquee flex items-center text-sm font-bold tracking-widest uppercase">
             <span class="mx-4">MANGA</span><span class="mx-2">•</span>
             <span class="mx-4">COMICS</span><span class="mx-2">•</span>
@@ -361,15 +475,15 @@
                 <div class="space-y-3 pt-2">
                     <div class="flex items-start gap-3 text-sm text-brand-muted">
                         <i class="fa-solid fa-clock text-brand-yellow mt-1 w-5"></i>
-                        <span><strong class="text-black">Ore 10:30</strong> — <strong class="text-black">Apertura</strong>: accoglienza con sigle anime ed esplorazione libera degli stand</span>
+                        <span><strong class="text-white">Ore 10:30</strong> — <strong class="text-white">Apertura</strong>: accoglienza con sigle anime ed esplorazione libera degli stand</span>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-brand-muted">
                         <i class="fa-solid fa-music text-brand-yellow mt-1 w-5"></i>
-                        <span><strong class="text-black">Musica live</strong> a cura di <strong class="text-black">Musikeria</strong>, per accompagnare la serata</span>
+                        <span><strong class="text-white">Musica live</strong> a cura di <strong class="text-white">Musikeria</strong>, per accompagnare la serata</span>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-brand-muted">
                         <i class="fa-solid fa-compact-disc text-brand-yellow mt-1 w-5"></i>
-                        <span><strong class="text-black">Sera</strong> — musica commerciale fino alla <strong class="text-black">chiusura alle ore 23:30</strong></span>
+                        <span><strong class="text-white">Sera</strong> — musica commerciale fino alla <strong class="text-white">chiusura alle ore 23:30</strong></span>
                     </div>
 
                                 </div>
@@ -394,114 +508,114 @@
     <!-- ══════════════════════════════════════
          PROGRAMMA & ATTRAZIONI
     ══════════════════════════════════════ -->
-    <section id="programma" class="py-24 px-6 border-t-4 border-black bg-[#efe4c8]/95">
+    <section id="programma" class="py-24 px-6 border-t-4 border-black bg-[#0d0620]/70">
         <div class="max-w-6xl mx-auto">
             
             <div class="mb-16 fade-in-up">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase">In arrivo — 近日公開</h2>
                 </div>
-                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">IL NOSTRO<br>PROGRAMMA</h3>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight" cv-neon">IL NOSTRO<br>PROGRAMMA</h3>
             </div>
 
             <div class="program-locked-wrap relative">
                 <!-- Contenuto reale del programma: temporaneamente offuscato in attesa dell'annuncio -->
                 <div class="program-blur space-y-6" aria-hidden="true" inert>
-                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-0.4deg);">
                     <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
-                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">01</span>
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-white">01</span>
                         <div class="col-span-9 md:col-span-3">
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Cosplay & Premi</p>
-                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Gare Cosplay</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Cosplay & Premi</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-white">Gare Cosplay</h3>
                         </div>
                         <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Indossa il tuo costume e vivi la serata: giudici in incognito ti osserveranno e valuteranno personalmente durante l'evento, con premiazione finale a fine giornata.</p>
                         <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
-                            <span class="text-4xl font-jp text-black/15">装</span>
+                            <span class="text-4xl font-jp text-white/25">装</span>
                             <div class="flex flex-col md:items-end gap-1"><a href="iscrizione.html" class="text-xs font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline">Iscriviti</a> <a href="cosplay-iscritti.html" class="text-xs font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline">Vedi iscritti</a></div>
                         </div>
                     </div>
                 </div>
-                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(0.4deg);">
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(0.4deg);">
                     <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
-                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">02</span>
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-white">02</span>
                         <div class="col-span-9 md:col-span-3">
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Gaming & eSports</p>
-                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Tornei TCG</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Gaming & eSports</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-white">Tornei TCG</h3>
                         </div>
                         <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Sfida i migliori duellanti. Tornei ufficiali per Pokémon, Yu-Gi-Oh!, Magic e One Piece. Iscrizione obbligatoria, posti limitati.</p>
                         <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
-                            <span class="text-4xl font-jp text-black/15">遊</span>
+                            <span class="text-4xl font-jp text-white/25">遊</span>
                             <div class="flex flex-col md:items-end gap-1"><a href="#tcg" class="text-xs font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline">Scopri i tornei</a></div>
                         </div>
                     </div>
                 </div>
-                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-0.4deg);">
                     <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
-                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">03</span>
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-white">03</span>
                         <div class="col-span-9 md:col-span-3">
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Art & Live Drawing</p>
-                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Illustrazioni & Live Drawing</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Art & Live Drawing</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-white">Illustrazioni & Live Drawing</h3>
                         </div>
                         <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Postazione dedicata alle arti visive: mostre estemporanee e sessioni di disegno dal vivo aperte al pubblico, a cura dell'illustratore Nicola (Nico45).</p>
                         <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
-                            <span class="text-4xl font-jp text-black/15">描</span>
-                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">Live Drawing & Mostre</span></div>
+                            <span class="text-4xl font-jp text-white/25">描</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-white/60">Live Drawing & Mostre</span></div>
                         </div>
                     </div>
                 </div>
-                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(0.4deg);">
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(0.4deg);">
                     <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
-                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">04</span>
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-white">04</span>
                         <div class="col-span-9 md:col-span-3">
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Cosplay & Cosmaking</p>
-                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">CosTalk & Area Cosmaking</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Cosplay & Cosmaking</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-white">CosTalk & Area Cosmaking</h3>
                         </div>
                         <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Area cosplay a cura di Martina Tundre: CosTalk alle 21, dove verranno presentate le basi del cosplay con possibilità di visionare alcuni lavori di cosmaking realizzati con tecniche diverse. A seguire Q&A per tutti i dubbi e le curiosità di questo bellissimo ma a volte complesso mondo.</p>
                         <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
-                            <span class="text-4xl font-jp text-black/15">布</span>
-                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">CosTalk ore 21:00</span></div>
+                            <span class="text-4xl font-jp text-white/25">布</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-white/60">CosTalk ore 21:00</span></div>
                         </div>
                     </div>
                 </div>
-                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-0.4deg);">
                     <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
-                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">05</span>
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-white">05</span>
                         <div class="col-span-9 md:col-span-3">
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Shopping & Gadget</p>
-                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Nerd Shop & Gadget</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Shopping & Gadget</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-white">Nerd Shop & Gadget</h3>
                         </div>
                         <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Stand commerciali con prodotti a tema nerd e accessori artigianali personalizzati, più una postazione di tatuaggi temporanei a tema anime/manga a cura di Alessandra (Fai Da Tela).</p>
                         <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
-                            <span class="text-4xl font-jp text-black/15">店</span>
-                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">Gadget & Tattoo Temporanei</span></div>
+                            <span class="text-4xl font-jp text-white/25">店</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-white/60">Gadget & Tattoo Temporanei</span></div>
                         </div>
                     </div>
                 </div>
-                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(0.4deg);">
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(0.4deg);">
                     <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
-                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">06</span>
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-white">06</span>
                         <div class="col-span-9 md:col-span-3">
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Boardgames & Socialità</p>
-                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Area Gioco da Tavolo</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Boardgames & Socialità</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-white">Area Gioco da Tavolo</h3>
                         </div>
                         <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Furore Normannorum, associazione ludica che diffonde il gioco da tavolo come strumento di socializzazione, mette a disposizione una selezione di titoli associativi per un'area di gioco assistito, guidando i partecipanti alla scoperta di dinamiche e regolamenti.</p>
                         <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
-                            <span class="text-4xl font-jp text-black/15">会</span>
-                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">Gioco Assistito</span></div>
+                            <span class="text-4xl font-jp text-white/25">会</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-white/60">Gioco Assistito</span></div>
                         </div>
                     </div>
                 </div>
-                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 8px 8px 0 #000; transform: rotate(-0.4deg);">
+                <div class="border-[3px] border-black bg-white fade-in-up group hover:bg-brand-yellow transition-colors duration-200" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-0.4deg);">
                     <div class="grid grid-cols-12 gap-4 md:gap-6 items-center px-5 md:px-8 py-7">
-                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-black">07</span>
+                        <span class="col-span-3 md:col-span-1 text-4xl md:text-5xl font-extrabold tracking-tighter text-white">07</span>
                         <div class="col-span-9 md:col-span-3">
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-1">Live Show & Musica</p>
-                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-black">Musica Live</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Live Show & Musica</p>
+                            <h3 class="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-tight text-white">Musica Live</h3>
                         </div>
                         <p class="col-span-12 md:col-span-6 text-sm text-brand-muted font-light leading-relaxed">Musica dal vivo a cura di Musikeria, per accompagnare l'intera serata: dalle sigle anime dell'accoglienza fino alla musica commerciale di tarda serata.</p>
                         <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 md:text-right">
-                            <span class="text-4xl font-jp text-black/15">音</span>
-                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-black/50">Musica Live</span></div>
+                            <span class="text-4xl font-jp text-white/25">音</span>
+                            <div class="flex flex-col md:items-end gap-1"><span class="text-xs font-bold uppercase tracking-widest text-white/60">Musica Live</span></div>
                         </div>
                     </div>
                 </div>
@@ -510,13 +624,13 @@
 
                 <!-- Overlay Coming Soon -->
                 <div class="program-veil absolute inset-0 flex items-center justify-center p-4">
-                    <div class="text-center bg-white border-[3px] border-black px-8 py-10 md:px-14 md:py-12 max-w-lg" style="box-shadow: 12px 12px 0 #000; transform: rotate(-1.5deg);">
-                        <span class="inline-block bg-brand-yellow border-[3px] border-black text-black text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 py-1 mb-5" style="transform: rotate(2deg);">Top secret · 極秘</span>
-                        <h4 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter leading-none text-black mb-4">Coming<br>Soon</h4>
-                        <p class="text-sm md:text-base text-brand-muted font-light leading-relaxed mb-6">Il programma completo di CanoVerse 2026 è in arrivo.<br class="hidden md:block"> Stiamo mettendo a punto gli ultimi dettagli: <strong class="text-black">torna presto</strong> per scoprire tutte le attrazioni.</p>
+                    <div class="text-center bg-white border-[3px] border-black px-8 py-10 md:px-14 md:py-12 max-w-lg" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.5deg);">
+                        <span class="inline-block bg-brand-yellow border-[3px] border-black text-white text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 py-1 mb-5" style="transform: rotate(2deg);">Top secret · 極秘</span>
+                        <h4 class="cv-neon text-4xl md:text-6xl font-extrabold uppercase tracking-tighter leading-none mb-4">Coming<br>Soon</h4>
+                        <p class="text-sm md:text-base text-brand-muted font-light leading-relaxed mb-6">Il programma completo di CanoVerse 2026 è in arrivo.<br class="hidden md:block"> Stiamo mettendo a punto gli ultimi dettagli: <strong class="text-white">torna presto</strong> per scoprire tutte le attrazioni.</p>
                         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                            <a href="iscrizione.html" class="bg-brand-yellow text-black text-xs font-bold tracking-widest uppercase px-6 py-3">Iscriviti ora</a>
-                            <a href="#tcg" class="bg-white border-[3px] border-black text-black hover:bg-black hover:text-white text-xs font-bold tracking-widest uppercase px-6 py-3 transition-colors duration-200" style="box-shadow: 4px 4px 0 #000;">Le competizioni</a>
+                            <a href="iscrizione.html" class="bg-brand-yellow text-white text-xs font-bold tracking-widest uppercase px-6 py-3">Iscriviti ora</a>
+                            <a href="#tcg" class="bg-white border-[3px] border-black text-white hover:bg-brand-yellow hover:text-white text-xs font-bold tracking-widest uppercase px-6 py-3 transition-colors duration-200" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">Le competizioni</a>
                         </div>
                     </div>
                 </div>
@@ -531,7 +645,7 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 fade-in-up">
             <div>
                 <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Competizioni</h2>
-                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">LE NOSTRE<br>COMPETIZIONI</h3>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight" cv-neon">LE NOSTRE<br>COMPETIZIONI</h3>
             </div>
             <p class="text-brand-muted text-sm md:text-base font-light max-w-lg">
 Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP o siediti al tavolo per il torneo ufficiale One Piece Card Game. Iscrizione obbligatoria per tutte e tre.
@@ -541,28 +655,32 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
 
             <!-- Gara Cosplay -->
-            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 8px 8px 0 #000;" style="transition-delay: 200ms;">
-                <div class="h-32 bg-brand-card flex items-center justify-center relative border-b-[3px] border-black group-hover:border-brand-yellow overflow-hidden transition-colors">
-                    <span class="absolute text-[8rem] font-jp text-black/[0.02] group-hover:text-brand-yellow/[0.05] transition-colors">装</span> <!-- Costume -->
-                    <h4 class="relative z-10 font-bold tracking-widest text-lg group-hover:text-brand-yellow transition-colors">GARA COSPLAY</h4>
+            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 0 0 18px rgba(44,232,200,.42);" style="transition-delay: 200ms;">
+                <div class="cv-window-bar">
+                        <span class="cv-window-title">gara_cosplay.exe</span>
+                        <span class="cv-window-btns"><i></i><i></i><i></i></span>
+                    </div>
+                <div class="relative flex items-center justify-center h-24 overflow-hidden">
+                    <span class="absolute text-[6rem] font-jp text-white/10 select-none">装</span>
+                    <h4 class="relative z-10 font-bold tracking-widest text-lg text-white">GARA COSPLAY</h4>
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
-                        <span>Categorie</span> <strong class="text-black">Singolo & Gruppo</strong>
+                        <span>Categorie</span> <strong class="text-white">Singolo & Gruppo</strong>
                     </div>
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
-                        <span>Giudici</span> <strong class="text-black">In incognito</strong>
+                        <span>Giudici</span> <strong class="text-white">In incognito</strong>
                     </div>
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
-                        <span>Premiazione</span> <strong class="text-black">Fine serata</strong>
+                        <span>Premiazione</span> <strong class="text-white">Fine serata</strong>
                     </div>
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span>Iscritti</span>
-                        <strong class="text-black">
+                        <strong class="text-white">
                             <span id="cosplay-count">—</span>
                         </strong>
                     </div>
-                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-black text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
+                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-white text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
                         Iscriviti
                     </a>
                     <a href="cosplay-iscritti.html" class="block text-center border-2 border-black/30 text-brand-muted hover:text-brand-yellow hover:border-brand-yellow text-xs font-bold uppercase tracking-widest py-3 transition-colors">
@@ -572,33 +690,37 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
             </div>
 
             <!-- Contest K-POP -->
-            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 8px 8px 0 #000;">
-                <div class="h-32 bg-brand-card flex items-center justify-center relative border-b-[3px] border-black overflow-hidden">
-                    <span class="absolute text-[8rem] font-jp text-black/[0.02]">舞</span> <!-- Danza -->
-                    <h4 class="relative z-10 font-bold tracking-widest text-lg">CONTEST K-POP</h4>
+            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
+                <div class="cv-window-bar is-pink">
+                        <span class="cv-window-title">contest_kpop.exe</span>
+                        <span class="cv-window-btns"><i></i><i></i><i></i></span>
+                    </div>
+                <div class="relative flex items-center justify-center h-24 overflow-hidden">
+                    <span class="absolute text-[6rem] font-jp text-white/10 select-none">舞</span>
+                    <h4 class="relative z-10 font-bold tracking-widest text-lg text-white">CONTEST K-POP</h4>
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
-                        <span>Disciplina</span> <strong class="text-black">Dance / Performance</strong>
+                        <span>Disciplina</span> <strong class="text-white">Dance / Performance</strong>
                     </div>
                     <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span class="pt-0.5">Giuria</span>
-                        <strong class="text-black text-right">Giuria qualificata<br><span class="text-brand-muted font-normal text-[11px]">Esperti del settore</span></strong>
+                        <strong class="text-white text-right">Giuria qualificata<br><span class="text-brand-muted font-normal text-[11px]">Esperti del settore</span></strong>
                     </div>
                     <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span class="pt-0.5">In palio</span>
-                        <strong class="text-black text-right">Buono Amazon<br><span class="text-brand-muted font-normal text-[11px]">Per il vincitore</span></strong>
+                        <strong class="text-white text-right">Buono Amazon<br><span class="text-brand-muted font-normal text-[11px]">Per il vincitore</span></strong>
                     </div>
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span>Iscritti</span>
-                        <strong class="text-black">
+                        <strong class="text-white">
                             <span id="kpop-count">—</span>
                         </strong>
                     </div>
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
-                        <span>Premiazione</span> <strong class="text-black">Fine serata</strong>
+                        <span>Premiazione</span> <strong class="text-white">Fine serata</strong>
                     </div>
-                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-black text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
+                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-white text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
                         Iscriviti
                     </a>
                     <a href="kpop-iscritti.html" class="block text-center border-2 border-black/30 text-brand-muted hover:text-brand-yellow hover:border-brand-yellow text-xs font-bold uppercase tracking-widest py-3 transition-colors">
@@ -608,33 +730,37 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
             </div>
 
             <!-- One Piece -->
-            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 8px 8px 0 #000;" style="transition-delay: 300ms;">
-                <div class="h-32 bg-brand-card flex items-center justify-center relative border-b-[3px] border-black group-hover:border-brand-yellow overflow-hidden transition-colors">
-                    <span class="absolute text-[8rem] font-jp text-black/[0.02] group-hover:text-brand-yellow/[0.05] transition-colors">海</span> <!-- Mare/Pirata -->
-                    <h4 class="relative z-10 font-bold tracking-widest text-lg group-hover:text-brand-yellow transition-colors">ONE PIECE CG</h4>
+            <div class="group bg-white border-[3px] border-black overflow-hidden fade-in-up" style="box-shadow: 0 0 18px rgba(44,232,200,.42);" style="transition-delay: 300ms;">
+                <div class="cv-window-bar">
+                        <span class="cv-window-title">one_piece_tcg.exe</span>
+                        <span class="cv-window-btns"><i></i><i></i><i></i></span>
+                    </div>
+                <div class="relative flex items-center justify-center h-24 overflow-hidden">
+                    <span class="absolute text-[6rem] font-jp text-white/10 select-none">海</span>
+                    <h4 class="relative z-10 font-bold tracking-widest text-lg text-white">ONE PIECE CG</h4>
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
-                        <span>Formato</span> <strong class="text-black">Standard</strong>
+                        <span>Formato</span> <strong class="text-white">Standard</strong>
                     </div>
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
-                        <span>Quota Iscrizione</span> <strong class="text-black">€12</strong>
+                        <span>Quota Iscrizione</span> <strong class="text-white">€12</strong>
                     </div>
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span>Posti</span>
-                        <strong class="text-black">
+                        <strong class="text-white">
                             <span id="onepiece-count">—</span> / 16
                         </strong>
                     </div>
                     <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span class="pt-0.5">Partecipazione</span>
-                        <strong class="text-black text-right">1 bustina a testa<br><span class="text-brand-muted font-normal text-[11px]">Espansione corrente</span></strong>
+                        <strong class="text-white text-right">1 bustina a testa<br><span class="text-brand-muted font-normal text-[11px]">Espansione corrente</span></strong>
                     </div>
                     <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span class="pt-0.5">Premi</span>
-                        <strong class="text-black text-right">1° Box OP17<br>2° 10 bustine<br>3° 4 bustine</strong>
+                        <strong class="text-white text-right">1° Box OP17<br>2° 10 bustine<br>3° 4 bustine</strong>
                     </div>
-                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-black text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
+                    <a href="iscrizione.html" class="block text-center border-[3px] border-black group-hover:bg-brand-yellow group-hover:border-brand-yellow group-hover:text-white text-xs font-bold uppercase tracking-widest py-3 mt-6 transition-colors">
                         Iscriviti
                     </a>
                     <a href="partecipanti.html" class="block text-center border-2 border-black/30 text-brand-muted hover:text-brand-yellow hover:border-brand-yellow text-xs font-bold uppercase tracking-widest py-3 transition-colors">
@@ -646,17 +772,17 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
         </div>
 
         <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 6px 6px 0 #000;">
+            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
                 <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Come funziona la Gara Cosplay</strong>
                 <p>Niente sfilata né regolamento formale: dei giudici in incognito circoleranno tra il pubblico durante tutta la serata, osservando e valutando personalmente i costumi. La premiazione avverrà a fine giornata. Categorie Singolo e Gruppo.</p>
             </div>
-            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 6px 6px 0 #000;">
+            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
                 <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Contest K-POP</strong>
-                <p>Esibizioni di dance cover e performance K-POP, aperte a singoli e gruppi. Le esibizioni sono valutate da una <strong class="text-black">giuria qualificata</strong>, composta da esperti del settore, secondo criteri di tecnica, sincronia, presenza scenica e fedeltà alla coreografia originale. Il vincitore riceve un <strong class="text-black">buono Amazon</strong>. Porta la tua base musicale; iscrizione gratuita tramite il modulo del sito. Il giudizio della giuria è insindacabile.</p>
+                <p>Esibizioni di dance cover e performance K-POP, aperte a singoli e gruppi. Le esibizioni sono valutate da una <strong class="text-white">giuria qualificata</strong>, composta da esperti del settore, secondo criteri di tecnica, sincronia, presenza scenica e fedeltà alla coreografia originale. Il vincitore riceve un <strong class="text-white">buono Amazon</strong>. Porta la tua base musicale; iscrizione gratuita tramite il modulo del sito. Il giudizio della giuria è insindacabile.</p>
             </div>
-            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 6px 6px 0 #000;">
+            <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
                 <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Regolamento Torneo TCG</strong>
-                <p>Mazzi validati secondo il ban-list ufficiale vigente al 5 Settembre 2026. Ogni giocatore deve portare il proprio mazzo e i token. Formato Swiss, finale a eliminazione diretta. Giudici certificati presenti. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve <strong class="text-black">una bustina dell'espansione corrente</strong>. Premi: <strong class="text-black">1° posto un Box OP17</strong>, 2° posto 10 bustine, 3° posto 4 bustine.</p>
+                <p>Mazzi validati secondo il ban-list ufficiale vigente al 5 Settembre 2026. Ogni giocatore deve portare il proprio mazzo e i token. Formato Swiss, finale a eliminazione diretta. Giudici certificati presenti. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve <strong class="text-white">una bustina dell'espansione corrente</strong>. Premi: <strong class="text-white">1° posto un Box OP17</strong>, 2° posto 10 bustine, 3° posto 4 bustine.</p>
             </div>
         </div>
     </section>
@@ -668,114 +794,114 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
         <div class="max-w-6xl mx-auto">
             <div class="mb-16 fade-in-up">
                 <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Album — 写真</h2>
-                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">LA SCORSA<br>EDIZIONE</h3>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight" cv-neon">LA SCORSA<br>EDIZIONE</h3>
                 <p class="text-brand-muted text-sm md:text-base font-light max-w-lg mt-4">Un assaggio dell'atmosfera del festival: cosplay, tavoli da gioco e serata in piazza.</p>
             </div>
             <div class="gallery-strip overflow-hidden -mx-6 px-6 py-4">
                 <div class="gallery-track flex w-max">
                     <div class="flex gap-6 pr-6">
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-2.5deg); transition-delay: 0ms;" data-src="gallery/foto-01.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-2.5deg); transition-delay: 0ms;" data-src="gallery/foto-01.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(1.25deg);"></span>
                     <img src="gallery/foto-01.jpg" alt="Festival — foto 1" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 01 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 01 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.8deg); transition-delay: 100ms;" data-src="gallery/foto-02.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(1.8deg); transition-delay: 100ms;" data-src="gallery/foto-02.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.9deg);"></span>
                     <img src="gallery/foto-02.jpg" alt="Festival — foto 2" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 02 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 02 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.2deg); transition-delay: 200ms;" data-src="gallery/foto-03.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.2deg); transition-delay: 200ms;" data-src="gallery/foto-03.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.6deg);"></span>
                     <img src="gallery/foto-03.jpg" alt="Festival — foto 3" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 03 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 03 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(2.6deg); transition-delay: 300ms;" data-src="gallery/foto-04.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(2.6deg); transition-delay: 300ms;" data-src="gallery/foto-04.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-1.3deg);"></span>
                     <img src="gallery/foto-04.jpg" alt="Festival — foto 4" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 04 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 04 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.8deg); transition-delay: 0ms;" data-src="gallery/foto-05.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.8deg); transition-delay: 0ms;" data-src="gallery/foto-05.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.9deg);"></span>
                     <img src="gallery/foto-05.jpg" alt="Festival — foto 5" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 05 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 05 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.2deg); transition-delay: 100ms;" data-src="gallery/foto-06.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(1.2deg); transition-delay: 100ms;" data-src="gallery/foto-06.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.6deg);"></span>
                     <img src="gallery/foto-06.jpg" alt="Festival — foto 6" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 06 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 06 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-2.2deg); transition-delay: 200ms;" data-src="gallery/foto-07.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-2.2deg); transition-delay: 200ms;" data-src="gallery/foto-07.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(1.1deg);"></span>
                     <img src="gallery/foto-07.jpg" alt="Festival — foto 7" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 07 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 07 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.6deg); transition-delay: 300ms;" data-src="gallery/foto-08.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(1.6deg); transition-delay: 300ms;" data-src="gallery/foto-08.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.8deg);"></span>
                     <img src="gallery/foto-08.jpg" alt="Festival — foto 8" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 08 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 08 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.4deg); transition-delay: 0ms;" data-src="gallery/foto-09.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.4deg); transition-delay: 0ms;" data-src="gallery/foto-09.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.7deg);"></span>
                     <img src="gallery/foto-09.jpg" alt="Festival — foto 9" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 09 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 09 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(2.2deg); transition-delay: 100ms;" data-src="gallery/foto-10.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(2.2deg); transition-delay: 100ms;" data-src="gallery/foto-10.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-1.1deg);"></span>
                     <img src="gallery/foto-10.jpg" alt="Festival — foto 10" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 10 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 10 —</figcaption>
                 </figure>
             
                     </div>
                     <div class="flex gap-6 pr-6" aria-hidden="true">
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-2.5deg); transition-delay: 0ms;" data-src="gallery/foto-01.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-2.5deg); transition-delay: 0ms;" data-src="gallery/foto-01.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(1.25deg);"></span>
                     <img src="gallery/foto-01.jpg" alt="Festival — foto 1" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 01 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 01 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.8deg); transition-delay: 100ms;" data-src="gallery/foto-02.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(1.8deg); transition-delay: 100ms;" data-src="gallery/foto-02.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.9deg);"></span>
                     <img src="gallery/foto-02.jpg" alt="Festival — foto 2" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 02 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 02 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.2deg); transition-delay: 200ms;" data-src="gallery/foto-03.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.2deg); transition-delay: 200ms;" data-src="gallery/foto-03.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.6deg);"></span>
                     <img src="gallery/foto-03.jpg" alt="Festival — foto 3" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 03 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 03 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(2.6deg); transition-delay: 300ms;" data-src="gallery/foto-04.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(2.6deg); transition-delay: 300ms;" data-src="gallery/foto-04.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-1.3deg);"></span>
                     <img src="gallery/foto-04.jpg" alt="Festival — foto 4" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 04 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 04 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.8deg); transition-delay: 0ms;" data-src="gallery/foto-05.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.8deg); transition-delay: 0ms;" data-src="gallery/foto-05.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.9deg);"></span>
                     <img src="gallery/foto-05.jpg" alt="Festival — foto 5" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 05 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 05 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.2deg); transition-delay: 100ms;" data-src="gallery/foto-06.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(1.2deg); transition-delay: 100ms;" data-src="gallery/foto-06.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.6deg);"></span>
                     <img src="gallery/foto-06.jpg" alt="Festival — foto 6" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 06 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 06 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-2.2deg); transition-delay: 200ms;" data-src="gallery/foto-07.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-2.2deg); transition-delay: 200ms;" data-src="gallery/foto-07.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(1.1deg);"></span>
                     <img src="gallery/foto-07.jpg" alt="Festival — foto 7" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 07 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 07 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(1.6deg); transition-delay: 300ms;" data-src="gallery/foto-08.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(1.6deg); transition-delay: 300ms;" data-src="gallery/foto-08.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-0.8deg);"></span>
                     <img src="gallery/foto-08.jpg" alt="Festival — foto 8" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 08 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 08 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(-1.4deg); transition-delay: 0ms;" data-src="gallery/foto-09.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.4deg); transition-delay: 0ms;" data-src="gallery/foto-09.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(0.7deg);"></span>
                     <img src="gallery/foto-09.jpg" alt="Festival — foto 9" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 09 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 09 —</figcaption>
                 </figure>
-                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 8px 8px 0 #000; transform: rotate(2.2deg); transition-delay: 100ms;" data-src="gallery/foto-10.jpg">
+                <figure class="gallery-item flex-shrink-0 snap-start bg-white border-[3px] border-black p-2 pb-8 cursor-pointer fade-in-up relative" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(2.2deg); transition-delay: 100ms;" data-src="gallery/foto-10.jpg">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-brand-yellow/80 border-2 border-black/20" style="transform: rotate(-1.1deg);"></span>
                     <img src="gallery/foto-10.jpg" alt="Festival — foto 10" loading="lazy" class="h-56 md:h-72 w-auto block border-2 border-black/10">
-                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-black/50">— 10 —</figcaption>
+                    <figcaption class="absolute bottom-2 left-0 right-0 text-center text-xs font-bold uppercase tracking-widest text-white/60">— 10 —</figcaption>
                 </figure>
             
                     </div>
@@ -786,10 +912,10 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
 
     <!-- Lightbox galleria -->
     <div id="lightbox" class="hidden fixed inset-0 z-[90] bg-black/90 items-center justify-center p-4 md:p-10">
-        <button id="lb-close" class="absolute top-5 right-5 bg-brand-yellow border-[3px] border-black text-black w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 4px 4px 0 #000;">✕</button>
-        <button id="lb-prev" class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 bg-white border-[3px] border-black text-black w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 4px 4px 0 #000;">‹</button>
-        <button id="lb-next" class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 bg-white border-[3px] border-black text-black w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 4px 4px 0 #000;">›</button>
-        <img id="lb-img" src="" alt="Foto ingrandita" class="max-h-full max-w-full border-[3px] border-black bg-white p-2" style="box-shadow: 12px 12px 0 #000;">
+        <button id="lb-close" class="absolute top-5 right-5 bg-brand-yellow border-[3px] border-black text-white w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">✕</button>
+        <button id="lb-prev" class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 bg-white border-[3px] border-black text-white w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">‹</button>
+        <button id="lb-next" class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 bg-white border-[3px] border-black text-white w-12 h-12 text-xl font-extrabold z-10" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">›</button>
+        <img id="lb-img" src="" alt="Foto ingrandita" class="max-h-full max-w-full border-[3px] border-black bg-white p-2" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
     </div>
 
     <!-- ══════════════════════════════════════
@@ -798,7 +924,7 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
     <section id="team" class="py-24 px-6 border-t-4 border-black max-w-6xl mx-auto">
         <div class="mb-16 fade-in-up">
             <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Chi c'è dietro le quinte</h2>
-            <h3 class="text-3xl md:text-4xl font-bold tracking-tight">ORGANIZZATORI</h3>
+            <h3 class="text-3xl md:text-4xl font-bold tracking-tight" cv-neon">ORGANIZZATORI</h3>
         </div>
 
         <div class="team-strip overflow-hidden -mx-6 px-6 py-4">
@@ -887,7 +1013,7 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
                     Dove si tiene<br>l'evento.
                 </h2>
                 <p class="text-brand-muted text-lg font-light leading-relaxed">
-                    L'evento si tiene in <strong class="text-black">Piazza Galluppi</strong>, Canosa di Puglia. Canosa di Puglia è facilmente raggiungibile in auto tramite l'autostrada A14; per chi viaggia in treno sono attivi servizi navetta dalle stazioni limitrofe.
+                    L'evento si tiene in <strong class="text-white">Piazza Galluppi</strong>, Canosa di Puglia. Canosa di Puglia è facilmente raggiungibile in auto tramite l'autostrada A14; per chi viaggia in treno sono attivi servizi navetta dalle stazioni limitrofe.
                 </p>
 
                 <div class="space-y-4 pt-4 text-sm">
@@ -927,57 +1053,57 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
     <!-- ══════════════════════════════════════
          FAQ
     ══════════════════════════════════════ -->
-    <section id="faq" class="py-24 px-6 border-t-4 border-black bg-[#efe4c8]/95">
+    <section id="faq" class="py-24 px-6 border-t-4 border-black bg-[#0d0620]/70">
         <div class="max-w-3xl mx-auto">
             <div class="mb-16 fade-in-up">
                 <h2 class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-4">Domande Frequenti</h2>
-                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">FAQ</h3>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight" cv-neon">FAQ</h3>
             </div>
             <div class="space-y-5">
-                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(-0.3deg);">
-                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-white select-none">
                         Quanto costa l'ingresso?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
                     <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Niente biglietto: l'ingresso è <strong>gratuito</strong> per tutti. L'iscrizione serve solo per partecipare alla gara cosplay, al contest K-POP o al torneo One Piece Card Game.</p>
                 </details>
-                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
-                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-white select-none">
                         Devo iscrivermi per partecipare?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
                     <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Solo se vuoi gareggiare: gara cosplay, contest K-POP e torneo TCG richiedono l'iscrizione tramite il form ufficiale. Per visitare l'evento basta presentarsi.</p>
                 </details>
-                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
-                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-white select-none">
                         Come funziona il contest K-POP?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
                     <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Puoi esibirti in dance cover o performance K-POP, da solo o in gruppo. Una <strong>giuria qualificata</strong> composta da esperti del settore valuta tecnica, sincronia, presenza scenica e fedeltà alla coreografia. Il vincitore riceve un <strong>buono Amazon</strong>. Partecipazione gratuita: basta iscriversi dal form e portare la propria base musicale.</p>
                 </details>
-                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(-0.3deg);">
-                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-white select-none">
                         Come arrivo a Piazza Galluppi?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
                     <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Canosa di Puglia è facilmente raggiungibile in auto tramite l'autostrada A14; per chi viaggia in treno sono attivi servizi navetta dalle stazioni limitrofe. Piazza Galluppi si trova nel centro cittadino.</p>
                 </details>
-                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
-                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-white select-none">
                         Posso venire in costume con oggetti di scena?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
                     <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Certo, i cosplay sono i benvenuti! Gli oggetti di scena sono ammessi purché non pericolosi: niente lame reali o materiali contundenti. In caso di dubbi scrivici prima a Canoversecomicscosplay@gmail.com.</p>
                 </details>
-                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(-0.3deg);">
-                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-white select-none">
                         Cosa serve per il torneo One Piece?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
                     <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Il tuo mazzo e i token, validati secondo la ban-list ufficiale vigente al 5 Settembre 2026. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve una bustina dell'espansione corrente; in palio un Box OP17 per il primo classificato, 10 bustine per il secondo e 4 per il terzo.</p>
                 </details>
-                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 6px 6px 0 #000; transform: rotate(0.3deg);">
-                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-black select-none">
+                <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(0.3deg);">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-white select-none">
                         Che orari fa il festival?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
@@ -1086,7 +1212,7 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
             setTimeout(function () {
                 intro.remove();
                 document.body.style.overflow = '';
-            }, 2850);
+            }, 4600);
         })();
     </script>
     <script>

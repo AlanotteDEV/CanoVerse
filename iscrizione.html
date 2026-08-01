@@ -8,22 +8,23 @@
     <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
     -->
     <title>Iscrizione — CanoVerse 2026</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon-logo.png">
     <meta name="description" content="Iscriviti alla Gara Cosplay o al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="it_IT">
     <meta property="og:url" content="https://canoverse.vercel.app/iscrizione.html">
     <meta property="og:title" content="Iscrizione — CanoVerse 2026">
     <meta property="og:description" content="Iscriviti alla Gara Cosplay o al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
-    <meta property="og:image" content="https://canoverse.vercel.app/background.png">
+    <meta property="og:image" content="https://canoverse.vercel.app/social-preview-logo.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Iscrizione — CanoVerse 2026">
     <meta name="twitter:description" content="Iscriviti alla Gara Cosplay o al Torneo One Piece Card Game di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
-    <meta name="twitter:image" content="https://canoverse.vercel.app/background.png">
+    <meta name="twitter:image" content="https://canoverse.vercel.app/social-preview-logo.png">
 
     <script src="src/js/tailwind.min.js"></script>
 
     <link href="src/css/fonts.css" rel="stylesheet">
+    <link href="src/css/synthwave.css" rel="stylesheet">
     <link rel="stylesheet" href="src/css/fontawesome.min.css">
 
     <script>
@@ -36,12 +37,12 @@
                     },
                     colors: {
                         brand: {
-                            bg: '#f6efe0',
-                            card: '#fffdf5',
-                            border: '#000000',
-                            muted: '#57503d',
-                            accent: '#111111',
-                            yellow: '#FFD600',
+                            bg: '#07030f',
+                            card: '#150a2b',
+                            border: '#2ce8c8',
+                            muted: '#c3b3e6',
+                            accent: '#ffffff',
+                            yellow: '#19a7b5',
                         }
                     }
                 }
@@ -50,18 +51,6 @@
     </script>
 
     <style>
-        body {
-            overflow-x: hidden;
-            background-color: #f6efe0;
-            background-image:
-                linear-gradient(180deg, rgba(246,239,224,0.82) 0%, rgba(246,239,224,0.6) 40%, rgba(246,239,224,0.85) 100%),
-                url('background.png');
-            background-size: 130% auto;
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-blend-mode: normal;
-            min-height: 100vh;
-        }
         .glass-nav {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -76,66 +65,19 @@
             height: 1px;
             overflow: hidden;
         }
-
-        /* ── Stile poster brutalist ── */
-        h1, h2, h3 { font-weight: 900 !important; }
-        .bg-brand-card {
-            border: 3px solid #000 !important;
-            box-shadow: 8px 8px 0 #000;
-        }
-        a.bg-brand-yellow, button.bg-brand-yellow {
-            border: 3px solid #000;
-            box-shadow: 5px 5px 0 #000;
-            border-radius: 0 !important;
-        }
-        a.bg-brand-yellow:hover, button.bg-brand-yellow:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 3px 3px 0 #000;
-        }
     
-        /* leggibilità del giallo su carta */
-        .text-brand-yellow { color: #8a6d00; }
-        h2.text-brand-yellow, h4.text-brand-yellow, p.text-brand-yellow {
-            background: #FFD600; color: #111 !important;
-            display: inline-block; padding: 2px 10px;
-            border: 2px solid #000; box-shadow: 3px 3px 0 #000;
-        }
-    
-        /* ── Form: massima leggibilità ── */
-        .form-field {
-            background: #ffffff;
-            font-family: inherit;
-            transition: box-shadow .15s ease, border-color .15s ease;
-        }
-        .form-field::placeholder { color: #6b6350; opacity: 1; }
-        .form-field:focus {
-            outline: none;
-            border-color: #000;
-            box-shadow: 0 0 0 4px #FFD600;
-        }
-        .form-select {
-            appearance: none;
-            background-image: linear-gradient(45deg, transparent 50%, #111 50%), linear-gradient(135deg, #111 50%, transparent 50%);
-            background-position: calc(100% - 22px) 55%, calc(100% - 15px) 55%;
-            background-size: 7px 7px, 7px 7px;
-            background-repeat: no-repeat;
-            padding-right: 46px;
-            cursor: pointer;
-        }
-        .form-select:invalid { color: #6b6350; }
-        .form-check { width: 20px; height: 20px; flex-shrink: 0; cursor: pointer; }
-        label[for] { cursor: pointer; }
+        .nav-logo { filter: drop-shadow(0 0 10px rgba(44,232,200,.6)); }
     </style>
 </head>
 <body class="bg-brand-bg text-brand-accent font-sans antialiased">
 
     <nav class="fixed top-0 left-0 w-full glass-nav bg-brand-bg border-b-4 border-black z-50 py-4 px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-black hover:text-black/60 transition-colors">
+            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-white hover:text-white/60 transition-colors">
                 <i class="fa-solid fa-arrow-left text-sm"></i>
-                <span>CANOVERSE</span>
+                <img src="logo.png" alt="CanoVerse" class="nav-logo h-9 md:h-11 w-auto">
             </a>
-            <span class="bg-brand-yellow border-[3px] border-black text-black text-xs font-bold tracking-widest uppercase px-4 py-1.5" style="box-shadow: 3px 3px 0 #000; transform: rotate(-1.5deg);">Iscrizione</span>
+            <span class="bg-brand-yellow border-[3px] border-black text-white text-xs font-bold tracking-widest uppercase px-4 py-1.5" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.5deg);">Iscrizione</span>
         </div>
     </nav>
 
@@ -155,23 +97,23 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
-                        <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="name">Nome o Nome d'Arte *</label>
-                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-black" type="text" id="name" required placeholder="Es. Luffy D. Monkey">
+                        <label class="block text-sm font-extrabold text-white uppercase tracking-wider mb-1" for="name">Nome o Nome d'Arte *</label>
+                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-white" type="text" id="name" required placeholder="Es. Luffy D. Monkey">
                     </div>
                     <div class="space-y-2">
-                        <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="email">Indirizzo Email *</label>
-                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-black" type="email" id="email" required placeholder="Es. mail@esempio.it">
+                        <label class="block text-sm font-extrabold text-white uppercase tracking-wider mb-1" for="email">Indirizzo Email *</label>
+                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-white" type="email" id="email" required placeholder="Es. mail@esempio.it">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
-                        <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="character">Personaggio / Gioco / Brano K-POP</label>
-                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-black" type="text" id="character" placeholder="Es. personaggio, mazzo o brano/gruppo K-POP">
+                        <label class="block text-sm font-extrabold text-white uppercase tracking-wider mb-1" for="character">Personaggio / Gioco / Brano K-POP</label>
+                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-white" type="text" id="character" placeholder="Es. personaggio, mazzo o brano/gruppo K-POP">
                     </div>
                     <div class="space-y-2">
-                        <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="type">Categoria *</label>
-                        <select class="form-field form-select w-full border-[3px] border-black p-4 text-base text-black rounded-none" id="type" required>
+                        <label class="block text-sm font-extrabold text-white uppercase tracking-wider mb-1" for="type">Categoria *</label>
+                        <select class="form-field form-select w-full border-[3px] border-black p-4 text-base text-white rounded-none" id="type" required>
                             <option value="" disabled selected>— Seleziona —</option>
                             <optgroup label="Cosplay">
                                 <option value="cosplay_singolo">Singolo Cosplayer</option>
@@ -188,34 +130,34 @@
                 </div>
 
                 <div class="space-y-2">
-                    <label class="block text-sm font-extrabold text-black uppercase tracking-wider mb-1" for="message">Note Aggiuntive</label>
-                    <textarea class="form-field w-full border-[3px] border-black p-4 text-base text-black h-32 resize-none" id="message" placeholder="Richieste per cosplay, note sul mazzo..."></textarea>
+                    <label class="block text-sm font-extrabold text-white uppercase tracking-wider mb-1" for="message">Note Aggiuntive</label>
+                    <textarea class="form-field w-full border-[3px] border-black p-4 text-base text-white h-32 resize-none" id="message" placeholder="Richieste per cosplay, note sul mazzo..."></textarea>
                 </div>
 
                 <div class="space-y-3 pt-2 border-t-4 border-black">
-                    <p class="text-sm text-black/80 leading-relaxed">
+                    <p class="text-sm text-white/80 leading-relaxed">
                         Il tuo nome e il personaggio scelto verranno mostrati pubblicamente in tempo reale nella lista iscritti della gara/contest/torneo a cui ti registri.
                     </p>
-                    <label class="flex items-start gap-3 text-sm text-black cursor-pointer leading-relaxed">
-                        <input type="checkbox" id="privacy-consent" required class="form-check mt-0.5 accent-black">
+                    <label class="flex items-start gap-3 text-sm text-white cursor-pointer leading-relaxed">
+                        <input type="checkbox" id="privacy-consent" required class="form-check mt-0.5">
                         <span>Ho letto l'<a href="privacy.html" class="underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Informativa Privacy</a> e acconsento al trattamento dei miei dati per la gestione dell'iscrizione all'evento. *</span>
                     </label>
-                    <label class="flex items-start gap-3 text-sm text-black cursor-pointer leading-relaxed">
-                        <input type="checkbox" id="age-consent" required class="form-check mt-0.5 accent-black">
+                    <label class="flex items-start gap-3 text-sm text-white cursor-pointer leading-relaxed">
+                        <input type="checkbox" id="age-consent" required class="form-check mt-0.5">
                         <span>Dichiaro di avere almeno 16 anni, oppure di aver ottenuto il consenso di un genitore/tutore alla mia iscrizione e al trattamento dei miei dati (necessario per i minorenni, art. 8 GDPR). *</span>
                     </label>
-                    <p class="text-sm text-black/80 leading-relaxed">
+                    <p class="text-sm text-white/80 leading-relaxed">
                         <i class="fa-solid fa-circle-info mr-1"></i>Se sei minorenne, scarica e porta al check-in il <a href="consenso-genitori.html" class="underline hover:text-brand-yellow" target="_blank">modulo di consenso genitoriale</a> firmato da un genitore o tutore.
                     </p>
                 </div>
 
-                <button type="submit" class="w-full bg-brand-yellow text-black hover:bg-yellow-400 text-sm font-semibold tracking-widest uppercase px-8 py-4 transition-colors duration-300 mt-4">
+                <button type="submit" class="w-full bg-brand-yellow text-white text-sm font-semibold tracking-widest uppercase px-8 py-4 transition-colors duration-300 mt-4">
                     Invia Modulo
                 </button>
             </form>
 
-            <div id="successMessage" class="hidden mt-8 border-[3px] border-black bg-brand-yellow/20 p-8 text-center transition-all" style="box-shadow: 6px 6px 0 #000;">
-                <div class="w-12 h-12 bg-brand-yellow rounded-full flex items-center justify-center text-black mx-auto mb-4">
+            <div id="successMessage" class="hidden mt-8 border-[3px] border-black bg-brand-yellow/20 p-8 text-center transition-all" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
+                <div class="w-12 h-12 bg-brand-yellow rounded-full flex items-center justify-center text-white mx-auto mb-4">
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <h3 class="font-bold text-lg text-brand-yellow mb-2">Registrazione Inviata.</h3>
@@ -236,7 +178,7 @@
                 <a href="cookie.html" class="hover:text-brand-yellow transition-colors" title="Cookie Policy" target="_blank">Cookie Policy</a>
                 <a href="termini.html" class="hover:text-brand-yellow transition-colors" title="Termini e Condizioni" target="_blank">Termini e Condizioni</a>
                 <a href="#" class="cookie-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
-                <a href="index.html" class="font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline text-black">← Torna al sito</a>
+                <a href="index.html" class="font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline text-white">← Torna al sito</a>
             </div>
         </div>
     </footer>

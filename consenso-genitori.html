@@ -12,27 +12,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <title>Modulo Consenso Genitoriale — CanoVerse 2026</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon-logo.png">
     <meta name="description" content="Modulo di consenso del genitore/tutore per l'iscrizione di un minore a CanoVerse 2026.">
     <meta name="robots" content="noindex">
 
     <script src="src/js/tailwind.min.js"></script>
     <link href="src/css/fonts.css" rel="stylesheet">
+    <link href="src/css/synthwave.css" rel="stylesheet">
     <link rel="stylesheet" href="src/css/fontawesome.min.css">
 
     <script>
         tailwind.config = {
             theme: { extend: {
                 fontFamily: { sans: ['Inter', 'sans-serif'], jp: ['Noto Sans JP', 'sans-serif'] },
-                colors: { brand: { bg: '#f6efe0', card: '#fffdf5', border: '#000000', muted: '#57503d', accent: '#111111', yellow: '#FFD600' } }
+                colors: { brand: { bg: '#07030f', card: '#150a2b', border: '#2ce8c8', muted: '#c3b3e6', accent: '#ffffff', yellow: '#19a7b5' } }
             } }
         }
     </script>
 
     <style>
-        body { background: #f6efe0; color: #111; }
+        body { color: #fff; }
         h1, h2, h3 { font-weight: 900 !important; }
-        .doc { background: #fff; border: 3px solid #000; box-shadow: 8px 8px 0 #000; }
+        .doc { background: #fff; color: #1a1a1a; border: 3px solid #2ce8c8; box-shadow: 0 0 22px rgba(44,232,200,.45); }
+        .doc h1, .doc h2, .doc h3, .doc strong { color: #111; }
         .doc h2 { font-size: 1.05rem; margin-top: 1.6rem; margin-bottom: .6rem; border-bottom: 2px solid #000; padding-bottom: .3rem; }
         .doc p, .doc li, .doc label { font-size: .92rem; line-height: 1.6; color: #1a1a1a; }
         .field { display: flex; align-items: flex-end; gap: .5rem; margin: .55rem 0; flex-wrap: wrap; }
@@ -45,11 +47,11 @@
         .sig .sigline { border-bottom: 1.5px solid #000; height: 2.4rem; }
         .note { font-size: .78rem; color: #555; }
         .btn-print {
-            background: #FFD600; border: 3px solid #000; box-shadow: 4px 4px 0 #000;
+            background: #19a7b5; border: 2px solid #fff; box-shadow: 0 0 18px rgba(44,232,200,.42);
             font-weight: 800; padding: .7rem 1.4rem; cursor: pointer; text-transform: uppercase;
             letter-spacing: .05em; font-size: .8rem;
         }
-        .btn-print:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+        .btn-print:hover { transform: translate(2px,2px); box-shadow: 0 0 18px rgba(44,232,200,.42); }
 
         @media print {
             body { background: #fff; }
@@ -62,7 +64,7 @@
 <body class="font-sans antialiased">
 
     <div class="no-print bg-brand-bg border-b-4 border-black py-3 px-6 flex items-center justify-between sticky top-0 z-10">
-        <a href="index.html" class="text-lg font-bold tracking-widest uppercase flex items-center gap-2 text-black hover:text-black/60">
+        <a href="index.html" class="text-lg font-bold tracking-widest uppercase flex items-center gap-2 text-white hover:text-white/60">
             <i class="fa-solid fa-arrow-left text-sm"></i><span>CANOVERSE</span>
         </a>
         <button class="btn-print" onclick="window.print()"><i class="fa-solid fa-print mr-2"></i>Stampa modulo</button>
@@ -77,7 +79,7 @@
                     <h1 class="text-2xl md:text-3xl font-black tracking-tight">Consenso del Genitore / Tutore</h1>
                     <p class="text-sm text-brand-muted">per l’iscrizione di un minore all’evento</p>
                 </div>
-                <span class="bg-brand-yellow border-2 border-black text-xs font-bold uppercase px-3 py-1" style="box-shadow:3px 3px 0 #000;">Minori</span>
+                <span class="bg-brand-yellow border-2 border-black text-xs font-bold uppercase px-3 py-1" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">Minori</span>
             </div>
 
             <p class="note mt-3">Titolare del trattamento: <strong>Manbaga Comics &amp; Games di Lapia Antonio Carmine</strong> — Via Padre Reginaldo Giuliani, 21, Canosa di Puglia (BT) — P.IVA 09055430723 — Canoversecomicscosplay@gmail.com. Riferimenti: artt. 6, 7 e 8 del Regolamento (UE) 2016/679 (GDPR).</p>

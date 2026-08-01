@@ -15,12 +15,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://api.emailjs.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <title>Cookie Policy — CanoVerse 2026</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon-logo.png">
     <meta name="description" content="Informativa sui cookie e strumenti di tracciamento del sito CanoVerse 2026.">
     <meta name="robots" content="index, follow">
 
     <script src="src/js/tailwind.min.js"></script>
     <link href="src/css/fonts.css" rel="stylesheet">
+    <link href="src/css/synthwave.css" rel="stylesheet">
     <link rel="stylesheet" href="src/css/fontawesome.min.css">
 
     <script>
@@ -33,12 +34,12 @@
                     },
                     colors: {
                         brand: {
-                            bg: '#f6efe0',
-                            card: '#fffdf5',
-                            border: '#000000',
-                            muted: '#57503d',
-                            accent: '#111111',
-                            yellow: '#FFD600',
+                            bg: '#07030f',
+                            card: '#150a2b',
+                            border: '#2ce8c8',
+                            muted: '#c3b3e6',
+                            accent: '#ffffff',
+                            yellow: '#19a7b5',
                         }
                     }
                 }
@@ -47,54 +48,33 @@
     </script>
 
     <style>
-        body {
-            overflow-x: hidden;
-            background-color: #f6efe0;
-            background-image:
-                linear-gradient(180deg, rgba(246,239,224,0.9) 0%, rgba(246,239,224,0.8) 40%, rgba(246,239,224,0.92) 100%),
-                url('background.png');
-            background-size: 130% auto;
-            background-position: center top;
-            background-repeat: no-repeat;
-            min-height: 100vh;
-        }
         .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         h1, h2, h3 { font-weight: 900 !important; }
-        .legal h2 {
-            font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: .75rem;
-            border-bottom: 3px solid #000; padding-bottom: .4rem;
-        }
         .legal h3 { font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: .4rem; font-weight: 800 !important; }
-        .legal p, .legal li { color: #3d3826; line-height: 1.7; font-size: .95rem; }
         .legal p { margin-bottom: .9rem; }
         .legal ul { list-style: disc; padding-left: 1.4rem; margin-bottom: 1rem; }
         .legal li { margin-bottom: .4rem; }
-        .legal a { color: #8a6d00; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
-        .legal a:hover { color: #111; }
         .legal table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .82rem; }
-        .legal th, .legal td { border: 2px solid #000; padding: .55rem .7rem; text-align: left; vertical-align: top; }
-        .legal th { background: #FFD600; font-weight: 800; }
-        .legal .box {
-            background: #fffdf5; border: 3px solid #000; box-shadow: 6px 6px 0 #000;
-            padding: 1.2rem 1.4rem; margin: 1.2rem 0;
-        }
         .legal .pill {
             display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .06em;
-            text-transform: uppercase; padding: 2px 9px; border: 2px solid #000; margin-left: .5rem;
+            text-transform: uppercase; padding: 2px 9px; margin-left: .5rem;
+            border: 2px solid #2ce8c8; color: #fff;
         }
-        .pill-on { background: #FFD600; }
-        .pill-opt { background: #fff; }
+        .pill-on { background: #19a7b5; color: #fff; }
+        .pill-opt { background: transparent; border-color: rgba(44,232,200,.5); color: #c3b3e6; }
+    
+        .nav-logo { filter: drop-shadow(0 0 10px rgba(44,232,200,.6)); }
     </style>
 </head>
 <body class="bg-brand-bg text-brand-accent font-sans antialiased">
 
     <nav class="fixed top-0 left-0 w-full glass-nav bg-brand-bg border-b-4 border-black z-50 py-4 px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-black hover:text-black/60 transition-colors">
+            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-white hover:text-white/60 transition-colors">
                 <i class="fa-solid fa-arrow-left text-sm"></i>
-                <span>CANOVERSE</span>
+                <img src="logo.png" alt="CanoVerse" class="nav-logo h-9 md:h-11 w-auto">
             </a>
-            <span class="bg-brand-yellow border-[3px] border-black text-black text-xs font-bold tracking-widest uppercase px-4 py-1.5" style="box-shadow: 3px 3px 0 #000; transform: rotate(-1.5deg);">Cookie</span>
+            <span class="bg-brand-yellow border-[3px] border-black text-white text-xs font-bold tracking-widest uppercase px-4 py-1.5" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(-1.5deg);">Cookie</span>
         </div>
     </nav>
 
@@ -167,7 +147,7 @@
                 <a href="cookie.html" class="hover:text-brand-yellow transition-colors">Cookie Policy</a>
                 <a href="termini.html" class="hover:text-brand-yellow transition-colors">Termini e Condizioni</a>
                 <a href="#" class="cookie-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
-                <a href="index.html" class="font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline text-black">← Torna al sito</a>
+                <a href="index.html" class="font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 hover:no-underline text-white">← Torna al sito</a>
             </div>
         </div>
     </footer>

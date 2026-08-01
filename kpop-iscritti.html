@@ -8,22 +8,23 @@
     <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
     -->
     <title>Iscritti Contest K-POP — CanoVerse 2026</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon-logo.png">
     <meta name="description" content="Lista aggiornata in tempo reale degli iscritti al Contest K-POP di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="it_IT">
     <meta property="og:url" content="https://canoverse.vercel.app/kpop-iscritti.html">
     <meta property="og:title" content="Iscritti Contest K-POP — CanoVerse 2026">
     <meta property="og:description" content="Lista aggiornata in tempo reale degli iscritti al Contest K-POP di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
-    <meta property="og:image" content="https://canoverse.vercel.app/background.png">
+    <meta property="og:image" content="https://canoverse.vercel.app/social-preview-logo.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Iscritti Contest K-POP — CanoVerse 2026">
     <meta name="twitter:description" content="Lista aggiornata in tempo reale degli iscritti al Contest K-POP di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
-    <meta name="twitter:image" content="https://canoverse.vercel.app/background.png">
+    <meta name="twitter:image" content="https://canoverse.vercel.app/social-preview-logo.png">
 
     <script src="src/js/tailwind.min.js"></script>
 
     <link href="src/css/fonts.css" rel="stylesheet">
+    <link href="src/css/synthwave.css" rel="stylesheet">
     <link rel="stylesheet" href="src/css/fontawesome.min.css">
 
     <script>
@@ -36,12 +37,12 @@
                     },
                     colors: {
                         brand: {
-                            bg: '#f6efe0',
-                            card: '#fffdf5',
-                            border: '#000000',
-                            muted: '#57503d',
-                            accent: '#111111',
-                            yellow: '#FFD600',
+                            bg: '#07030f',
+                            card: '#150a2b',
+                            border: '#2ce8c8',
+                            muted: '#c3b3e6',
+                            accent: '#ffffff',
+                            yellow: '#19a7b5',
                         }
                     }
                 }
@@ -50,66 +51,23 @@
     </script>
 
     <style>
-        body {
-            overflow-x: hidden;
-            background-color: #f6efe0;
-            background-image:
-                linear-gradient(180deg, rgba(246,239,224,0.82) 0%, rgba(246,239,224,0.6) 40%, rgba(246,239,224,0.85) 100%),
-                url('background.png');
-            background-size: 130% auto;
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-blend-mode: normal;
-            min-height: 100vh;
-        }
         .glass-nav {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
     
-        /* ── Stile poster brutalist ── */
-        h1, h2, h3 { font-weight: 900 !important; }
-        .bg-brand-card {
-            border: 3px solid #000 !important;
-            box-shadow: 8px 8px 0 #000;
-        }
-        a.bg-brand-yellow, button.bg-brand-yellow {
-            border: 3px solid #000;
-            box-shadow: 5px 5px 0 #000;
-            border-radius: 0 !important;
-        }
-        a.bg-brand-yellow:hover, button.bg-brand-yellow:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 3px 3px 0 #000;
-        }
-    
-        /* leggibilità del giallo su carta */
-        .text-brand-yellow { color: #8a6d00; }
-        h2.text-brand-yellow, h4.text-brand-yellow, p.text-brand-yellow {
-            background: #FFD600; color: #111 !important;
-            display: inline-block; padding: 2px 10px;
-            border: 2px solid #000; box-shadow: 3px 3px 0 #000;
-        }
-    
-        /* ── Campi admin: leggibilità ── */
-        .admin-field {
-            background: #ffffff;
-            border: 3px solid #000;
-            font-family: inherit;
-        }
-        .admin-field::placeholder { color: #6b6350; opacity: 1; }
-        .admin-field:focus { outline: none; box-shadow: 0 0 0 3px #FFD600; }
+        .nav-logo { filter: drop-shadow(0 0 10px rgba(44,232,200,.6)); }
     </style>
 </head>
 <body class="bg-brand-bg text-brand-accent font-sans antialiased">
 
     <nav class="fixed top-0 left-0 w-full bg-brand-bg border-b-4 border-black z-50 py-4 px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-black hover:text-black/60 transition-colors">
+            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-white hover:text-white/60 transition-colors">
                 <i class="fa-solid fa-arrow-left text-sm"></i>
-                <span>CANOVERSE</span>
+                <img src="logo.png" alt="CanoVerse" class="nav-logo h-9 md:h-11 w-auto">
             </a>
-            <a href="iscrizione.html" class="bg-brand-yellow text-black text-xs font-bold tracking-widest uppercase px-5 py-2 hover:bg-yellow-400 transition-colors">
+            <a href="iscrizione.html" class="bg-brand-yellow text-white text-xs font-bold tracking-widest uppercase px-5 py-2 transition-colors">
                 Iscriviti
             </a>
         </div>
@@ -120,7 +78,7 @@
         <!-- Header -->
         <div class="mb-12">
             <div class="flex items-center gap-3 mb-4">
-                <span class="text-3xl font-jp text-black/15">舞</span>
+                <span class="text-3xl font-jp text-white/25">舞</span>
                 <div>
                     <p class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-1">Dance & Premi</p>
                     <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Contest K-POP</h1>
@@ -133,8 +91,8 @@
         <!-- Area Admin -->
         <div class="mb-10 p-4 bg-brand-card/50 border border-brand-border">
             <div id="admin-logged-out" class="flex flex-wrap items-center gap-2">
-                <input id="admin-email" type="email" placeholder="Email admin" class="admin-field text-sm p-2.5 text-black flex-1 min-w-[160px]">
-                <input id="admin-password" type="password" placeholder="Password" class="admin-field text-sm p-2.5 text-black flex-1 min-w-[140px]">
+                <input id="admin-email" type="email" placeholder="Email admin" class="admin-field text-sm p-2.5 text-white flex-1 min-w-[160px]">
+                <input id="admin-password" type="password" placeholder="Password" class="admin-field text-sm p-2.5 text-white flex-1 min-w-[140px]">
                 <button id="admin-login-btn" class="text-xs font-bold uppercase tracking-widest border border-brand-border px-3 py-2 hover:border-brand-yellow hover:text-brand-yellow transition-colors">Accedi come Admin</button>
             </div>
             <div id="admin-logged-in" class="hidden items-center gap-3">

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <defs>
+    <filter id="glowM" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowC" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowSoft" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+
+    <radialGradient id="core" cx="42%" cy="38%" r="70%">
+      <stop offset="0%"   stop-color="#ff2d95" stop-opacity=".8"/>
+      <stop offset="55%"  stop-color="#b01f7d" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#1a0b33" stop-opacity=".12"/>
+    </radialGradient>
+
+    <linearGradient id="trail" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#2ce8c8" stop-opacity="0"/>
+      <stop offset="45%"  stop-color="#2ce8c8" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity=".95"/>
+    </linearGradient>
+  </defs>
+
+  <g opacity="0.4">
+  <!-- ── stelle ── -->
+  <g fill="#ffffff" opacity=".75">
+    <circle cx="120"  cy="140" r="2.4"/><circle cx="255"  cy="92"  r="1.6"/>
+    <circle cx="410"  cy="188" r="1.9"/><circle cx="980"  cy="126" r="2.6"/>
+    <circle cx="1085" cy="290" r="1.8"/><circle cx="146"  cy="392" r="1.7"/>
+    <circle cx="1128" cy="612" r="2.2"/><circle cx="86"   cy="742" r="2.0"/>
+    <circle cx="322"  cy="1062" r="1.8"/><circle cx="900" cy="1010" r="2.3"/>
+    <circle cx="1052" cy="852" r="1.5"/><circle cx="640"  cy="70"  r="1.7"/>
+    <circle cx="742"  cy="1128" r="1.9"/><circle cx="196" cy="946" r="1.5"/>
+  </g>
+  <g fill="#2ce8c8" opacity=".6">
+    <circle cx="180" cy="240" r="1.5"/><circle cx="1040" cy="430" r="1.7"/>
+    <circle cx="520" cy="1120" r="1.5"/><circle cx="1150" cy="760" r="1.4"/>
+  </g>
+
+  <!-- ── alone del pianeta ── -->
+  <circle cx="600" cy="620" r="345" fill="#ff2d95" opacity=".3" filter="url(#glowSoft)"/>
+
+  <!-- ── globo wireframe ── -->
+  <g transform="translate(600 620)">
+    <circle r="290" fill="url(#core)"/>
+    <circle r="290" fill="none" stroke="#2ce8c8" stroke-width="4" opacity="1" filter="url(#glowC)"/>
+
+    <!-- meridiani -->
+    <g fill="none" stroke="#2ce8c8" stroke-width="2.6" opacity=".85">
+      <ellipse rx="72"  ry="290"/>
+      <ellipse rx="160" ry="290"/>
+      <ellipse rx="240" ry="290"/>
+    </g>
+    <!-- paralleli -->
+    <g fill="none" stroke="#ff6ec7" stroke-width="2.6" opacity=".8">
+      <ellipse rx="290" ry="72"/>
+      <ellipse rx="290" ry="160"/>
+      <ellipse rx="290" ry="240"/>
+    </g>
+
+    <!-- fascia/nastro attorno al pianeta -->
+    <ellipse rx="360" ry="96" fill="none" stroke="#ffffff" stroke-width="4"
+             opacity=".85" transform="rotate(-18)" filter="url(#glowM)"/>
+  </g>
+
+  <!-- ── scia del razzo ── -->
+  <path d="M300 880 C 430 780, 520 700, 700 520 S 880 350, 985 292"
+        fill="none" stroke="url(#trail)" stroke-width="7" stroke-linecap="round"
+        opacity=".9" filter="url(#glowC)"/>
+
+  <!-- ── razzo ── -->
+  <g transform="translate(985 292) rotate(-38) scale(1.15)" filter="url(#glowM)">
+
+    <!-- fiamma: tre lingue di fuoco -->
+    <g opacity=".95">
+      <path d="M-30 0 C -52 -10, -76 -6, -98 0 C -76 6, -52 10, -30 0 Z" fill="#ff2d95" opacity=".55"/>
+      <path d="M-30 0 C -46 -8, -62 -5, -76 0 C -62 5, -46 8, -30 0 Z" fill="#ff6ec7" opacity=".85"/>
+      <path d="M-30 0 C -40 -4, -50 -2, -58 0 C -50 2, -40 4, -30 0 Z" fill="#ffffff"/>
+    </g>
+
+    <!-- ugello -->
+    <path d="M-30 -13 L-20 -15 L-20 15 L-30 13 Z"
+          fill="#150a2b" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- alette posteriori -->
+    <path d="M-20 -14 C -30 -30, -20 -44, -2 -48 C 2 -34, -4 -22, -14 -14 Z"
+          fill="#150a2b" stroke="#ff6ec7" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M-20 14 C -30 30, -20 44, -2 48 C 2 34, -4 22, -14 14 Z"
+          fill="#150a2b" stroke="#ff6ec7" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- corpo: fusoliera affusolata con punta -->
+    <path d="M-20 -16
+             C 14 -20, 46 -16, 68 -8
+             C 78 -5, 84 -2, 88 0
+             C 84 2, 78 5, 68 8
+             C 46 16, 14 20, -20 16 Z"
+          fill="#150a2b" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- fascia decorativa -->
+    <path d="M22 -18.5 C 30 -12, 30 12, 22 18.5" fill="none" stroke="#ff2d95" stroke-width="3.5"/>
+
+    <!-- punta illuminata -->
+    <path d="M68 -8 C 78 -5, 84 -2, 88 0 C 84 2, 78 5, 68 8 Z" fill="#ff2d95" opacity=".55"/>
+
+    <!-- oblò -->
+    <circle cx="0" cy="0" r="11" fill="#2ce8c8" opacity=".95"/>
+    <circle cx="0" cy="0" r="11" fill="none" stroke="#ffffff" stroke-width="3.5"/>
+    <circle cx="-3.5" cy="-3.5" r="3" fill="#ffffff" opacity=".85"/>
+  </g>
+  </g>
+</svg>
