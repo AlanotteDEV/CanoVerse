@@ -1,0 +1,192 @@
+/* ══════════════════════════════════════════════════════════════════
+   CanoVerse — Schermata di attesa (countdown + minigioco)
+   Visibile finché non scatta l'orario di apertura del sito.
+   ══════════════════════════════════════════════════════════════════ */
+
+#gate {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1.4rem 1rem 2rem;
+  overflow-y: auto;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 20%, rgba(44,232,200,.16) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(255,45,149,.18) 0%, transparent 70%),
+    linear-gradient(180deg, #07030f 0%, #0b1030 45%, #0d1a33 72%, #07030f 100%);
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, 'Courier New', monospace;
+  color: #fff;
+}
+html.gate-on, body.gate-on { overflow: hidden; }
+
+/* griglia prospettica in basso */
+#gate::after {
+  content: '';
+  position: absolute;
+  left: -25%; right: -25%; bottom: 0;
+  height: 34vh;
+  pointer-events: none;
+  opacity: .5;
+  background-image:
+    repeating-linear-gradient(to right, rgba(44,232,200,.5) 0 1px, transparent 1px 78px),
+    repeating-linear-gradient(to bottom, rgba(255,45,149,.4) 0 1px, transparent 1px 56px);
+  transform: perspective(320px) rotateX(70deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 100%);
+}
+
+#gate > * { position: relative; z-index: 1; }
+
+.gate-logo {
+  width: min(74vw, 330px);
+  height: auto;
+  filter: drop-shadow(0 0 26px rgba(44,232,200,.55));
+}
+
+.gate-kicker {
+  background: #19a7b5;
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 2px solid rgba(0,0,0,.4);
+  box-shadow: 0 0 16px rgba(44,232,200,.6);
+  transform: rotate(-1.5deg);
+}
+
+.gate-title {
+  font-size: clamp(1.05rem, 3.6vw, 1.6rem);
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 0 8px rgba(44,232,200,.7);
+}
+
+/* ── countdown ── */
+.gate-clock {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(58px, 84px));
+  gap: .5rem;
+}
+.gate-cell {
+  border: 2px solid #2ce8c8;
+  background: rgba(44,232,200,.08);
+  box-shadow: 0 0 16px rgba(44,232,200,.3);
+  padding: .5rem .2rem .35rem;
+  text-align: center;
+}
+.gate-cell b {
+  display: block;
+  font-size: clamp(1.3rem, 5.6vw, 2rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(44,232,200,.8);
+}
+.gate-cell span {
+  font-size: .56rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #a9dfe0;
+}
+
+/* ── gioco ── */
+.gate-game {
+  width: min(96vw, 460px);
+  border: 2px solid #2ce8c8;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.6), 0 0 22px rgba(44,232,200,.32);
+  background: #0a0520;
+}
+.gate-game-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #19a7b5;
+  border-bottom: 2px solid rgba(0,0,0,.5);
+  padding: 5px 8px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.gate-game-bar i {
+  width: 12px; height: 11px;
+  background: #c9c9d4;
+  border: 1px solid #2b2b3a;
+  display: inline-block;
+  margin-left: 3px;
+  font-style: normal;
+}
+#gate-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: none;
+  background: #0a0520;
+}
+.gate-hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 10px;
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border-top: 2px solid rgba(44,232,200,.35);
+  color: #c3b3e6;
+}
+.gate-hud b { color: #2ce8c8; }
+.gate-help {
+  font-size: .68rem;
+  color: #9d90bd;
+  text-align: center;
+  letter-spacing: .06em;
+  max-width: 42ch;
+  line-height: 1.5;
+}
+
+/* ── sblocco ── */
+.gate-open {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: .8rem;
+}
+#gate.is-open .gate-open { display: flex; }
+#gate.is-open .gate-clock,
+#gate.is-open .gate-title { display: none; }
+
+.gate-enter {
+  background: #19a7b5;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 0 20px rgba(44,232,200,.85);
+  font-weight: 800;
+  font-size: .9rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: .95rem 2.2rem;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.gate-enter:hover {
+  background: #ff2d95;
+  box-shadow: 0 0 26px rgba(255,45,149,.95);
+  transform: translateY(-2px);
+}
+
+@media (max-height: 720px) {
+  .gate-logo { width: min(56vw, 240px); }
+  #gate { gap: .7rem; padding-top: 1rem; }
+}

@@ -1,11 +1,37 @@
 const emailJsConfig = {
   publicKey: '7l_HAZEX9KJId_NRw',
   serviceId: 'service_lhtetiu',
+  // Template della notifica che arriva agli organizzatori
   templateId: 'template_8ogqjxg',
+  // Template della mail di conferma che arriva a chi si iscrive.
+  // ⚠️ Va creato su EmailJS (vedi ISTRUZIONI-EMAIL.md) e incollato qui.
+  // Se resta uguale a templateId, la conferma usa lo stesso modello.
+  templateIdUser: 'template_8ogqjxg',
   recipientEmail: 'Canoversecomicscosplay@gmail.com',
+  eventName: 'CanoVerse 2026',
 };
 
 const ONE_PIECE_MAX = 16;
+
+// Etichette leggibili delle categorie (nelle email, al posto dei codici)
+const CATEGORY_LABELS = {
+  cosplay_singolo: 'Gara Cosplay — Singolo',
+  cosplay_gruppo: 'Gara Cosplay — Gruppo',
+  kpop: 'Contest K-POP',
+  tcg_onepiece: 'Torneo One Piece Card Game',
+};
+
+// Cosa portare / ricordare, in base alla categoria scelta
+const CATEGORY_NOTES = {
+  cosplay_singolo: 'Ricorda: non c\'è sfilata. I giudici in incognito valutano i costumi durante tutta la giornata, la premiazione è a fine serata.',
+  cosplay_gruppo: 'Ricorda: non c\'è sfilata. I giudici in incognito valutano i costumi durante tutta la giornata, la premiazione è a fine serata.',
+  kpop: 'Ricorda di portare la tua base musicale. Una giuria qualificata valuterà tecnica, sincronia e presenza scenica: in palio un buono Amazon.',
+  tcg_onepiece: 'Ricorda di portare il tuo mazzo e i token, validi secondo la ban-list ufficiale. Quota di iscrizione: 12 €, da saldare in loco. Ogni partecipante riceve una bustina dell\'espansione corrente.',
+};
+
+function categoryLabel(code) {
+  return CATEGORY_LABELS[code] || code;
+}
 
 // ── Anti-bot ────────────────────────────────────────────────────────
 // Tempo minimo (ms) tra il caricamento del form e l'invio: sotto questa
@@ -22,6 +48,7 @@ function initEmailJS() {
   }
 }
 
+// Testo della notifica per gli organizzatori
 function buildEmailText(formData) {
   return [
     'Nuova registrazione dal modulo del sito.',
@@ -29,12 +56,45 @@ function buildEmailText(formData) {
     'Nome / Nome d\'Arte: ' + formData.name,
     'Email: ' + formData.email,
     'Personaggio / Gioco: ' + (formData.character || 'N/A'),
-    'Categoria: ' + formData.category,
+    'Categoria: ' + categoryLabel(formData.category),
     'Note aggiuntive: ' + (formData.message || 'Nessuna'),
     '',
     '---',
     'CanoVerse — Festival 2026',
   ].join('\n');
+}
+
+// Testo della conferma per chi si è iscritto
+function buildUserEmailText(formData) {
+  const note = CATEGORY_NOTES[formData.category];
+  return [
+    'Ciao ' + formData.name + ',',
+    '',
+    'la tua iscrizione a CanoVerse 2026 è stata registrata.',
+    '',
+    '— RIEPILOGO —',
+    'Categoria: ' + categoryLabel(formData.category),
+    'Personaggio / Gioco / Brano: ' + (formData.character || 'non indicato'),
+    formData.message ? 'Note: ' + formData.message : '',
+    '',
+    '— QUANDO E DOVE —',
+    'Sabato 5 settembre 2026, dalle 10:30 alle 23:30',
+    'Piazza Galluppi — Canosa di Puglia (BT)',
+    'Ingresso libero e gratuito.',
+    '',
+    note ? '— DA RICORDARE —' : '',
+    note || '',
+    '',
+    'Il tuo nome e il personaggio scelto compaiono nella lista pubblica degli iscritti sul sito.',
+    'Se hai meno di 18 anni, porta al check-in il modulo di consenso firmato da un genitore o tutore.',
+    '',
+    'Per qualsiasi domanda rispondi a questa email.',
+    'Ci vediamo al festival!',
+    '',
+    '---',
+    'CanoVerse 2026 — Comics & Games',
+    'Canosa di Puglia',
+  ].filter(function (line) { return line !== ''; }).join('\n');
 }
 
 async function getOnePieceCount() {
@@ -141,17 +201,42 @@ async function handleFormSubmit(event) {
 
   initEmailJS();
 
-  const templateParams = {
+  // 1) Notifica agli organizzatori
+  const adminParams = {
     from_name: formData.name,
     from_email: formData.email,
     reply_to: formData.email,
+    to_name: emailJsConfig.eventName,
     to_email: emailJsConfig.recipientEmail,
-    subject: 'Registrazione CanoVerse',
+    subject: 'Nuova iscrizione — ' + categoryLabel(formData.category),
     message: buildEmailText(formData),
   };
 
+  // 2) Conferma a chi si è iscritto
+  const userParams = {
+    from_name: emailJsConfig.eventName,
+    from_email: emailJsConfig.recipientEmail,
+    reply_to: emailJsConfig.recipientEmail,
+    to_name: formData.name,
+    to_email: formData.email,
+    subject: 'Iscrizione confermata — ' + emailJsConfig.eventName,
+    message: buildUserEmailText(formData),
+  };
+
   try {
-    await emailjs.send(emailJsConfig.serviceId, emailJsConfig.templateId, templateParams);
+    // La notifica agli organizzatori è quella indispensabile: se fallisce,
+    // l'iscrizione non va a buon fine.
+    await emailjs.send(emailJsConfig.serviceId, emailJsConfig.templateId, adminParams);
+
+    // La conferma all'utente è un "di più": se non parte (template non
+    // ancora configurato, indirizzo inesistente...) l'iscrizione resta
+    // comunque valida, ce lo segniamo solo in console.
+    emailjs
+      .send(emailJsConfig.serviceId, emailJsConfig.templateIdUser, userParams)
+      .catch(function (err) {
+        console.warn('Conferma all\'iscritto non inviata:', err);
+      });
+
     await saveRegistration(formData);
     form.style.display = 'none';
     successMsg.classList.remove('hidden');
@@ -195,5 +280,5 @@ function isValidEmail(email) {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { handleFormSubmit, validateForm, isValidEmail };
+  module.exports = { handleFormSubmit, validateForm, isValidEmail, buildEmailText, buildUserEmailText, categoryLabel };
 }

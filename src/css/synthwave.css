@@ -362,3 +362,34 @@ details summary { color: #fff !important; }
 @media (min-width: 768px) {
   .nav-toggle { display: none !important; }
 }
+
+/* marchio quadrato CV nella navbar (senza cornice) */
+.nav-mark {
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 0 10px rgba(44, 232, 200, .45));
+}
+
+/* icona Instagram nella navbar */
+.nav-ig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  font-size: 19px;
+  color: var(--cv-cyan);
+  border: 2px solid rgba(44, 232, 200, .55);
+  box-shadow: 0 0 10px rgba(44, 232, 200, .28);
+  transition: color .15s ease, border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  flex-shrink: 0;
+}
+.nav-ig:hover {
+  color: #fff;
+  border-color: var(--cv-magenta);
+  box-shadow: 0 0 18px rgba(255, 45, 149, .8);
+  transform: translateY(-2px);
+}
