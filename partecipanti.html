@@ -109,7 +109,7 @@
                 <p class="text-xs font-bold tracking-widest text-brand-muted uppercase mb-1">Posti occupati</p>
                 <p class="text-4xl font-bold">
                     <span id="count">—</span>
-                    <span class="text-brand-muted font-light text-2xl"> / 16</span>
+                    <span class="text-brand-muted font-light text-2xl"> / 20</span>
                 </p>
             </div>
             <div id="status-badge" class="text-xs font-bold tracking-widest uppercase px-4 py-2 border hidden"></div>
@@ -148,7 +148,7 @@
     <script src="src/js/firebase-config.js"></script>
 
     <script>
-        const MAX = 16;
+        const MAX = 20;
         let isAdmin = false;
         let lastDocs = [];
 
@@ -193,7 +193,24 @@
                     if (!confirm('Rimuovere questo iscritto dal torneo?')) return;
                     btn.disabled = true;
                     try {
-                        await db.collection('registrations').doc(btn.dataset.id).delete();
+                        // Cancellazione e decremento del contatore devono
+                        // avvenire insieme: se il documento sparisse senza
+                        // liberare il posto, il torneo resterebbe pieno con
+                        // una sedia vuota (ed è esattamente il disallineamento
+                        // che il contatore serve a evitare).
+                        const counterRef = db.collection('meta').doc('tcg_onepiece_count');
+                        const registrationRef = db.collection('registrations').doc(btn.dataset.id);
+
+                        await db.runTransaction(async (transaction) => {
+                            const counterSnap = await transaction.get(counterRef);
+                            const current = counterSnap.exists ? counterSnap.data().count : 0;
+                            transaction.delete(registrationRef);
+                            // Sotto zero non si scende: le Security Rules
+                            // rifiuterebbero comunque la scrittura.
+                            if (current > 0) {
+                                transaction.update(counterRef, { count: current - 1 });
+                            }
+                        });
                     } catch (err) {
                         console.error(err);
                         alert('Errore durante la rimozione. Riprova.');
@@ -203,10 +220,13 @@
             });
         }
 
-        db.collection('registrations')
-            .where('category', '==', 'tcg_onepiece')
-            .onSnapshot((snapshot) => {
-                const count = snapshot.size;
+        // Posti occupati e badge "posti liberi": vengono dal contatore
+        // meta/tcg_onepiece_count, l'unico che decide se un'iscrizione passa.
+        // È volutamente separato dalla lista qui sotto — quella mostra gli
+        // iscritti veri, questo mostra i posti prenotati.
+        db.collection('meta').doc('tcg_onepiece_count')
+            .onSnapshot((doc) => {
+                const count = doc.exists ? doc.data().count : 0;
                 const countEl = document.getElementById('count');
                 const badge = document.getElementById('status-badge');
 
@@ -220,7 +240,13 @@
                     badge.textContent = (MAX - count) + ' posti liberi';
                     badge.className = 'text-xs font-bold tracking-widest uppercase px-4 py-2 border border-brand-yellow text-brand-yellow';
                 }
+            }, (error) => {
+                console.error(error);
+            });
 
+        db.collection('registrations')
+            .where('category', '==', 'tcg_onepiece')
+            .onSnapshot((snapshot) => {
                 const docs = [];
                 snapshot.forEach((doc) => docs.push({ id: doc.id, ...doc.data() }));
                 docs.sort((a, b) => {

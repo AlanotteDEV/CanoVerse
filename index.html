@@ -721,7 +721,7 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
                     <div class="flex justify-between items-center text-xs text-brand-muted border-b-2 border-black/20 pb-2">
                         <span>Posti</span>
                         <strong class="text-white">
-                            <span id="onepiece-count">—</span> / 16
+                            <span id="onepiece-count">—</span> / 20
                         </strong>
                     </div>
                     <div class="flex justify-between items-start text-xs text-brand-muted border-b-2 border-black/20 pb-2">
@@ -754,7 +754,7 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
             </div>
             <div class="p-6 border-[3px] border-black bg-white text-xs text-brand-muted fade-in-up" style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
                 <strong class="text-brand-yellow mb-2 block uppercase tracking-widest">Regolamento Torneo TCG</strong>
-                <p>Mazzi validati secondo il ban-list ufficiale vigente al 5 Settembre 2026. Ogni giocatore deve portare il proprio mazzo e i token. Formato Swiss, finale a eliminazione diretta. Giudici certificati presenti. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve <strong class="text-white">una bustina dell'espansione corrente</strong>. Premi: <strong class="text-white">1° posto un Box OP17</strong>, 2° posto 10 bustine, 3° posto 4 bustine.</p>
+                <p>Mazzi validati secondo il ban-list ufficiale vigente al 5 Settembre 2026. Ogni giocatore deve portare il proprio mazzo e i token. Formato Swiss, finale a eliminazione diretta. Giudici certificati presenti. Iscrizione €12, posti limitati a 20. Ogni partecipante riceve <strong class="text-white">una bustina dell'espansione corrente</strong>. Premi: <strong class="text-white">1° posto un Box OP17</strong>, 2° posto 10 bustine, 3° posto 4 bustine.</p>
             </div>
         </div>
     </section>
@@ -1073,7 +1073,7 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
                         Cosa serve per il torneo One Piece?
                         <span class="faq-arrow text-2xl font-extrabold flex-shrink-0 transition-transform duration-200">+</span>
                     </summary>
-                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Il tuo mazzo e i token, validati secondo la ban-list ufficiale vigente al 5 Settembre 2026. Iscrizione €12, posti limitati a 16. Ogni partecipante riceve una bustina dell'espansione corrente; in palio un Box OP17 per il primo classificato, 10 bustine per il secondo e 4 per il terzo.</p>
+                    <p class="px-6 pb-6 text-sm text-brand-muted font-light leading-relaxed border-t-[3px] border-dashed border-black pt-4 mx-0">Il tuo mazzo e i token, validati secondo la ban-list ufficiale vigente al 5 Settembre 2026. Iscrizione €12, posti limitati a 20. Ogni partecipante riceve una bustina dell'espansione corrente; in palio un Box OP17 per il primo classificato, 10 bustine per il secondo e 4 per il terzo.</p>
                 </details>
                 <details class="border-[3px] border-black bg-white fade-in-up group" style="box-shadow: 0 0 18px rgba(44,232,200,.42); transform: rotate(0.3deg);">
                     <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 text-base md:text-lg font-extrabold uppercase tracking-tight text-white select-none">
@@ -1136,11 +1136,15 @@ Indossa il tuo costume per la gara cosplay, sali sul palco per il contest K-POP 
         initMobileMenu();
         initMovingBackground();
 
-        db.collection('registrations')
-            .where('category', '==', 'tcg_onepiece')
-            .onSnapshot((snapshot) => {
+        // Posti occupati letti dal contatore meta/tcg_onepiece_count, lo stesso
+        // documento su cui lavorano la transazione di iscrizione e le Security
+        // Rules. Contare invece i documenti di `registrations` mostrerebbe un
+        // numero diverso da quello che decide se l'iscrizione viene accettata:
+        // la home direbbe "posti liberi" mentre il form rifiuta.
+        db.collection('meta').doc('tcg_onepiece_count')
+            .onSnapshot((doc) => {
                 const el = document.getElementById('onepiece-count');
-                if (el) el.textContent = snapshot.size;
+                if (el) el.textContent = doc.exists ? doc.data().count : 0;
             });
 
         db.collection('registrations')

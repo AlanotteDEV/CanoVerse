@@ -42,9 +42,9 @@ describe('formHandler', () => {
       window.db = {
         collection: jest.fn(() => ({
           add: jest.fn().mockResolvedValue({ id: 'mock-id' }),
-          doc: jest.fn(() => ({ id: 'mock-doc-id' })),
-          where: jest.fn(() => ({
-            get: jest.fn().mockResolvedValue({ size: 0 }),
+          doc: jest.fn(() => ({
+            id: 'mock-doc-id',
+            get: jest.fn().mockResolvedValue({ exists: true, data: () => ({ count: 0 }) }),
           })),
         })),
         runTransaction: jest.fn(async (updateFn) =>
@@ -116,6 +116,35 @@ describe('formHandler', () => {
   // ── handleFormSubmit (torneo One Piece, contatore transazionale) ───
 
   describe('handleFormSubmit — tcg_onepiece slot cap', () => {
+    // `counterCount` è ciò che vede il controllo preliminare leggendo
+    // meta/tcg_onepiece_count; `transactionCount` è ciò che vede la
+    // transazione atomica. Di norma coincidono: differiscono solo per
+    // simulare la corsa sull'ultimo posto.
+    function mockDb(counterCount, transactionCount, spies) {
+      const s = spies || {};
+      return {
+        collection: jest.fn(() => ({
+          doc: jest.fn(() => ({
+            id: 'mock-doc-id',
+            get: jest.fn().mockResolvedValue({
+              exists: true,
+              data: () => ({ count: counterCount }),
+            }),
+          })),
+        })),
+        runTransaction: jest.fn(async (updateFn) =>
+          updateFn({
+            get: jest.fn().mockResolvedValue({
+              exists: true,
+              data: () => ({ count: transactionCount }),
+            }),
+            update: s.update || jest.fn(),
+            set: s.set || jest.fn(),
+          })
+        ),
+      };
+    }
+
     beforeEach(() => {
       document.body.innerHTML = `
         <form id="cosplayForm" onsubmit="handleFormSubmit(event)">
@@ -149,19 +178,7 @@ describe('formHandler', () => {
     test('creates the registration and increments the counter when under the cap', async () => {
       const transactionUpdate = jest.fn();
       const transactionSet = jest.fn();
-      window.db = {
-        collection: jest.fn(() => ({
-          doc: jest.fn(() => ({ id: 'mock-doc-id' })),
-          where: jest.fn(() => ({ get: jest.fn().mockResolvedValue({ size: 5 }) })),
-        })),
-        runTransaction: jest.fn(async (updateFn) =>
-          updateFn({
-            get: jest.fn().mockResolvedValue({ exists: true, data: () => ({ count: 5 }) }),
-            update: transactionUpdate,
-            set: transactionSet,
-          })
-        ),
-      };
+      window.db = mockDb(5, 5, { update: transactionUpdate, set: transactionSet });
 
       const event = { preventDefault: jest.fn() };
       await handleFormSubmit(event);
@@ -173,32 +190,64 @@ describe('formHandler', () => {
       expect(successMsg.classList.contains('hidden')).toBe(false);
     });
 
+    test('saves the registration before sending any email', async () => {
+      window.db = mockDb(5, 5);
+
+      const event = { preventDefault: jest.fn() };
+      await handleFormSubmit(event);
+
+      // Il posto va riservato per primo: solo così una transazione rifiutata
+      // non lascia in giro email di conferma per un'iscrizione inesistente.
+      expect(window.db.runTransaction.mock.invocationCallOrder[0])
+        .toBeLessThan(window.emailjs.send.mock.invocationCallOrder[0]);
+    });
+
+    test('blocks the submission before sending emails when the counter is already at the cap', async () => {
+      window.db = mockDb(20, 20);
+
+      const event = { preventDefault: jest.fn() };
+      const result = await handleFormSubmit(event);
+
+      expect(result).toBe(false);
+      expect(window.alert).toHaveBeenCalledWith(
+        'Siamo spiacenti, i posti per il torneo One Piece Card Game sono esauriti (20/20).'
+      );
+      expect(window.emailjs.send).not.toHaveBeenCalled();
+      expect(window.db.runTransaction).not.toHaveBeenCalled();
+      expect(document.getElementById('cosplayForm').style.display).not.toBe('none');
+    });
+
     test('shows a sold-out alert when the transaction finds the cap already reached (race condition on the last slot)', async () => {
-      // Il controllo preliminare lato client vede ancora 15/16 (non blocca
+      // Il controllo preliminare lato client vede ancora 19/20 (non blocca
       // l'invio), ma nel frattempo un'altra registrazione ha già occupato
       // l'ultimo posto: solo la transazione atomica se ne accorge davvero.
-      window.db = {
-        collection: jest.fn(() => ({
-          doc: jest.fn(() => ({ id: 'mock-doc-id' })),
-          where: jest.fn(() => ({ get: jest.fn().mockResolvedValue({ size: 15 }) })),
-        })),
-        runTransaction: jest.fn(async (updateFn) =>
-          updateFn({
-            get: jest.fn().mockResolvedValue({ exists: true, data: () => ({ count: 16 }) }),
-            update: jest.fn(),
-            set: jest.fn(),
-          })
-        ),
-      };
+      window.db = mockDb(19, 20);
 
       const event = { preventDefault: jest.fn() };
       await handleFormSubmit(event);
 
       expect(window.alert).toHaveBeenCalledWith(
-        'Siamo spiacenti, i posti per il torneo One Piece Card Game sono esauriti (16/16).'
+        'Siamo spiacenti, i posti per il torneo One Piece Card Game sono esauriti (20/20).'
       );
+      // Nessuna email deve essere partita: l'iscrizione non è mai esistita.
+      expect(window.emailjs.send).not.toHaveBeenCalled();
       const form = document.getElementById('cosplayForm');
       expect(form.style.display).not.toBe('none');
+    });
+
+    test('keeps the registration valid when the notification email fails after the save', async () => {
+      window.db = mockDb(5, 5);
+      window.emailjs.send = jest.fn().mockRejectedValue(new Error('EmailJS down'));
+
+      const event = { preventDefault: jest.fn() };
+      const result = await handleFormSubmit(event);
+
+      expect(result).toBe(true);
+      expect(window.alert).toHaveBeenCalledWith(
+        expect.stringContaining('La tua iscrizione è stata registrata')
+      );
+      // Form chiuso: il posto è già occupato, un secondo invio ne brucerebbe un altro.
+      expect(document.getElementById('cosplayForm').style.display).toBe('none');
     });
   });
 
@@ -264,7 +313,8 @@ describe('formHandler', () => {
       jest.spyOn(Date, 'now').mockReturnValue(Number.MAX_SAFE_INTEGER); // molto tempo trascorso
       const event = { preventDefault: jest.fn() };
       await handleFormSubmit(event);
-      expect(sendMock).toHaveBeenCalledTimes(1);
+      // Due invii: la notifica agli organizzatori e la conferma all'iscritto.
+      expect(sendMock).toHaveBeenCalledTimes(2);
       expect(document.getElementById('successMessage').classList.contains('hidden')).toBe(false);
     });
   });

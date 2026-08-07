@@ -11,7 +11,13 @@ const emailJsConfig = {
   eventName: 'CanoVerse 2026',
 };
 
-const ONE_PIECE_MAX = 16;
+// Posti totali del torneo One Piece Card Game. Se cambia, vanno aggiornati
+// anche firestore.rules (che impone lo stesso tetto lato server) e i testi
+// in index.html.
+const ONE_PIECE_MAX = 20;
+const ONE_PIECE_SOLD_OUT_MSG =
+  'Siamo spiacenti, i posti per il torneo One Piece Card Game sono esauriti (' +
+  ONE_PIECE_MAX + '/' + ONE_PIECE_MAX + ').';
 
 // Etichette leggibili delle categorie (nelle email, al posto dei codici)
 const CATEGORY_LABELS = {
@@ -97,11 +103,15 @@ function buildUserEmailText(formData) {
   ].filter(function (line) { return line !== ''; }).join('\n');
 }
 
+// Posti già occupati al torneo, letti dal contatore meta/tcg_onepiece_count:
+// è lo stesso documento su cui lavora la transazione di saveRegistration, e
+// l'unico a cui guardano le Security Rules. Contare invece i documenti in
+// `registrations` significherebbe leggere una fonte diversa da quella che
+// decide davvero, con il rischio di dire "ci sono ancora posti" e poi
+// rifiutare l'iscrizione (o viceversa) se le due si disallineano.
 async function getOnePieceCount() {
-  const snapshot = await db.collection('registrations')
-    .where('category', '==', 'tcg_onepiece')
-    .get();
-  return snapshot.size;
+  const snapshot = await db.collection('meta').doc('tcg_onepiece_count').get();
+  return snapshot.exists ? snapshot.data().count : 0;
 }
 
 async function saveRegistration(formData) {
@@ -187,9 +197,17 @@ async function handleFormSubmit(event) {
   }
 
   if (formData.category === 'tcg_onepiece') {
-    const count = await getOnePieceCount();
-    if (count >= ONE_PIECE_MAX) {
-      alert('Siamo spiacenti, i posti per il torneo One Piece Card Game sono esauriti (16/16).');
+    // Se la lettura del contatore fallisce (rete assente, permessi...) non
+    // blocchiamo l'utente qui: l'ultima parola spetta comunque alla
+    // transazione atomica in saveRegistration.
+    let count = null;
+    try {
+      count = await getOnePieceCount();
+    } catch (err) {
+      console.warn('Contatore posti non leggibile:', err);
+    }
+    if (count !== null && count >= ONE_PIECE_MAX) {
+      alert(ONE_PIECE_SOLD_OUT_MSG);
       return false;
     }
   }
@@ -223,32 +241,60 @@ async function handleFormSubmit(event) {
     message: buildUserEmailText(formData),
   };
 
+  // Diventa true appena il posto è riservato su Firestore: da quel momento
+  // l'iscrizione esiste e il form non va più riaperto, altrimenti un secondo
+  // invio occuperebbe un posto in più.
+  let saved = false;
+
   try {
-    // La notifica agli organizzatori è quella indispensabile: se fallisce,
-    // l'iscrizione non va a buon fine.
+    // 1) Salvataggio su Firestore. Va fatto PRIMA delle email perché è qui
+    //    che il posto viene davvero riservato: se la transazione rifiuta
+    //    l'iscrizione (SOLD_OUT), nessuna mail è ancora partita e l'utente
+    //    non riceve una conferma per un'iscrizione che non esiste.
+    await saveRegistration(formData);
+    saved = true;
+
+    // 2) Notifica agli organizzatori: è l'unico posto in cui viaggiano email
+    //    e note dell'iscritto (su Firestore salviamo solo nome, personaggio
+    //    e categoria), quindi se fallisce va segnalato.
     await emailjs.send(emailJsConfig.serviceId, emailJsConfig.templateId, adminParams);
 
-    // La conferma all'utente è un "di più": se non parte (template non
-    // ancora configurato, indirizzo inesistente...) l'iscrizione resta
-    // comunque valida, ce lo segniamo solo in console.
+    // 3) La conferma all'utente è un "di più": se non parte (template non
+    //    ancora configurato, indirizzo inesistente...) l'iscrizione resta
+    //    comunque valida, ce lo segniamo solo in console.
     emailjs
       .send(emailJsConfig.serviceId, emailJsConfig.templateIdUser, userParams)
       .catch(function (err) {
         console.warn('Conferma all\'iscritto non inviata:', err);
       });
 
-    await saveRegistration(formData);
     form.style.display = 'none';
     successMsg.classList.remove('hidden');
     successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
   } catch (error) {
     console.error('Errore:', error);
+
+    if (saved) {
+      // Posto già riservato: l'invio della notifica è fallito dopo il
+      // salvataggio. Teniamo chiuso il form per non creare un doppione e
+      // chiediamo all'iscritto di scriverci, così gli organizzatori
+      // recuperano i contatti che erano solo nella mail.
+      alert(
+        'La tua iscrizione è stata registrata, ma non siamo riusciti a inviare l\'email di notifica.\n' +
+        'Scrivi a ' + emailJsConfig.recipientEmail + ' per completare la conferma.'
+      );
+      form.style.display = 'none';
+      successMsg.classList.remove('hidden');
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return true;
+    }
+
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Invia Modulo';
     }
     if (error && error.message === 'SOLD_OUT') {
-      alert('Siamo spiacenti, i posti per il torneo One Piece Card Game sono esauriti (16/16).');
+      alert(ONE_PIECE_SOLD_OUT_MSG);
     } else {
       alert('C\'è stato un problema nell\'invio. Controlla le impostazioni e riprova.');
     }

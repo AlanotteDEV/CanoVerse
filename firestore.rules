@@ -2,6 +2,11 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isAdmin() {
+      return request.auth != null &&
+             request.auth.token.email == 'Canoversecomicscosplay@gmail.com';
+    }
+
     // Contatore atomico dei posti occupati al torneo One Piece Card Game.
     // Il documento meta/tcg_onepiece_count DEVE esistere già (va creato una
     // tantum a mano dalla Firebase Console, vedi istruzioni di migrazione)
@@ -9,9 +14,19 @@ service cloud.firestore {
     match /meta/tcg_onepiece_count {
       allow read: if true;
       allow create: if false;
-      allow update: if request.resource.data.keys().hasOnly(['count']) &&
-                       request.resource.data.count == resource.data.count + 1 &&
-                       resource.data.count < 16;
+      // Due sole variazioni ammesse, entrambe di una unità:
+      //  +1  chiunque si iscriva, finché restano posti (tetto: 20);
+      //  -1  solo l'admin, quando cancella un iscritto dalla pagina
+      //      partecipanti, e mai sotto zero.
+      // Nessuno può scrivere un valore arbitrario: il contatore si muove
+      // solo di pari passo con le iscrizioni reali.
+      allow update: if request.resource.data.keys().hasOnly(['count']) && (
+                      (request.resource.data.count == resource.data.count + 1 &&
+                       resource.data.count < 20) ||
+                      (isAdmin() &&
+                       request.resource.data.count == resource.data.count - 1 &&
+                       resource.data.count > 0)
+                    );
       allow delete: if false;
     }
 
@@ -28,15 +43,14 @@ service cloud.firestore {
           (request.resource.data.character is string && request.resource.data.character.size() <= 80)) &&
         request.resource.data.timestamp == request.time &&
         // Per il torneo One Piece, la creazione è ammessa solo se il
-        // contatore sopra ha già superato la sua validazione (< 16 prima
+        // contatore sopra ha già superato la sua validazione (< 20 prima
         // dell'incremento): le due scritture avvengono nella stessa
         // transazione lato client, quindi se il contatore viene rifiutato
         // l'intera transazione (incluso questo documento) fallisce.
         (request.resource.data.category != 'tcg_onepiece' ||
-          get(/databases/$(database)/documents/meta/tcg_onepiece_count).data.count <= 16);
+          get(/databases/$(database)/documents/meta/tcg_onepiece_count).data.count <= 20);
 
-      allow update, delete: if request.auth != null
-                            && request.auth.token.email == 'Canoversecomicscosplay@gmail.com';
+      allow update, delete: if isAdmin();
     }
 
     // Registro dei consensi cookie (prova ex art. 7 GDPR). Chiunque può
@@ -44,8 +58,7 @@ service cloud.firestore {
     // identificativi); solo l'admin può leggerlo; nessuno può modificarlo
     // o cancellarlo, per garantirne l'integrità come prova.
     match /cookie_consents/{docId} {
-      allow read: if request.auth != null
-                  && request.auth.token.email == 'Canoversecomicscosplay@gmail.com';
+      allow read: if isAdmin();
 
       allow create: if
         request.resource.data.keys().hasOnly(['necessary', 'statistics', 'thirdparty', 'policyVersion', 'page', 'userAgent', 'timestamp']) &&
