@@ -29,10 +29,10 @@ const CATEGORY_LABELS = {
 
 // Cosa portare / ricordare, in base alla categoria scelta
 const CATEGORY_NOTES = {
-  cosplay_singolo: 'Ricorda: non c\'è sfilata. I giudici in incognito valutano i costumi durante tutta la giornata, la premiazione è a fine serata.',
-  cosplay_gruppo: 'Ricorda: non c\'è sfilata. I giudici in incognito valutano i costumi durante tutta la giornata, la premiazione è a fine serata.',
+  cosplay_singolo: 'Ricorda: non c\'è sfilata. I giudici in incognito valutano i costumi durante tutta la giornata, la premiazione è a fine serata. Al miglior cosplay in assoluto va un buono Manbaga.',
+  cosplay_gruppo: 'Ricorda: non c\'è sfilata. I giudici in incognito valutano i costumi durante tutta la giornata, la premiazione è a fine serata. Al miglior cosplay in assoluto va un buono Manbaga.',
   kpop: 'Ricorda di portare la tua base musicale. Una giuria qualificata valuterà tecnica, sincronia e presenza scenica: in palio un buono Amazon.',
-  tcg_onepiece: 'Ricorda di portare il tuo mazzo e i token, validi secondo la ban-list ufficiale. Quota di iscrizione: 12 €, da saldare in loco. Ogni partecipante riceve una bustina dell\'espansione corrente.',
+  tcg_onepiece: 'Ricorda di portare il tuo mazzo e i token, validi secondo la ban-list ufficiale. Quota di iscrizione: 15 €, da saldare in loco. Ogni partecipante riceve una bustina dell\'espansione corrente.',
 };
 
 function categoryLabel(code) {
