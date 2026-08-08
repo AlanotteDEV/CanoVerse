@@ -10,7 +10,7 @@
 (function () {
   'use strict';
 
-  var GATE_TARGET = new Date('2026-08-07T11:00:00+02:00').getTime();
+  var GATE_TARGET = new Date('2026-08-08T18:00:00+02:00').getTime();
 
   var gate = document.getElementById('gate');
   if (!gate) return;
@@ -27,10 +27,15 @@
     gate.classList.add('is-open');
   }
 
+  var cellD = document.getElementById('g-cell-d');
+
   function tick() {
     var diff = GATE_TARGET - Date.now();
     if (diff <= 0) { unlock(); return; }
-    elD.textContent = pad(Math.floor(diff / 86400000));
+    var days = Math.floor(diff / 86400000);
+    // se manca meno di un giorno, la casella "Giorni" sparisce
+    if (cellD) cellD.style.display = days > 0 ? '' : 'none';
+    elD.textContent = pad(days);
     elH.textContent = pad(Math.floor(diff / 3600000) % 24);
     elM.textContent = pad(Math.floor(diff / 60000) % 60);
     elS.textContent = pad(Math.floor(diff / 1000) % 60);
@@ -42,9 +47,11 @@
   var enterBtn = document.getElementById('gate-enter');
   if (enterBtn) {
     enterBtn.addEventListener('click', function () {
-      gate.remove();
-      document.documentElement.classList.remove('gate-on');
-      document.body.classList.remove('gate-on');
+      // Ricarico la pagina: l'orario è ormai passato, quindi la schermata
+      // di attesa non ricompare e parte l'animazione d'ingresso del sito.
+      enterBtn.disabled = true;
+      enterBtn.textContent = 'Accesso in corso…';
+      location.replace(location.pathname);
     });
   }
 

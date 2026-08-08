@@ -246,12 +246,12 @@
     ══════════════════════════════════════ -->
     <div id="gate">
         <img src="logo.png" alt="CanoVerse" class="gate-logo">
-        <span class="gate-kicker">Sabato 5 Settembre · Piazza Galluppi</span>
+        <span class="gate-kicker">Il sito apre oggi alle 18:00</span>
 
         <h1 class="gate-title">Il sito apre tra</h1>
 
         <div class="gate-clock">
-            <div class="gate-cell"><b id="g-d">--</b><span>Giorni</span></div>
+            <div class="gate-cell" id="g-cell-d"><b id="g-d">--</b><span>Giorni</span></div>
             <div class="gate-cell"><b id="g-h">--</b><span>Ore</span></div>
             <div class="gate-cell"><b id="g-m">--</b><span>Min</span></div>
             <div class="gate-cell"><b id="g-s">--</b><span>Sec</span></div>
@@ -281,7 +281,7 @@
     <script>
         // se l'orario è già passato (o c'è ?skip) la schermata non compare affatto
         (function () {
-            var target = new Date('2026-08-07T11:00:00+02:00').getTime();
+            var target = new Date('2026-08-08T18:00:00+02:00').getTime();
             var skip = location.search.indexOf('skip') !== -1;
             if (Date.now() >= target || skip) {
                 var g = document.getElementById('gate');
