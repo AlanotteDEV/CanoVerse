@@ -83,7 +83,7 @@
         <div class="max-w-3xl mx-auto legal">
             <h1 class="text-3xl md:text-4xl font-black tracking-tight mb-3">Cookie Policy</h1>
             <p class="text-sm text-brand-muted">Redatta secondo le Linee guida del Garante Privacy sull’uso dei cookie (10 giugno 2021) e la direttiva ePrivacy.</p>
-            <p class="text-sm text-brand-muted">Ultimo aggiornamento: <strong>21 luglio 2026</strong></p>
+            <p class="text-sm text-brand-muted">Ultimo aggiornamento: <strong>21 agosto 2026</strong></p>
 
             <h2>1. Cosa sono i cookie</h2>
             <p>I cookie sono piccoli file di testo che i siti salvano sul tuo dispositivo. Insieme ad altri strumenti simili (es. <em>localStorage</em>) permettono di far funzionare il sito, ricordare le tue scelte o abilitare contenuti di terze parti. Il Titolare del trattamento è <strong>Manbaga Comics &amp; Games di Lapia Antonio Carmine</strong> (vedi <a href="privacy.html">Privacy Policy</a>).</p>
@@ -92,6 +92,7 @@
 
             <h3>Necessari <span class="pill pill-on">Sempre attivi</span></h3>
             <p>Indispensabili al funzionamento del sito e ai servizi da te richiesti; non richiedono consenso. Includono la memorizzazione della tua scelta sui cookie, il funzionamento del modulo di iscrizione e del database, oltre agli strumenti tecnici dei fornitori di hosting e distribuzione contenuti.</p>
+            <p>Quando salvi le tue preferenze, il sito conserva sul database la <strong>prova del consenso</strong> (data e ora, categorie scelte, versione dell’informativa, pagina e stringa user-agent del browser), come richiesto dall’art. 7 del GDPR. Il dettaglio è nella <a href="privacy.html">Privacy Policy</a>, punto 1(f).</p>
 
             <h3>Statistici <span class="pill pill-opt">Opzionali · disattivi</span></h3>
             <p>Servirebbero ad analizzare in forma aggregata e anonima l’uso del sito. <strong>Al momento non è attivo alcuno strumento statistico:</strong> la categoria è predisposta per un eventuale uso futuro e, in tal caso, sarà attivata solo previo tuo consenso.</p>
@@ -104,15 +105,16 @@
                 <thead><tr><th>Strumento</th><th>Fornitore</th><th>Categoria</th><th>Finalità</th></tr></thead>
                 <tbody>
                     <tr><td><code>canoverse_cookie_consent</code> (localStorage)</td><td>Sito (prima parte)</td><td>Necessari</td><td>Memorizza le tue scelte sui cookie (durata: 180 giorni)</td></tr>
-                    <tr><td>Firebase Cloud Firestore</td><td>Google</td><td>Necessari</td><td>Salva le iscrizioni e mostra i contatori dei posti in tempo reale</td></tr>
-                    <tr><td>EmailJS</td><td>EmailJS, Inc.</td><td>Necessari</td><td>Invia il modulo di iscrizione all’organizzatore (attivo solo all’invio)</td></tr>
-                    <tr><td><code>_cfuvid</code>, <code>cf_clearance</code></td><td>Cloudflare, Inc.</td><td>Necessari</td><td>Sicurezza e distribuzione dei contenuti (CDN)</td></tr>
-                    <tr><td>Font Awesome</td><td>Fonticons, Inc.</td><td>Necessari</td><td>Visualizzazione delle icone</td></tr>
-                    <tr><td>Tailwind CSS / jsDelivr</td><td>Tailwind Labs / jsDelivr</td><td>Necessari</td><td>Stili e librerie del sito (CDN)</td></tr>
+                    <tr><td><code>canoverse_gate_best</code> (localStorage)</td><td>Sito (prima parte)</td><td>Necessari</td><td>Ricorda il punteggio migliore del minigioco della schermata di attesa. Presente solo su chi ha giocato prima dell’apertura del sito; non contiene dati identificativi</td></tr>
+                    <tr><td>Firebase Cloud Firestore</td><td>Google</td><td>Necessari</td><td>Salva le iscrizioni, mostra i contatori dei posti in tempo reale e conserva il registro dei consensi cookie</td></tr>
+                    <tr><td>Firebase Authentication</td><td>Google</td><td>Necessari</td><td>Accesso riservato allo staff alle liste iscritti. Salva token di sessione sul dispositivo <strong>solo dopo il login di un amministratore</strong>: per i visitatori non viene scritto nulla</td></tr>
+                    <tr><td>EmailJS</td><td>EmailJS, Inc.</td><td>Necessari</td><td>Invia il modulo all’organizzatore e la conferma all’iscritto (attivo solo all’invio del modulo)</td></tr>
+                    <tr><td>Librerie Firebase (<code>gstatic.com</code>)</td><td>Google</td><td>Necessari</td><td>Caricamento degli script che fanno funzionare iscrizioni e liste</td></tr>
+                    <tr><td>Libreria EmailJS (<code>cdn.jsdelivr.net</code>)</td><td>jsDelivr</td><td>Necessari</td><td>Caricamento dello script di invio del modulo (CDN)</td></tr>
                     <tr><td>Google Maps</td><td>Google</td><td>Terze parti</td><td>Mappa interattiva della location (solo previo consenso)</td></tr>
                 </tbody>
             </table>
-            <p class="text-sm text-brand-muted"><em>Alcuni strumenti “necessari” sono forniti da terze parti tramite CDN e comportano la trasmissione dell’indirizzo IP al relativo fornitore per il solo funzionamento tecnico del sito.</em></p>
+            <p class="text-sm text-brand-muted"><em>Le due librerie caricate da CDN (<code>gstatic.com</code> e <code>cdn.jsdelivr.net</code>) comportano la trasmissione dell’indirizzo IP al relativo fornitore per il solo funzionamento tecnico del sito. Font, icone e fogli di stile sono invece ospitati direttamente sui nostri server e non generano alcuna richiesta verso terzi.</em></p>
 
             <h2>4. Come gestire il consenso</h2>
             <p>Al primo accesso compare un banner che ti permette di <strong>accettare tutti</strong>, <strong>rifiutare tutti</strong> (restano solo i necessari) o <strong>personalizzare</strong> le categorie. Nessun cookie non necessario viene attivato senza il tuo consenso.</p>
