@@ -41,6 +41,35 @@ function categoryLabel(code) {
   return CATEGORY_LABELS[code] || code;
 }
 
+// Indirizzo delle pagine dei moduli, usato nelle email di conferma.
+const SITE_URL = 'https://canoverse.vercel.app';
+
+// Quale modulo deve portare chi si iscrive: sotto i 18 anni il consenso
+// genitoriale (che copre anche foto e video), sopra la sola liberatoria
+// immagini, che resta facoltativa.
+function documentNote(formData) {
+  const age = parseInt(formData.age, 10);
+  const isMinor = !isNaN(age) && age < 18;
+
+  if (isMinor) {
+    return 'Hai meno di 18 anni: serve il consenso di un genitore o tutore, da scaricare qui e consegnare firmato.\n' +
+      SITE_URL + '/consenso-genitori.html\n' +
+      'Il modulo comprende anche l\'autorizzazione a foto e riprese video: non devi compilare altro.\n' +
+      (formData.category === 'kpop'
+        ? 'Trattandosi del Contest K-POP, inviacelo in anticipo via email insieme al brano: al check-in sarebbe tardi.'
+        : 'Portalo con te al check-in: senza modulo firmato non possiamo ammetterti.');
+  }
+
+  const base = 'Se vuoi che le tue foto possano comparire sul sito e sui canali social dell\'evento, porta la liberatoria immagini firmata (facoltativa).\n' +
+    SITE_URL + '/liberatoria-immagini.html';
+
+  if (formData.groupHasMinors) {
+    return base + '\n\nNel gruppo ci sono partecipanti minorenni: per ciascuno di loro serve il consenso di un genitore o tutore.\n' +
+      SITE_URL + '/consenso-genitori.html';
+  }
+  return base;
+}
+
 // ── Anti-bot ────────────────────────────────────────────────────────
 // Tempo minimo (ms) tra il caricamento del form e l'invio: sotto questa
 // soglia l'invio è quasi certamente automatizzato. Un utente reale impiega
@@ -58,18 +87,31 @@ function initEmailJS() {
 
 // Testo della notifica per gli organizzatori
 function buildEmailText(formData) {
-  return [
+  const age = parseInt(formData.age, 10);
+  const isMinor = !isNaN(age) && age < 18;
+
+  const lines = [
     'Nuova registrazione dal modulo del sito.',
     '',
     'Nome / Nome d\'Arte: ' + formData.name,
     'Email: ' + formData.email,
+    'Età: ' + (formData.age || 'non indicata'),
     'Personaggio / Gioco: ' + (formData.character || 'N/A'),
     'Categoria: ' + categoryLabel(formData.category),
     'Note aggiuntive: ' + (formData.message || 'Nessuna'),
-    '',
-    '---',
-    'CanoVerse — Festival 2026',
-  ].join('\n');
+  ];
+
+  // In evidenza: sono le iscrizioni per cui al check-in va ritirato un
+  // modulo firmato, senza il quale il partecipante non è ammesso.
+  if (isMinor) {
+    lines.push('', '*** PARTECIPANTE MINORENNE — richiesto il consenso genitoriale firmato ***');
+  }
+  if (formData.groupHasMinors) {
+    lines.push('', '*** IL GRUPPO/LA CREW INCLUDE ALTRI MINORENNI — serve un consenso firmato per ciascuno ***');
+  }
+
+  lines.push('', '---', 'CanoVerse — Festival 2026');
+  return lines.join('\n');
 }
 
 // Testo della conferma per chi si è iscritto
@@ -94,7 +136,9 @@ function buildUserEmailText(formData) {
     note || '',
     '',
     'Il tuo nome e il personaggio scelto compaiono nella lista pubblica degli iscritti sul sito.',
-    'Se hai meno di 18 anni, porta al check-in il modulo di consenso firmato da un genitore o tutore.',
+    '',
+    '— MODULO DA PORTARE —',
+    documentNote(formData),
     '',
     'Per qualsiasi domanda rispondi a questa email.',
     'Ci vediamo al festival!',
@@ -180,20 +224,33 @@ async function handleFormSubmit(event) {
 
   if (!name || !email || !type) return false;
 
+  const age = form.querySelector('#age');
+  const groupMinors = form.querySelector('#group-has-minors');
+
   const formData = {
     name: name.value.trim(),
     email: email.value.trim(),
     character: character ? character.value.trim() : '',
     category: type.value,
     message: message ? message.value.trim() : '',
+    // L'età resta fuori da saveRegistration: la collection registrations è
+    // in lettura pubblica (serve alle liste iscritti in tempo reale), quindi
+    // salvarla la renderebbe visibile a chiunque, anche per i minori. Viaggia
+    // solo nell'email all'organizzatore, come l'indirizzo email.
+    age: age ? age.value.trim() : '',
+    groupHasMinors: !!(groupMinors && groupMinors.checked),
   };
 
   const validation = validateForm(form);
   if (!validation.valid) {
-    if (validation.errors.includes('privacy_consent') || validation.errors.includes('age_consent')) {
-      alert('Per favore conferma di aver letto l\'Informativa Privacy e la dichiarazione sull\'età per procedere con l\'iscrizione.');
+    if (validation.errors.includes('minor_consent')) {
+      alert('Per i partecipanti minorenni serve il consenso di un genitore o tutore: scarica il modulo e conferma che lo consegnerai firmato.');
+    } else if (validation.errors.includes('privacy_consent')) {
+      alert('Per favore conferma di aver letto l\'Informativa Privacy per procedere con l\'iscrizione.');
+    } else if (validation.errors.includes('age') || validation.errors.includes('age_range')) {
+      alert('Per favore indica un\'età valida: serve a sapere quali moduli devi portare al check-in.');
     } else {
-      alert('Per favore compila correttamente i campi obbligatori: nome, email e categoria.');
+      alert('Per favore compila correttamente i campi obbligatori: nome, email, età e categoria.');
     }
     return false;
   }
@@ -310,17 +367,38 @@ function validateForm(formElement) {
   const name = formElement.querySelector('#name');
   const email = formElement.querySelector('#email');
   const category = formElement.querySelector('#type');
+  const age = formElement.querySelector('#age');
   const privacyConsent = formElement.querySelector('#privacy-consent');
-  const ageConsent = formElement.querySelector('#age-consent');
+  const minorAck = formElement.querySelector('#minor-consent-ack');
 
   if (!name || !name.value.trim()) errors.push('name');
   if (!email || !email.value.trim()) errors.push('email');
   else if (!isValidEmail(email.value.trim())) errors.push('email_format');
   if (!category || !category.value) errors.push('category');
+
+  if (age) {
+    const value = parseInt(age.value, 10);
+    if (!age.value.trim() || isNaN(value)) errors.push('age');
+    else if (value < 1 || value > 120) errors.push('age_range');
+    // Sotto i 18 anni il consenso genitoriale non è una formalità da
+    // check-in: senza la conferma non accettiamo l'iscrizione, così il
+    // minore non arriva in fiera con un modulo che nessuno ha firmato.
+    else if (hasMinors(formElement, value) && minorAck && !minorAck.checked) {
+      errors.push('minor_consent');
+    }
+  }
+
   if (privacyConsent && !privacyConsent.checked) errors.push('privacy_consent');
-  if (ageConsent && !ageConsent.checked) errors.push('age_consent');
 
   return { valid: errors.length === 0, errors };
+}
+
+// Vero se l'iscrizione riguarda almeno un minorenne: chi compila ha meno
+// di 18 anni, oppure ha dichiarato che il gruppo o la crew ne contiene.
+function hasMinors(formElement, age) {
+  if (age < 18) return true;
+  const groupMinors = formElement.querySelector('#group-has-minors');
+  return !!(groupMinors && groupMinors.checked);
 }
 
 function isValidEmail(email) {
@@ -328,5 +406,5 @@ function isValidEmail(email) {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { handleFormSubmit, validateForm, isValidEmail, buildEmailText, buildUserEmailText, categoryLabel };
+  module.exports = { handleFormSubmit, validateForm, isValidEmail, buildEmailText, buildUserEmailText, categoryLabel, documentNote };
 }

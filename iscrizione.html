@@ -133,6 +133,21 @@
                     </div>
                 </div>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-sm font-extrabold text-white uppercase tracking-wider mb-1" for="age">Età *</label>
+                        <input class="form-field w-full border-[3px] border-black p-4 text-base text-white" type="number" id="age" min="1" max="120" step="1" required placeholder="Es. 22">
+                        <p class="text-xs text-brand-muted">Serve a sapere quali moduli devi portare al check-in. Non viene pubblicata da nessuna parte.</p>
+                    </div>
+                    <!-- Compare solo per Gruppo Cosplay e Contest K-POP -->
+                    <div id="group-minors-wrap" class="hidden space-y-2">
+                        <label class="block text-sm font-extrabold text-white uppercase tracking-wider mb-1">Altri componenti</label>
+                        <label class="flex items-start gap-3 text-sm text-white cursor-pointer leading-relaxed border-[3px] border-black p-4" style="background: rgba(255,45,149,.08);">
+                            <input type="checkbox" id="group-has-minors" class="form-check mt-0.5">
+                            <span>Nel gruppo o nella crew ci sono <strong>altri partecipanti minorenni</strong> oltre a me.</span>
+                        </label>
+                    </div>
+                </div>
 
                 <!-- Promemoria che compare scegliendo il workshop di cucito -->
                 <div id="workshop-note" class="hidden border-[3px] border-black p-5 text-sm leading-relaxed"
@@ -177,15 +192,54 @@
                         <input type="checkbox" id="privacy-consent" required class="form-check mt-0.5">
                         <span>Ho letto l'<a href="privacy.html" class="underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Informativa Privacy</a> e acconsento al trattamento dei miei dati per la gestione dell'iscrizione all'evento. *</span>
                     </label>
-                    <label class="flex items-start gap-3 text-sm text-white cursor-pointer leading-relaxed">
-                        <input type="checkbox" id="age-consent" required class="form-check mt-0.5">
-                        <span>Dichiaro di avere almeno 16 anni, oppure di aver ottenuto il consenso di un genitore/tutore alla mia iscrizione e al trattamento dei miei dati (necessario per i minorenni, art. 8 GDPR). *</span>
-                    </label>
-                    <p class="text-sm text-white/80 leading-relaxed">
-                        <i class="fa-solid fa-circle-info mr-1"></i>Se sei minorenne, scarica e porta al check-in il <a href="consenso-genitori.html" class="underline hover:text-brand-yellow" target="_blank">modulo di consenso genitoriale</a> firmato da un genitore o tutore.
+                </div>
+
+                <!-- Moduli da portare: compaiono in base all'età indicata sopra -->
+
+                <!-- Minorenni (o gruppo/crew che include minorenni): obbligatorio -->
+                <div id="minor-docs" class="hidden border-[3px] border-black p-5 text-sm leading-relaxed"
+                     style="background: rgba(255,45,149,.12); box-shadow: 0 0 18px rgba(255,45,149,.4);">
+                    <p class="font-extrabold uppercase tracking-widest text-xs mb-3" style="color:#ff6ec7;">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i>Modulo obbligatorio per i minorenni
                     </p>
-                    <p class="text-sm text-white/80 leading-relaxed">
-                        <i class="fa-solid fa-camera mr-1"></i>Se sei maggiorenne e vuoi che le tue foto possano finire sui canali dell'evento, porta la <a href="liberatoria-immagini.html" class="underline hover:text-brand-yellow" target="_blank">liberatoria per foto e riprese video</a>. È facoltativa: senza, partecipi comunque.
+                    <p class="text-brand-muted mb-3">
+                        Per partecipare serve il <strong class="text-white">consenso di un genitore o tutore</strong>.
+                        Il modulo contiene anche l'autorizzazione a foto e riprese video, quindi è l'unico da compilare:
+                        non serve la liberatoria immagini separata.
+                    </p>
+                    <p class="mb-4">
+                        <a href="consenso-genitori.html" target="_blank" rel="noopener"
+                           class="inline-block bg-brand-yellow text-white text-xs font-bold tracking-widest uppercase px-5 py-3 border-[3px] border-black"
+                           style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
+                            <i class="fa-solid fa-download mr-2"></i>Scarica il modulo di consenso
+                        </a>
+                    </p>
+                    <label class="flex items-start gap-3 text-sm text-white cursor-pointer leading-relaxed">
+                        <input type="checkbox" id="minor-consent-ack" class="form-check mt-0.5">
+                        <span>Ho scaricato il modulo e lo consegnerò firmato da un genitore o tutore. So che senza modulo la partecipazione non è ammessa. *</span>
+                    </label>
+                    <p class="text-xs text-brand-muted mt-3">
+                        <i class="fa-solid fa-circle-info mr-1"></i>Per il <strong class="text-white">Contest K-POP</strong> il modulo va inviato in anticipo via email, insieme al brano: non basta portarlo al check-in.
+                    </p>
+                </div>
+
+                <!-- Maggiorenni: facoltativo -->
+                <div id="adult-docs" class="hidden border-[3px] border-black p-5 text-sm leading-relaxed"
+                     style="background: rgba(44,232,200,.10); box-shadow: 0 0 18px rgba(44,232,200,.3);">
+                    <p class="font-extrabold uppercase tracking-widest text-xs mb-3" style="color:#2ce8c8;">
+                        <i class="fa-solid fa-camera mr-2"></i>Foto e video — modulo facoltativo
+                    </p>
+                    <p class="text-brand-muted mb-4">
+                        Se vuoi che i tuoi scatti possano comparire sul sito e sui canali social dell'evento,
+                        porta al check-in la liberatoria firmata. È <strong class="text-white">facoltativa</strong>:
+                        senza, partecipi lo stesso e resti nelle sole foto d'insieme.
+                    </p>
+                    <p class="!mb-0">
+                        <a href="liberatoria-immagini.html" target="_blank" rel="noopener"
+                           class="inline-block bg-brand-yellow text-white text-xs font-bold tracking-widest uppercase px-5 py-3 border-[3px] border-black"
+                           style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
+                            <i class="fa-solid fa-download mr-2"></i>Scarica la liberatoria immagini
+                        </a>
                     </p>
                 </div>
 
@@ -238,16 +292,57 @@
     <!-- Cookie consent (banner GDPR self-hosted) -->
     <script src="src/js/cookieConsent.js"></script>
     <script>
+        // Mostra le note della categoria scelta e il modulo da portare al
+        // check-in, che dipende dall'età: consenso genitoriale sotto i 18
+        // anni (o se il gruppo include minorenni), liberatoria immagini
+        // sopra. I due riquadri non compaiono mai insieme.
         (function () {
             var sel = document.getElementById('type');
-            var note = document.getElementById('kpop-note');
-            if (!sel || !note) return;
-            var wnote = document.getElementById('workshop-note');
+            var age = document.getElementById('age');
+            if (!sel || !age) return;
+
+            var kpopNote = document.getElementById('kpop-note');
+            var workshopNote = document.getElementById('workshop-note');
+            var groupWrap = document.getElementById('group-minors-wrap');
+            var groupMinors = document.getElementById('group-has-minors');
+            var minorDocs = document.getElementById('minor-docs');
+            var adultDocs = document.getElementById('adult-docs');
+            var minorAck = document.getElementById('minor-consent-ack');
+
+            var GROUP_CATEGORIES = ['cosplay_gruppo', 'kpop'];
+
+            function isGroup() { return GROUP_CATEGORIES.indexOf(sel.value) !== -1; }
+
             function toggle() {
-                note.classList.toggle('hidden', sel.value !== 'kpop');
-                if (wnote) wnote.classList.toggle('hidden', sel.value !== 'workshop_cucito');
+                if (kpopNote) kpopNote.classList.toggle('hidden', sel.value !== 'kpop');
+                if (workshopNote) workshopNote.classList.toggle('hidden', sel.value !== 'workshop_cucito');
+
+                // La domanda sugli altri componenti ha senso solo per gruppi e crew:
+                // se si torna a una categoria individuale la spunta va azzerata,
+                // altrimenti resterebbe attiva senza essere più visibile.
+                if (groupWrap) {
+                    groupWrap.classList.toggle('hidden', !isGroup());
+                    if (!isGroup() && groupMinors) groupMinors.checked = false;
+                }
+
+                var value = parseInt(age.value, 10);
+                var hasAge = !isNaN(value) && value > 0;
+                var withMinors = hasAge && (value < 18 || (isGroup() && groupMinors && groupMinors.checked));
+                var adultsOnly = hasAge && !withMinors;
+
+                if (minorDocs) minorDocs.classList.toggle('hidden', !withMinors);
+                if (adultDocs) adultDocs.classList.toggle('hidden', !adultsOnly);
+                // Il required segue la visibilità: un checkbox nascosto e
+                // obbligatorio bloccherebbe l'invio senza spiegare perché.
+                if (minorAck) {
+                    minorAck.required = withMinors;
+                    if (!withMinors) minorAck.checked = false;
+                }
             }
+
             sel.addEventListener('change', toggle);
+            age.addEventListener('input', toggle);
+            if (groupMinors) groupMinors.addEventListener('change', toggle);
             toggle();
         })();
     </script>

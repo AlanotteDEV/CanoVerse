@@ -95,10 +95,13 @@
             <ul>
                 <li><strong>Nome o nome d’arte</strong> (obbligatorio)</li>
                 <li><strong>Indirizzo email</strong> (obbligatorio)</li>
+                <li><strong>Età</strong> (obbligatoria)</li>
                 <li><strong>Personaggio / gioco / brano K-POP</strong> (facoltativo)</li>
                 <li><strong>Categoria</strong> di iscrizione (obbligatorio)</li>
                 <li><strong>Note aggiuntive</strong> (facoltative)</li>
+                <li>per gruppi e crew, l’indicazione della <strong>presenza di altri partecipanti minorenni</strong></li>
             </ul>
+            <p>L’<strong>età</strong> serve unicamente a stabilire quale modulo devi portare al check-in — consenso genitoriale sotto i 18 anni, liberatoria immagini sopra — e a permettere all’Organizzatore di predisporre i controlli previsti per i minori. Come l’indirizzo email, <strong>non viene salvata nel database</strong> e quindi non compare in alcuna lista pubblica: viaggia solo nell’email diretta all’Organizzatore.</p>
             <p><strong>Finalità:</strong> gestire la tua iscrizione, organizzare l’evento, contarti tra i partecipanti e inviarti all’indirizzo indicato un’<strong>email automatica di conferma</strong> con il riepilogo dell’iscrizione e le indicazioni della categoria scelta.</p>
             <p><strong>Base giuridica:</strong> il tuo consenso e l’esecuzione delle misure organizzative da te richieste con l’iscrizione (art. 6, par. 1, lett. a e b, GDPR).</p>
 
@@ -131,7 +134,7 @@
             <p>I dati dell’iscrizione sono gestiti in questo modo:</p>
             <ul>
                 <li>Nome, personaggio, categoria e data/ora vengono salvati nel database <strong>Google Cloud Firestore</strong> (Firebase).</li>
-                <li>L’intero modulo (nome, <strong>email</strong>, personaggio, categoria, note) viene inviato via <strong>EmailJS</strong> alla casella email dell’organizzatore. <strong>L’email non viene salvata nel database</strong>: transita solo come messaggio verso l’organizzatore.</li>
+                <li>L’intero modulo (nome, <strong>email</strong>, <strong>età</strong>, personaggio, categoria, note) viene inviato via <strong>EmailJS</strong> alla casella email dell’organizzatore. <strong>L’email non viene salvata nel database</strong>: transita solo come messaggio verso l’organizzatore.</li>
                 <li>Sempre tramite <strong>EmailJS</strong>, all’indirizzo che hai indicato viene inviata una <strong>conferma automatica</strong> con il riepilogo dell’iscrizione. Non si tratta di comunicazione promozionale e non ti iscrive ad alcuna newsletter.</li>
             </ul>
             <p>Il trattamento avviene con strumenti elettronici, con misure di sicurezza adeguate a ridurre i rischi di perdita, accesso non autorizzato o uso illecito.</p>
@@ -187,7 +190,7 @@
             <p>Il Titolare può aggiornare questa informativa. La versione in vigore è sempre pubblicata su questa pagina con la data di ultimo aggiornamento.</p>
 
             <div class="box">
-                <p class="!mb-0 text-sm"><strong>Nota tecnica:</strong> il sito non salva l’email nel database (solo nome, personaggio, categoria e data/ora), applicando il principio di minimizzazione dei dati.</p>
+                <p class="!mb-0 text-sm"><strong>Nota tecnica:</strong> il sito non salva nel database né l’email né l’età (nel database finiscono solo nome, personaggio, categoria e data/ora), applicando il principio di minimizzazione dei dati.</p>
             </div>
         </div>
     </section>

@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { handleFormSubmit, validateForm, isValidEmail } = require('../src/js/formHandler');
+const { handleFormSubmit, validateForm, isValidEmail, buildEmailText, documentNote } = require('../src/js/formHandler');
 
 describe('formHandler', () => {
   // ── handleFormSubmit ──────────────────────────────────────────────
@@ -401,6 +401,145 @@ describe('formHandler', () => {
       const result = validateForm(form);
       expect(result.valid).toBe(false);
       expect(result.errors).toContain('category');
+    });
+  });
+
+  // ── Età e moduli da consegnare ────────────────────────────────────
+
+  describe('validateForm — età e consenso genitoriale', () => {
+    let form;
+
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <form id="testForm">
+          <input id="name" value="Mario Rossi" />
+          <input id="email" value="mario@example.com" />
+          <select id="type">
+            <option value="cosplay_singolo">Cosplay</option>
+            <option value="cosplay_gruppo">Gruppo</option>
+          </select>
+          <input id="age" value="" />
+          <input type="checkbox" id="group-has-minors" />
+          <input type="checkbox" id="minor-consent-ack" />
+        </form>
+      `;
+      form = document.getElementById('testForm');
+      form.querySelector('#type').value = 'cosplay_singolo';
+    });
+
+    test('should report age error when the field is empty', () => {
+      const result = validateForm(form);
+      expect(result.valid).toBe(false);
+      expect(result.errors).toContain('age');
+    });
+
+    test('should report age error when the value is not a number', () => {
+      form.querySelector('#age').value = 'venti';
+      const result = validateForm(form);
+      expect(result.errors).toContain('age');
+    });
+
+    test.each([['0'], ['121']])('should report age_range for out of range value: %s', (value) => {
+      form.querySelector('#age').value = value;
+      const result = validateForm(form);
+      expect(result.valid).toBe(false);
+      expect(result.errors).toContain('age_range');
+    });
+
+    test('should be valid for an adult without any acknowledgement', () => {
+      form.querySelector('#age').value = '25';
+      const result = validateForm(form);
+      expect(result.valid).toBe(true);
+    });
+
+    test('should require the parental consent acknowledgement under 18', () => {
+      form.querySelector('#age').value = '15';
+      const result = validateForm(form);
+      expect(result.valid).toBe(false);
+      expect(result.errors).toContain('minor_consent');
+    });
+
+    test('should accept a minor once the acknowledgement is checked', () => {
+      form.querySelector('#age').value = '15';
+      form.querySelector('#minor-consent-ack').checked = true;
+      const result = validateForm(form);
+      expect(result.valid).toBe(true);
+    });
+
+    test('should treat 18 as adult', () => {
+      form.querySelector('#age').value = '18';
+      const result = validateForm(form);
+      expect(result.valid).toBe(true);
+    });
+
+    test('should require the acknowledgement when an adult declares minors in the group', () => {
+      form.querySelector('#type').value = 'cosplay_gruppo';
+      form.querySelector('#age').value = '30';
+      form.querySelector('#group-has-minors').checked = true;
+      const result = validateForm(form);
+      expect(result.valid).toBe(false);
+      expect(result.errors).toContain('minor_consent');
+    });
+  });
+
+  // ── documentNote ──────────────────────────────────────────────────
+
+  describe('documentNote', () => {
+    test('should point a minor to the parental consent form', () => {
+      const note = documentNote({ age: '14', category: 'cosplay_singolo' });
+      expect(note).toContain('consenso-genitori.html');
+      expect(note).not.toContain('liberatoria-immagini.html');
+    });
+
+    test('should tell K-POP minors to send the form in advance', () => {
+      const note = documentNote({ age: '14', category: 'kpop' });
+      expect(note).toContain('in anticipo');
+    });
+
+    test('should tell other minors to bring the form at check-in', () => {
+      const note = documentNote({ age: '14', category: 'tcg_onepiece' });
+      expect(note).toContain('check-in');
+    });
+
+    test('should point an adult to the optional image release', () => {
+      const note = documentNote({ age: '30', category: 'cosplay_singolo' });
+      expect(note).toContain('liberatoria-immagini.html');
+      expect(note).toContain('facoltativa');
+    });
+
+    test('should mention both forms when an adult registers a group with minors', () => {
+      const note = documentNote({ age: '30', category: 'cosplay_gruppo', groupHasMinors: true });
+      expect(note).toContain('liberatoria-immagini.html');
+      expect(note).toContain('consenso-genitori.html');
+    });
+  });
+
+  // ── buildEmailText ────────────────────────────────────────────────
+
+  describe('buildEmailText — segnalazione dei minori', () => {
+    const base = {
+      name: 'Mario',
+      email: 'mario@example.com',
+      character: '',
+      category: 'cosplay_singolo',
+      message: '',
+    };
+
+    test('should include the declared age', () => {
+      expect(buildEmailText({ ...base, age: '22' })).toContain('Età: 22');
+    });
+
+    test('should flag a minor registration for the organisers', () => {
+      expect(buildEmailText({ ...base, age: '16' })).toContain('MINORENNE');
+    });
+
+    test('should not flag an adult registration', () => {
+      expect(buildEmailText({ ...base, age: '22' })).not.toContain('MINORENNE');
+    });
+
+    test('should flag a group that includes other minors', () => {
+      const text = buildEmailText({ ...base, age: '22', category: 'cosplay_gruppo', groupHasMinors: true });
+      expect(text).toContain('ALTRI MINORENNI');
     });
   });
 });
