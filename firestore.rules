@@ -38,7 +38,7 @@ service cloud.firestore {
         request.resource.data.name is string &&
         request.resource.data.name.size() > 0 &&
         request.resource.data.name.size() <= 80 &&
-        request.resource.data.category in ['cosplay_singolo', 'cosplay_gruppo', 'kpop', 'tcg_onepiece'] &&
+        request.resource.data.category in ['cosplay_singolo', 'cosplay_gruppo', 'kpop', 'tcg_onepiece', 'workshop_cucito'] &&
         (!('character' in request.resource.data) ||
           (request.resource.data.character is string && request.resource.data.character.size() <= 80)) &&
         request.resource.data.timestamp == request.time &&

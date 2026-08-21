@@ -126,8 +126,42 @@
                             <optgroup label="Torneo TCG">
                                 <option value="tcg_onepiece">One Piece Card Game</option>
                             </optgroup>
+                            <optgroup label="Workshop">
+                                <option value="workshop_cucito">Un punto alla volta (cucito)</option>
+                            </optgroup>
                         </select>
                     </div>
+                </div>
+
+
+                <!-- Promemoria che compare scegliendo il workshop di cucito -->
+                <div id="workshop-note" class="hidden border-[3px] border-black p-5 text-sm leading-relaxed"
+                     style="background: rgba(44,232,200,.10); box-shadow: 0 0 18px rgba(44,232,200,.3);">
+                    <p class="font-extrabold uppercase tracking-widest text-xs mb-3" style="color:#2ce8c8;">
+                        <i class="fa-solid fa-scissors mr-2"></i>Workshop «Un punto alla volta»
+                    </p>
+                    <ul class="space-y-2 list-disc pl-5 text-brand-muted">
+                        <li>Iscriviti entro il <strong class="text-white">3 settembre</strong>: ci serve per sapere quanto materiale procurare.</li>
+                        <li>La mancata iscrizione <strong class="text-white">non preclude la possibilità di partecipare</strong>, ma non si garantisce la presenza del materiale necessario.</li>
+                        <li>Il laboratorio è <strong class="text-white">gratuito</strong> e aperto a tutti i livelli, anche a chi non ha mai cucito.</li>
+                    </ul>
+                </div>
+
+                <!-- Promemoria che compare scegliendo il Contest K-POP -->
+                <div id="kpop-note" class="hidden border-[3px] border-black p-5 text-sm leading-relaxed"
+                     style="background: rgba(255,45,149,.10); box-shadow: 0 0 18px rgba(255,45,149,.3);">
+                    <p class="font-extrabold uppercase tracking-widest text-xs mb-3" style="color:#ff6ec7;">
+                        <i class="fa-solid fa-circle-exclamation mr-2"></i>Contest K-POP — cosa fare dopo l'iscrizione
+                    </p>
+                    <ul class="space-y-2 list-disc pl-5 text-brand-muted">
+                        <li>Entro il <strong class="text-white">31 agosto alle 23:59</strong> invia il brano a
+                            <a href="mailto:Canoversecomicscosplay@gmail.com" class="text-brand-yellow underline">Canoversecomicscosplay@gmail.com</a>,
+                            indicando <strong class="text-white">nome della crew (o del solista)</strong> e <strong class="text-white">titolo del brano</strong>.</li>
+                        <li>Traccia di <strong class="text-white">massimo 5 minuti</strong>, in <strong class="text-white">versione studio</strong>. Mashup e remix ammessi, alle stesse condizioni.</li>
+                        <li>Un solo <strong class="text-white">slot</strong> per crew o solista.</li>
+                        <li>Le crew devono indicare l'<strong class="text-white">età di ogni membro</strong>; per i minorenni serve la liberatoria firmata dai tutori.</li>
+                        <li>Il giorno dell'evento presentati <strong class="text-white">un'ora prima</strong> per la scaletta, altrimenti scatta l'eliminazione diretta.</li>
+                    </ul>
                 </div>
 
                 <div class="space-y-2">
@@ -200,5 +234,19 @@
 
     <!-- Cookie consent (banner GDPR self-hosted) -->
     <script src="src/js/cookieConsent.js"></script>
+    <script>
+        (function () {
+            var sel = document.getElementById('type');
+            var note = document.getElementById('kpop-note');
+            if (!sel || !note) return;
+            var wnote = document.getElementById('workshop-note');
+            function toggle() {
+                note.classList.toggle('hidden', sel.value !== 'kpop');
+                if (wnote) wnote.classList.toggle('hidden', sel.value !== 'workshop_cucito');
+            }
+            sel.addEventListener('change', toggle);
+            toggle();
+        })();
+    </script>
 </body>
 </html>

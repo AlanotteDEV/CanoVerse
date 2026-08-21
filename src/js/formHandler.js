@@ -25,14 +25,16 @@ const CATEGORY_LABELS = {
   cosplay_gruppo: 'Gara Cosplay — Gruppo',
   kpop: 'Contest K-POP',
   tcg_onepiece: 'Torneo One Piece Card Game',
+  workshop_cucito: 'Workshop di cucito «Un punto alla volta»',
 };
 
 // Cosa portare / ricordare, in base alla categoria scelta
 const CATEGORY_NOTES = {
   cosplay_singolo: 'Ricorda: non c\'è sfilata. I giudici in incognito valutano i costumi durante tutta la giornata, la premiazione è a fine serata. Al miglior cosplay in assoluto va un buono Manbaga.',
   cosplay_gruppo: 'Ricorda: non c\'è sfilata. I giudici in incognito valutano i costumi durante tutta la giornata, la premiazione è a fine serata. Al miglior cosplay in assoluto va un buono Manbaga.',
-  kpop: 'Ricorda di portare la tua base musicale. Una giuria qualificata valuterà tecnica, sincronia e presenza scenica: in palio un buono Amazon.',
-  tcg_onepiece: 'Ricorda di portare il tuo mazzo e i token, validi secondo la ban-list ufficiale. Quota di iscrizione: 15 €, da saldare in loco. Ogni partecipante riceve una bustina dell\'espansione corrente.',
+  kpop: 'IMPORTANTE — entro il 31 agosto invia il brano dell\'esibizione a Canoversecomicscosplay@gmail.com, indicando il nome della crew (o del solista) e il titolo del brano. La traccia deve durare al massimo 5 minuti ed essere la versione studio (mashup e remix ammessi, alle stesse condizioni).\nOgni crew o solista può occupare un solo slot in gara.\nSe sei in crew, indica l\'eta di ogni membro: per i minorenni serve la liberatoria firmata dai tutori legali, da consegnare in cartaceo o via email.\nIl giorno dell\'evento presentati in fiera almeno un\'ora prima per l\'organizzazione della scaletta: chi non si presenta entro quell\'ora viene eliminato direttamente.\nValuta una giuria qualificata; al vincitore una coppa.',
+  workshop_cucito: 'Il workshop e gratuito e aperto a tutti i livelli, anche a chi non ha mai cucito. L\'iscrizione serve a organizzare il materiale: chi non si iscrive puo comunque partecipare, ma non possiamo garantire la disponibilita del materiale necessario. Iscrizioni entro il 3 settembre.',
+  tcg_onepiece: 'Quota di iscrizione: 15 €, da saldare in loco. Il regolamento completo del torneo (formato, ban-list, premi e cosa portare) e in fase di definizione: lo pubblicheremo sul sito e ti avviseremo appena disponibile.',
 };
 
 function categoryLabel(code) {
@@ -84,7 +86,7 @@ function buildUserEmailText(formData) {
     formData.message ? 'Note: ' + formData.message : '',
     '',
     '— QUANDO E DOVE —',
-    'Sabato 5 settembre 2026, dalle 10:30 alle 23:30',
+    'Sabato 5 settembre 2026, dalle 10:30 a mezzanotte',
     'Piazza Galluppi — Canosa di Puglia (BT)',
     'Ingresso libero e gratuito.',
     '',

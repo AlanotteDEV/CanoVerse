@@ -393,3 +393,11 @@ details summary { color: #fff !important; }
   box-shadow: 0 0 18px rgba(255, 45, 149, .8);
   transform: translateY(-2px);
 }
+
+/* regolamenti a comparsa */
+.reg-item summary::-webkit-details-marker { display: none; }
+.reg-item summary:hover { background: rgba(44, 232, 200, .07); }
+.reg-item[open] { box-shadow: 0 0 24px rgba(44, 232, 200, .6) !important; }
+.reg-item[open] .faq-arrow { transform: rotate(45deg); }
+.reg-item ul { list-style: disc; padding-left: 1.1rem; }
+.reg-item li { margin-bottom: .35rem; }
