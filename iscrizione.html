@@ -204,8 +204,13 @@
                     </p>
                     <p class="text-brand-muted mb-3">
                         Per partecipare serve il <strong class="text-white">consenso di un genitore o tutore</strong>.
-                        Il modulo contiene anche l'autorizzazione a foto e riprese video, quindi è l'unico da compilare:
-                        non serve la liberatoria immagini separata.
+                        Il modulo contiene anche l'autorizzazione a foto e riprese video, quindi per i minorenni
+                        è l'unico da compilare: non serve la liberatoria maggiorenni separata.
+                    </p>
+                    <p id="minor-docs-group" class="hidden text-brand-muted mb-3">
+                        <i class="fa-solid fa-users mr-1"></i>Siete un gruppo o una crew: serve
+                        <strong class="text-white">un modulo per ogni componente minorenne</strong>,
+                        ciascuno firmato dal proprio genitore o tutore.
                     </p>
                     <p class="mb-4">
                         <a href="consenso-genitori.html" target="_blank" rel="noopener"
@@ -227,18 +232,24 @@
                 <div id="adult-docs" class="hidden border-[3px] border-black p-5 text-sm leading-relaxed"
                      style="background: rgba(44,232,200,.10); box-shadow: 0 0 18px rgba(44,232,200,.3);">
                     <p class="font-extrabold uppercase tracking-widest text-xs mb-3" style="color:#2ce8c8;">
-                        <i class="fa-solid fa-camera mr-2"></i>Foto e video — modulo facoltativo
+                        <i class="fa-solid fa-camera mr-2"></i>Liberatoria maggiorenni — facoltativa
                     </p>
                     <p class="text-brand-muted mb-4">
                         Se vuoi che i tuoi scatti possano comparire sul sito e sui canali social dell'evento,
                         porta al check-in la liberatoria firmata. È <strong class="text-white">facoltativa</strong>:
                         senza, partecipi lo stesso e resti nelle sole foto d'insieme.
                     </p>
+                    <p id="adult-docs-group" class="hidden text-brand-muted mb-4">
+                        <i class="fa-solid fa-users mr-1"></i>Siete un gruppo o una crew: serve
+                        <strong class="text-white">una liberatoria per ogni componente maggiorenne</strong>
+                        che vuole comparire nelle foto. I minorenni non ne hanno bisogno: per loro
+                        l'autorizzazione a foto e video è già dentro il modulo di consenso qui sopra.
+                    </p>
                     <p class="!mb-0">
                         <a href="liberatoria-immagini.html" target="_blank" rel="noopener"
                            class="inline-block bg-brand-yellow text-white text-xs font-bold tracking-widest uppercase px-5 py-3 border-[3px] border-black"
                            style="box-shadow: 0 0 18px rgba(44,232,200,.42);">
-                            <i class="fa-solid fa-download mr-2"></i>Scarica la liberatoria immagini
+                            <i class="fa-solid fa-download mr-2"></i>Scarica la liberatoria maggiorenni
                         </a>
                     </p>
                 </div>
@@ -292,10 +303,12 @@
     <!-- Cookie consent (banner GDPR self-hosted) -->
     <script src="src/js/cookieConsent.js"></script>
     <script>
-        // Mostra le note della categoria scelta e il modulo da portare al
-        // check-in, che dipende dall'età: consenso genitoriale sotto i 18
-        // anni (o se il gruppo include minorenni), liberatoria immagini
-        // sopra. I due riquadri non compaiono mai insieme.
+        // Mostra le note della categoria scelta e i moduli da portare al
+        // check-in, che dipendono dall'età: consenso genitoriale sotto i 18
+        // anni, liberatoria maggiorenni sopra. Per un singolo i due riquadri si
+        // escludono, ma in un gruppo o in una crew convivono minorenni e
+        // maggiorenni: lì devono poter comparire insieme, altrimenti chi
+        // iscrive la crew vede solo il modulo che riguarda sé stesso.
         (function () {
             var sel = document.getElementById('type');
             var age = document.getElementById('age');
@@ -308,6 +321,8 @@
             var minorDocs = document.getElementById('minor-docs');
             var adultDocs = document.getElementById('adult-docs');
             var minorAck = document.getElementById('minor-consent-ack');
+            var minorGroupNote = document.getElementById('minor-docs-group');
+            var adultGroupNote = document.getElementById('adult-docs-group');
 
             var GROUP_CATEGORIES = ['cosplay_gruppo', 'kpop'];
 
@@ -328,10 +343,16 @@
                 var value = parseInt(age.value, 10);
                 var hasAge = !isNaN(value) && value > 0;
                 var withMinors = hasAge && (value < 18 || (isGroup() && groupMinors && groupMinors.checked));
-                var adultsOnly = hasAge && !withMinors;
+                // In un gruppo o in una crew diamo per scontato che ci siano
+                // anche maggiorenni: la liberatoria maggiorenni è facoltativa, e
+                // nasconderla perché chi compila il modulo è minorenne
+                // lascerebbe gli altri componenti senza indicazioni.
+                var withAdults = hasAge && (value >= 18 || isGroup());
 
                 if (minorDocs) minorDocs.classList.toggle('hidden', !withMinors);
-                if (adultDocs) adultDocs.classList.toggle('hidden', !adultsOnly);
+                if (adultDocs) adultDocs.classList.toggle('hidden', !withAdults);
+                if (minorGroupNote) minorGroupNote.classList.toggle('hidden', !isGroup());
+                if (adultGroupNote) adultGroupNote.classList.toggle('hidden', !isGroup());
                 // Il required segue la visibilità: un checkbox nascosto e
                 // obbligatorio bloccherebbe l'invio senza spiegare perché.
                 if (minorAck) {

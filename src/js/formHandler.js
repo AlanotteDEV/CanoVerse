@@ -60,7 +60,7 @@ function documentNote(formData) {
         : 'Portalo con te al check-in: senza modulo firmato non possiamo ammetterti.');
   }
 
-  const base = 'Se vuoi che le tue foto possano comparire sul sito e sui canali social dell\'evento, porta la liberatoria immagini firmata (facoltativa).\n' +
+  const base = 'Se vuoi che le tue foto possano comparire sul sito e sui canali social dell\'evento, porta la liberatoria maggiorenni firmata (facoltativa; ai minorenni non serve, per loro basta il consenso dei genitori).\n' +
     SITE_URL + '/liberatoria-immagini.html';
 
   if (formData.groupHasMinors) {
