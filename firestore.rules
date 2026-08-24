@@ -2,9 +2,13 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // Unico punto in cui è definito chi è l'amministratore. Il confronto è
+    // su email minuscola: Firebase Auth normalizza l'indirizzo, quindi
+    // scriverlo con la maiuscola nelle regole basterebbe a non far
+    // riconoscere più l'admin.
     function isAdmin() {
       return request.auth != null &&
-             request.auth.token.email == 'Canoversecomicscosplay@gmail.com';
+             request.auth.token.email.lower() == 'canoversecomicscosplay@gmail.com';
     }
 
     // Contatore atomico dei posti occupati al torneo One Piece Card Game.
@@ -38,6 +42,9 @@ service cloud.firestore {
         request.resource.data.name is string &&
         request.resource.data.name.size() > 0 &&
         request.resource.data.name.size() <= 80 &&
+        // Elenco chiuso delle categorie: va tenuto allineato al menu
+        // "Categoria" di iscrizione.html, altrimenti chi sceglie una gara
+        // nuova riceve un permission-denied e non riesce a iscriversi.
         request.resource.data.category in ['cosplay_singolo', 'cosplay_gruppo', 'kpop', 'tcg_onepiece', 'workshop_cucito'] &&
         (!('character' in request.resource.data) ||
           (request.resource.data.character is string && request.resource.data.character.size() <= 80)) &&

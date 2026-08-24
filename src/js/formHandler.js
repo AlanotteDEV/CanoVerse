@@ -354,6 +354,20 @@ async function handleFormSubmit(event) {
     }
     if (error && error.message === 'SOLD_OUT') {
       alert(ONE_PIECE_SOLD_OUT_MSG);
+    } else if (error && error.code === 'permission-denied') {
+      // Le Security Rules hanno rifiutato la scrittura: quasi sempre perché
+      // la categoria scelta non è ancora nell'elenco pubblicato su Firebase
+      // (succede quando si aggiunge una gara al sito senza ripubblicare le
+      // regole). Distinguerlo dall'errore generico evita mezz'ora di
+      // caccia al bug lato client, dove non c'è nulla da sistemare.
+      console.error(
+        'Firestore ha rifiutato la categoria "' + formData.category + '". ' +
+        'Controlla che sia nell\'elenco di firestore.rules pubblicato su Firebase.'
+      );
+      alert(
+        'Le iscrizioni per questa categoria non sono ancora attive.\n' +
+        'Scrivi a ' + emailJsConfig.recipientEmail + ' e ti registriamo noi.'
+      );
     } else {
       alert('C\'è stato un problema nell\'invio. Controlla le impostazioni e riprova.');
     }
