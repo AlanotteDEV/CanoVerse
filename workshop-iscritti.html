@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://*.iubenda.com https://www.google.com; style-src 'self' 'unsafe-inline' https://*.iubenda.com; font-src 'self'; img-src 'self' data: https://*.iubenda.com; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://*.iubenda.com https://firebaseappcheck.googleapis.com; frame-src https://www.google.com https://*.iubenda.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <!-- iubenda widget disattivato temporaneamente — banner cookie ora gestito da src/js/cookieConsent.js. Per riattivarlo togliere il commento.
+    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/00b291fc-baed-4e87-878a-51f961bfbd4f.js"></script>
+    -->
+    <title>Iscritti Workshop di cucito — CanoVerse 2026</title>
+    <link rel="icon" type="image/png" href="favicon-cv.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="description" content="Lista aggiornata in tempo reale degli iscritti al Workshop di cucito «Un punto alla volta» di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:url" content="https://canoverse.vercel.app/workshop-iscritti.html">
+    <meta property="og:title" content="Iscritti Workshop di cucito — CanoVerse 2026">
+    <meta property="og:description" content="Lista aggiornata in tempo reale degli iscritti al Workshop di cucito «Un punto alla volta» di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
+    <meta property="og:image" content="https://canoverse.vercel.app/social-preview-logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Iscritti Workshop di cucito — CanoVerse 2026">
+    <meta name="twitter:description" content="Lista aggiornata in tempo reale degli iscritti al Workshop di cucito di CanoVerse 2026, il 5 Settembre a Canosa di Puglia.">
+    <meta name="twitter:image" content="https://canoverse.vercel.app/social-preview-logo.png">
+
+    <script src="src/js/tailwind.min.js"></script>
+
+    <link href="src/css/fonts.css" rel="stylesheet">
+    <link href="src/css/synthwave.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/fontawesome.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        jp: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#07030f',
+                            card: '#150a2b',
+                            border: '#2ce8c8',
+                            muted: '#c3b3e6',
+                            accent: '#ffffff',
+                            yellow: '#19a7b5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    
+        .nav-logo { filter: drop-shadow(0 0 10px rgba(44,232,200,.6)); }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-accent font-sans antialiased">
+
+    <nav class="fixed top-0 left-0 w-full bg-brand-bg border-b-4 border-black z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-widest uppercase flex items-center gap-2 text-white hover:text-white/60 transition-colors">
+                <i class="fa-solid fa-arrow-left text-sm"></i>
+                <img src="logocv.png" alt="" class="nav-mark h-10 md:h-12 w-auto">
+            </a>
+            <a href="iscrizione.html" class="bg-brand-yellow text-white text-xs font-bold tracking-widest uppercase px-5 py-2 transition-colors">
+                Iscriviti
+            </a>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 px-6 max-w-3xl mx-auto">
+
+        <!-- Header -->
+        <div class="mb-12">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl font-jp text-white/25">縫</span>
+                <div>
+                    <p class="text-xs font-bold tracking-widest text-brand-yellow uppercase mb-1">Laboratorio · Gratuito</p>
+                    <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Un punto alla volta</h1>
+                </div>
+            </div>
+            <p class="text-brand-muted text-sm mt-4">Lista aggiornata in tempo reale degli iscritti al workshop di cucito «Un punto alla volta». Il laboratorio è gratuito e aperto a tutti i livelli, anche a chi non ha mai preso in mano ago e filo.</p>
+            <p class="text-brand-muted text-xs mt-2">Il nome indicato all'iscrizione è reso pubblico in questa pagina. Email, età e note aggiuntive non vengono mai pubblicate. Consulta la <a href="privacy.html" class="underline hover:text-brand-yellow" title="Privacy Policy" target="_blank">Privacy Policy</a> per i dettagli sul trattamento dei tuoi dati.</p>
+        </div>
+
+        <!-- Area Admin -->
+        <div class="mb-10 p-4 bg-brand-card/50 border border-brand-border">
+            <div id="admin-logged-out" class="flex flex-wrap items-center gap-2">
+                <input id="admin-email" type="email" placeholder="Email admin" class="admin-field text-sm p-2.5 text-white flex-1 min-w-[160px]">
+                <input id="admin-password" type="password" placeholder="Password" class="admin-field text-sm p-2.5 text-white flex-1 min-w-[140px]">
+                <button id="admin-login-btn" class="text-xs font-bold uppercase tracking-widest border border-brand-border px-3 py-2 hover:border-brand-yellow hover:text-brand-yellow transition-colors">Accedi come Admin</button>
+            </div>
+            <div id="admin-logged-in" class="hidden items-center gap-3">
+                <span class="text-xs text-brand-muted">Admin: <span id="admin-email-label" class="text-brand-yellow"></span></span>
+                <button id="admin-logout-btn" class="text-xs font-bold uppercase tracking-widest border border-brand-border px-3 py-2 hover:border-red-400 hover:text-red-400 transition-colors">Esci</button>
+            </div>
+            <p id="admin-error" class="hidden text-xs text-red-400 mt-2"></p>
+        </div>
+
+        <!-- Contatori -->
+        <div class="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-6 bg-brand-card border border-brand-border flex flex-col justify-center">
+                <p class="text-xs font-bold tracking-widest text-brand-muted uppercase mb-1">Totale Iscritti</p>
+                <p class="text-4xl font-bold"><span id="count-totale">—</span></p>
+            </div>
+            <div class="p-6 bg-brand-card border border-brand-border flex flex-col justify-center">
+                <p class="text-xs font-bold tracking-widest text-brand-muted uppercase mb-1">Partecipazione</p>
+                <p class="text-lg font-bold leading-tight">Gratuita</p>
+                <p class="text-xs text-brand-muted mt-1">Iscrizioni entro il 3 settembre · tutti i livelli</p>
+            </div>
+        </div>
+
+        <!-- Lista iscritti -->
+        <div>
+            <div class="flex items-center justify-between mb-6 border-b border-brand-border pb-4">
+                <h2 class="text-xs font-bold tracking-widest text-brand-muted uppercase">Lista Iscritti</h2>
+                <span class="text-xs text-brand-muted">Aggiornata in tempo reale</span>
+            </div>
+
+            <div id="lista-iscritti" class="space-y-3">
+                <p class="text-brand-muted text-sm py-8 text-center">Caricamento...</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-brand-border bg-brand-bg pt-8 pb-8 px-6 text-center">
+        <div class="flex items-center justify-center gap-6 text-xs text-brand-muted">
+            <a href="privacy.html" class="hover:text-brand-yellow transition-colors" title="Privacy Policy" target="_blank">Privacy Policy</a>
+            <a href="cookie.html" class="hover:text-brand-yellow transition-colors" title="Cookie Policy" target="_blank">Cookie Policy</a>
+            <a href="termini.html" class="hover:text-brand-yellow transition-colors" title="Termini e Condizioni" target="_blank">Termini e Condizioni</a>
+            <a href="https://www.instagram.com/canoverse.games_cosplay/" target="_blank" rel="noopener" class="hover:text-brand-yellow transition-colors" title="Instagram"><i class="fa-brands fa-instagram mr-1.5"></i>Instagram</a>
+            <a href="#" class="iubenda-cs-preferences-link hover:text-brand-yellow transition-colors">Preferenze Cookie</a>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <!-- App Check (anti-abuso). Attivo solo dopo aver inserito la Site Key reCAPTCHA in firebase-config.js — vedi SICUREZZA-SETUP.md -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-check-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="src/js/firebase-config.js"></script>
+
+    <script>
+        let isAdmin = false;
+        let lastDocs = [];
+
+        function renderList() {
+            const lista = document.getElementById('lista-iscritti');
+            const docs = lastDocs;
+
+            if (docs.length === 0) {
+                lista.innerHTML = '<p class="text-brand-muted text-sm py-8 text-center">Nessun iscritto ancora. Sii il primo!</p>';
+                return;
+            }
+
+            lista.innerHTML = '';
+            let i = 1;
+            docs.forEach((d) => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center gap-4 p-4 bg-brand-card border border-brand-border';
+                row.innerHTML = `
+                    <span class="text-xs font-bold text-brand-muted w-6 text-center">${i}</span>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-semibold text-sm truncate">${escapeHtml(d.name)}</p>
+                        ${d.character ? `<p class="text-xs text-brand-muted truncate">${escapeHtml(d.character)}</p>` : ''}
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-widest px-3 py-1 border border-brand-yellow text-brand-yellow">
+                        Cucito
+                    </span>
+                    ${isAdmin ? `<button data-id="${d.id}" class="delete-btn text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 border border-red-400/40 hover:border-red-400 px-3 py-2 transition-colors"><i class="fa-solid fa-trash"></i></button>` : ''}
+                `;
+                lista.appendChild(row);
+                i++;
+            });
+
+            lista.querySelectorAll('.delete-btn').forEach((btn) => {
+                btn.addEventListener('click', async () => {
+                    if (!confirm('Rimuovere questo iscritto dal workshop di cucito?')) return;
+                    btn.disabled = true;
+                    try {
+                        await db.collection('registrations').doc(btn.dataset.id).delete();
+                    } catch (err) {
+                        console.error(err);
+                        alert('Errore durante la rimozione. Riprova.');
+                        btn.disabled = false;
+                    }
+                });
+            });
+        }
+
+        db.collection('registrations')
+            .where('category', '==', 'workshop_cucito')
+            .onSnapshot((snapshot) => {
+                const docs = [];
+                snapshot.forEach((doc) => {
+                    docs.push({ id: doc.id, ...doc.data() });
+                });
+                docs.sort((a, b) => {
+                    const ta = a.timestamp ? a.timestamp.toMillis() : 0;
+                    const tb = b.timestamp ? b.timestamp.toMillis() : 0;
+                    return ta - tb;
+                });
+
+                document.getElementById('count-totale').textContent = snapshot.size;
+
+                lastDocs = docs;
+                renderList();
+            }, (error) => {
+                console.error(error);
+                document.getElementById('lista-iscritti').innerHTML =
+                    '<p class="text-red-400 text-sm py-8 text-center">Errore nel caricamento. Controlla la configurazione Firebase.</p>';
+            });
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        if (auth) {
+            auth.onAuthStateChanged((user) => {
+                isAdmin = !!user;
+                document.getElementById('admin-logged-out').classList.toggle('hidden', isAdmin);
+                document.getElementById('admin-logged-in').classList.toggle('hidden', !isAdmin);
+                document.getElementById('admin-logged-in').classList.toggle('flex', isAdmin);
+                if (isAdmin) document.getElementById('admin-email-label').textContent = user.email;
+                renderList();
+            });
+
+            document.getElementById('admin-login-btn').addEventListener('click', async () => {
+                const email = document.getElementById('admin-email').value.trim();
+                const password = document.getElementById('admin-password').value;
+                const errorEl = document.getElementById('admin-error');
+                errorEl.classList.add('hidden');
+                try {
+                    await auth.signInWithEmailAndPassword(email, password);
+                    document.getElementById('admin-password').value = '';
+                } catch (err) {
+                    console.error(err);
+                    errorEl.textContent = 'Accesso non riuscito. Controlla email e password.';
+                    errorEl.classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('admin-logout-btn').addEventListener('click', () => auth.signOut());
+        }
+    </script>
+
+    <!-- iubenda loader disattivato temporaneamente. Per riattivarlo togliere il commento.
+    <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    -->
+
+    <!-- Cookie consent (banner GDPR self-hosted) -->
+    <script src="src/js/cookieConsent.js"></script>
+</body>
+</html>
