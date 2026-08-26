@@ -19,6 +19,10 @@ const ONE_PIECE_SOLD_OUT_MSG =
   'Siamo spiacenti, i posti per il torneo One Piece Card Game sono esauriti (' +
   ONE_PIECE_MAX + '/' + ONE_PIECE_MAX + ').';
 
+// Segnaposto per chi non autorizza la pubblicazione: la collection
+// registrations e' in lettura pubblica, quindi il nome vero non ci entra.
+const ANONYMOUS_NAME = 'Iscritto anonimo';
+
 // Etichette leggibili delle categorie (nelle email, al posto dei codici)
 const CATEGORY_LABELS = {
   cosplay_singolo: 'Gara Cosplay — Singolo',
@@ -99,6 +103,9 @@ function buildEmailText(formData) {
     'Personaggio / Gioco: ' + (formData.character || 'N/A'),
     'Categoria: ' + categoryLabel(formData.category),
     'Note aggiuntive: ' + (formData.message || 'Nessuna'),
+    'Pubblicazione in lista: ' + (formData.publishConsent
+      ? 'Sì, consenso prestato'
+      : 'NO — sul sito compare come «' + ANONYMOUS_NAME + '»'),
   ];
 
   // In evidenza: sono le iscrizioni per cui al check-in va ritirato un
@@ -135,7 +142,9 @@ function buildUserEmailText(formData) {
     note ? '— DA RICORDARE —' : '',
     note || '',
     '',
-    'Il tuo nome e il personaggio scelto compaiono nella lista pubblica degli iscritti sul sito.',
+    formData.publishConsent
+      ? 'Il tuo nome e il personaggio scelto compaiono nella lista pubblica degli iscritti sul sito.'
+      : 'Non hai autorizzato la pubblicazione: nella lista pubblica compari come «' + ANONYMOUS_NAME + '». Se cambi idea, scrivici e ti aggiorniamo.',
     '',
     '— MODULO DA PORTARE —',
     documentNote(formData),
@@ -161,9 +170,14 @@ async function getOnePieceCount() {
 }
 
 async function saveRegistration(formData) {
+  // Il documento viene creato in ogni caso, anche senza consenso alla
+  // pubblicazione: serve a tenere i contatori degli iscritti e, per il
+  // torneo, il tetto dei posti. Senza consenso non ci finisce nulla di
+  // identificativo.
+  const published = !!formData.publishConsent;
   const registrationData = {
-    name: formData.name,
-    character: formData.character || '',
+    name: published ? formData.name : ANONYMOUS_NAME,
+    character: published ? (formData.character || '') : '',
     category: formData.category,
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   };
@@ -226,6 +240,7 @@ async function handleFormSubmit(event) {
 
   const age = form.querySelector('#age');
   const groupMinors = form.querySelector('#group-has-minors');
+  const publishConsent = form.querySelector('#publish-consent');
 
   const formData = {
     name: name.value.trim(),
@@ -239,6 +254,10 @@ async function handleFormSubmit(event) {
     // solo nell'email all'organizzatore, come l'indirizzo email.
     age: age ? age.value.trim() : '',
     groupHasMinors: !!(groupMinors && groupMinors.checked),
+    // Consenso facoltativo: in sua assenza il nome resta solo nell'email
+    // all'organizzatore e sul database finisce ANONYMOUS_NAME. Se la casella
+    // non c'e' proprio si sceglie l'opzione prudente, cioe' non pubblicare.
+    publishConsent: !!(publishConsent && publishConsent.checked),
   };
 
   const validation = validateForm(form);
