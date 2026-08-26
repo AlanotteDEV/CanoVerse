@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <!--
   ════════════════════════════════════════════════════════════════════
-  BOZZA — Cookie Policy self-hosted, allineata alle categorie del banner
+  Cookie Policy self-hosted, allineata alle categorie del banner
   (src/js/cookieConsent.js) e ai servizi realmente usati dal sito.
 
-  ⚠️ DA SOTTOPORRE A REVISIONE LEGALE PRIMA DELLA PUBBLICAZIONE DEFINITIVA.
   Se in futuro vengono attivati strumenti statistici o altri servizi,
   aggiornare la tabella e le categorie qui sotto.
   ════════════════════════════════════════════════════════════════════
@@ -83,7 +82,7 @@
         <div class="max-w-3xl mx-auto legal">
             <h1 class="text-3xl md:text-4xl font-black tracking-tight mb-3">Cookie Policy</h1>
             <p class="text-sm text-brand-muted">Redatta secondo le Linee guida del Garante Privacy sull’uso dei cookie (10 giugno 2021) e la direttiva ePrivacy.</p>
-            <p class="text-sm text-brand-muted">Ultimo aggiornamento: <strong>21 agosto 2026</strong></p>
+            <p class="text-sm text-brand-muted">Ultimo aggiornamento: <strong>26 agosto 2026</strong></p>
 
             <h2>1. Cosa sono i cookie</h2>
             <p>I cookie sono piccoli file di testo che i siti salvano sul tuo dispositivo. Insieme ad altri strumenti simili (es. <em>localStorage</em>) permettono di far funzionare il sito, ricordare le tue scelte o abilitare contenuti di terze parti. Il Titolare del trattamento è <strong>Manbaga Comics &amp; Games di Lapia Antonio Carmine</strong> (vedi <a href="privacy.html">Privacy Policy</a>).</p>
@@ -117,7 +116,7 @@
             <p class="text-sm text-brand-muted"><em>Le due librerie caricate da CDN (<code>gstatic.com</code> e <code>cdn.jsdelivr.net</code>) comportano la trasmissione dell’indirizzo IP al relativo fornitore per il solo funzionamento tecnico del sito. Font, icone e fogli di stile sono invece ospitati direttamente sui nostri server e non generano alcuna richiesta verso terzi.</em></p>
 
             <h2>4. Come gestire il consenso</h2>
-            <p>Al primo accesso compare un banner che ti permette di <strong>accettare tutti</strong>, <strong>rifiutare tutti</strong> (restano solo i necessari) o <strong>personalizzare</strong> le categorie. Nessun cookie non necessario viene attivato senza il tuo consenso.</p>
+            <p>Al primo accesso compare un banner che ti permette di <strong>accettare tutti</strong>, <strong>rifiutare tutti</strong> (restano solo i necessari) o <strong>personalizzare</strong> le categorie. Puoi anche chiuderlo con la <strong>«✕»</strong> in alto a destra: equivale a non prestare alcun consenso — restano attivi i soli cookie necessari, nulla viene registrato e il banner ti sarà riproposto alla visita successiva. Nessun cookie non necessario viene attivato senza il tuo consenso.</p>
             <p>Puoi modificare o revocare le tue scelte in qualsiasi momento — con la stessa facilità con cui le hai prestate — aprendo il pannello <a href="#" class="cookie-preferences-link">Preferenze Cookie</a>, disponibile in fondo a ogni pagina. La tua scelta viene ricordata per <strong>180 giorni</strong>, dopodiché il banner viene riproposto.</p>
 
             <div class="box">
@@ -157,6 +156,12 @@
     </footer>
 
     <!-- Cookie consent (banner GDPR self-hosted) -->
+    <!-- Firebase: serve unicamente a registrare la prova del consenso cookie
+         (Privacy Policy, punto 1f). Senza questi script cookieConsent.js non
+         trova il database e la scelta non verrebbe verbalizzata. -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="src/js/firebase-config.js"></script>
     <script src="src/js/cookieConsent.js"></script>
 </body>
 </html>

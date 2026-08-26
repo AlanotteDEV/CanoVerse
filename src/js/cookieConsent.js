@@ -64,8 +64,11 @@
   // Se Firebase non è presente sulla pagina (es. privacy/cookie), viene saltato.
   function logConsent(data) {
     try {
-      if (!window.db || !window.firebase || !firebase.firestore) return;
-      window.db.collection('cookie_consents').add({
+      // Il database puo' arrivare come window.db o come binding globale `db`
+      // (le `const` di firebase-config.js non finiscono su window).
+      var store = window.db || (typeof db !== 'undefined' ? db : null);
+      if (!store || !window.firebase || !firebase.firestore) return;
+      store.collection('cookie_consents').add({
         necessary: true,
         statistics: !!data.statistics,
         thirdparty: !!data.thirdparty,
@@ -158,6 +161,8 @@
       /* Banner */
       '.cvc-banner{position:fixed;z-index:2147483000;left:16px;right:16px;bottom:16px;margin:0 auto;max-width:560px;background:var(--cvc-bg);border:2px solid var(--cvc-line);box-shadow:0 0 0 2px rgba(0,0,0,.6),0 0 26px rgba(44,232,200,.4);padding:22px 22px 18px;animation:cvc-in .35s cubic-bezier(.2,.9,.3,1.2);}',
       '@keyframes cvc-in{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}',
+      '.cvc-x{position:absolute;top:6px;right:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;padding:0;border:none;background:none;color:var(--cvc-muted);font-size:19px;font-weight:800;line-height:1;cursor:pointer;}',
+      '.cvc-x:hover{color:var(--cvc-line);}',
       '.cvc-badge{display:inline-flex;align-items:center;gap:7px;background:var(--cvc-yellow);border:2px solid rgba(0,0,0,.4);color:#fff;font-weight:800;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;margin-bottom:12px;}',
       '.cvc-title{font-size:19px;font-weight:800;color:var(--cvc-ink);margin:0 0 6px;letter-spacing:-.01em;}',
       '.cvc-text{font-size:13.5px;line-height:1.55;color:var(--cvc-muted);margin:0 0 16px;}',
@@ -224,6 +229,9 @@
     b.setAttribute('aria-live', 'polite');
     b.setAttribute('aria-label', 'Informativa cookie');
     b.innerHTML =
+      // La "X" prevista dalle Linee guida del Garante: chiude senza prestare
+      // alcun consenso, quindi nulla viene salvato e il banner ricompare.
+      '<button type="button" class="cvc-x" data-cvc="close" aria-label="Chiudi senza acconsentire" title="Chiudi senza acconsentire">\u2715</button>' +
       '<span class="cvc-badge">🍪 Cookie</span>' +
       '<h2 class="cvc-title">Rispettiamo la tua privacy</h2>' +
       '<p class="cvc-text">Usiamo cookie tecnici necessari al funzionamento del sito e, previo tuo consenso, ' +
@@ -245,6 +253,7 @@
       hideBanner();
     });
     b.querySelector('[data-cvc="customize"]').addEventListener('click', openPreferences);
+    b.querySelector('[data-cvc="close"]').addEventListener('click', hideBanner);
     bannerEl = b;
     return b;
   }

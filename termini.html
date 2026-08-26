@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <!--
   ════════════════════════════════════════════════════════════════════
-  BOZZA — Termini e Condizioni d'uso del sito CanoVerse e regole di
+  Termini e Condizioni d'uso del sito CanoVerse e regole di
   partecipazione all'evento (ingresso gratuito, iscrizione a gara
   cosplay e torneo TCG). Titolare/Organizzatore: Manbaga Comics & Games
   di Lapia Antonio Carmine.
-
-  ⚠️ DA SOTTOPORRE A REVISIONE LEGALE PRIMA DELLA PUBBLICAZIONE DEFINITIVA.
   ════════════════════════════════════════════════════════════════════
 -->
 <html lang="it" class="scroll-smooth">
@@ -204,6 +202,12 @@
     </footer>
 
     <!-- Cookie consent (banner GDPR self-hosted) -->
+    <!-- Firebase: serve unicamente a registrare la prova del consenso cookie
+         (Privacy Policy, punto 1f). Senza questi script cookieConsent.js non
+         trova il database e la scelta non verrebbe verbalizzata. -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="src/js/firebase-config.js"></script>
     <script src="src/js/cookieConsent.js"></script>
 </body>
 </html>

@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <!--
   ════════════════════════════════════════════════════════════════════
-  BOZZA — Liberatoria per l'uso di immagini e riprese video, per
+  Liberatoria per l'uso di immagini e riprese video, per
   partecipanti maggiorenni. Si consegna al check-in o si invia firmata
   all'indirizzo dell'Organizzatore.
   Per i minori vale invece consenso-genitori.html, che contiene già la
   casella su foto e video.
   Titolare: Manbaga Comics & Games di Lapia Antonio Carmine.
-  ⚠️ DA SOTTOPORRE A REVISIONE LEGALE PRIMA DELL'USO DEFINITIVO.
   ════════════════════════════════════════════════════════════════════
 -->
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <title>Liberatoria Maggiorenni — CanoVerse 2026</title>
     <link rel="icon" type="image/png" href="favicon-cv.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -136,6 +135,12 @@
     </div>
 
     <!-- Cookie consent (banner GDPR self-hosted) -->
+    <!-- Firebase: serve unicamente a registrare la prova del consenso cookie
+         (Privacy Policy, punto 1f). Senza questi script cookieConsent.js non
+         trova il database e la scelta non verrebbe verbalizzata. -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="src/js/firebase-config.js"></script>
     <script src="src/js/cookieConsent.js"></script>
 </body>
 </html>

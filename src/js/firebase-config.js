@@ -21,7 +21,10 @@ firebase.initializeApp(firebaseConfig);
    sito. Per attivarlo, segui i passi in  SICUREZZA-SETUP.md :
      1) crea una chiave reCAPTCHA v3 e incolla la Site Key in APPCHECK_RECAPTCHA_SITE_KEY;
      2) registra l'app in Firebase Console → App Check con quella chiave;
-     3) abilita l'enforcement su Cloud Firestore.
+     3) abilita l'enforcement su Cloud Firestore;
+     4) aggiorna la Cookie Policy: reCAPTCHA v3 e' uno strumento Google
+        e va aggiunto alla tabella di  cookie.html  (categoria Necessari,
+        finalita' anti-abuso) e all'elenco fornitori di  privacy.html .
    Finché il placeholder non viene sostituito, il blocco if è falso e il
    codice viene saltato: nessun errore, nessuna richiesta bloccata.
    ══════════════════════════════════════════════════════════════════ */
@@ -37,3 +40,9 @@ if (typeof firebase.appCheck === 'function' &&
 
 const db = firebase.firestore();
 const auth = (typeof firebase.auth === 'function') ? firebase.auth() : null;
+
+/* Le dichiarazioni `const` NON diventano proprieta di window: senza queste due
+   righe `window.db` resta undefined e cookieConsent.js salta la registrazione
+   della prova del consenso (art. 7 GDPR) su ogni pagina del sito. */
+window.db = db;
+window.auth = auth;
