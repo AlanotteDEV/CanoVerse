@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { handleFormSubmit, validateForm, isValidEmail, buildEmailText, documentNote } = require('../src/js/formHandler');
+const { handleFormSubmit, validateForm, isValidEmail, buildEmailText, buildUserEmailText, documentNote } = require('../src/js/formHandler');
 
 describe('formHandler', () => {
   // ── handleFormSubmit ──────────────────────────────────────────────
@@ -540,6 +540,187 @@ describe('formHandler', () => {
     test('should flag a group that includes other minors', () => {
       const text = buildEmailText({ ...base, age: '22', category: 'cosplay_gruppo', groupHasMinors: true });
       expect(text).toContain('ALTRI MINORENNI');
+    });
+  });
+
+  // ── Consenso alla pubblicazione nelle liste iscritti ───────────────
+
+  describe('handleFormSubmit — consenso alla pubblicazione', () => {
+    // Gli spy sui due punti di scrittura: `addSpy` per le iscrizioni
+    // normali, `transactionSet` per il torneo. È lì che si vede cosa
+    // finisce davvero nella collection a lettura pubblica.
+    let addSpy;
+    let transactionSet;
+
+    function mockDb() {
+      addSpy = jest.fn().mockResolvedValue({ id: 'mock-id' });
+      transactionSet = jest.fn();
+      return {
+        collection: jest.fn(() => ({
+          add: addSpy,
+          doc: jest.fn(() => ({
+            id: 'mock-doc-id',
+            get: jest.fn().mockResolvedValue({ exists: true, data: () => ({ count: 0 }) }),
+          })),
+        })),
+        runTransaction: jest.fn(async (updateFn) =>
+          updateFn({
+            get: jest.fn().mockResolvedValue({ exists: true, data: () => ({ count: 0 }) }),
+            update: jest.fn(),
+            set: transactionSet,
+          })
+        ),
+      };
+    }
+
+    // `consent`: true = casella presente e spuntata, false = presente e
+    // non spuntata, null = casella assente dal markup.
+    function renderForm(consent) {
+      const checkbox = consent === null
+        ? ''
+        : '<input type="checkbox" id="publish-consent" ' + (consent ? 'checked' : '') + ' />';
+      document.body.innerHTML = `
+        <form id="cosplayForm" onsubmit="handleFormSubmit(event)">
+          <input id="name" value="Mario Rossi" />
+          <input id="email" value="mario@example.com" />
+          <input id="character" value="Monkey D. Rufy" />
+          <select id="type"><option value="cosplay_singolo" selected>Cosplay Singolo</option></select>
+          <textarea id="message"></textarea>
+          ${checkbox}
+          <button type="submit">Invia</button>
+        </form>
+        <div id="successMessage" class="hidden"></div>
+      `;
+    }
+
+    beforeEach(() => {
+      Element.prototype.scrollIntoView = jest.fn();
+      window.alert = jest.fn();
+      window.emailjs = { init: jest.fn(), send: jest.fn().mockResolvedValue({}) };
+      window.emailjsInitDone = false;
+      window.firebase = {
+        firestore: { FieldValue: { serverTimestamp: jest.fn(() => 'MOCK_TIMESTAMP') } },
+      };
+      window.db = mockDb();
+    });
+
+    afterEach(() => {
+      delete window.emailjs;
+      delete window.emailjsInitDone;
+      delete window.firebase;
+      delete window.db;
+      delete window.alert;
+    });
+
+    test('should publish name and character when consent is given', async () => {
+      renderForm(true);
+      await handleFormSubmit({ preventDefault: jest.fn() });
+
+      expect(addSpy).toHaveBeenCalledWith(expect.objectContaining({
+        name: 'Mario Rossi',
+        character: 'Monkey D. Rufy',
+      }));
+    });
+
+    test('should store a placeholder instead of the name when consent is withheld', async () => {
+      renderForm(false);
+      await handleFormSubmit({ preventDefault: jest.fn() });
+
+      const saved = addSpy.mock.calls[0][0];
+      expect(saved.name).toBe('Iscritto anonimo');
+      expect(saved.character).toBe('');
+    });
+
+    test('should never let identifying data reach Firestore without consent', async () => {
+      renderForm(false);
+      await handleFormSubmit({ preventDefault: jest.fn() });
+
+      // La collection registrations è in lettura pubblica: senza consenso
+      // qui non deve finire nulla di identificativo, nemmeno di rimbalzo
+      // in un campo diverso da quello previsto.
+      const saved = JSON.stringify(addSpy.mock.calls[0][0]);
+      expect(saved).not.toContain('Mario Rossi');
+      expect(saved).not.toContain('Monkey D. Rufy');
+      expect(saved).not.toContain('mario@example.com');
+    });
+
+    test('should default to not publishing when the checkbox is missing', async () => {
+      // Se il markup perde la casella (refuso, pagina vecchia in cache),
+      // l'opzione prudente è non pubblicare: meglio una lista anonima che
+      // un nome pubblicato senza che nessuno l'abbia autorizzato.
+      renderForm(null);
+      await handleFormSubmit({ preventDefault: jest.fn() });
+
+      expect(addSpy.mock.calls[0][0].name).toBe('Iscritto anonimo');
+    });
+
+    test('should still register the participant when consent is withheld', async () => {
+      // Il consenso è facoltativo: senza, l'iscrizione vale comunque e il
+      // documento serve a tenere i contatori degli iscritti.
+      renderForm(false);
+      await handleFormSubmit({ preventDefault: jest.fn() });
+
+      expect(addSpy).toHaveBeenCalledTimes(1);
+      const successMsg = document.getElementById('successMessage');
+      expect(successMsg.classList.contains('hidden')).toBe(false);
+    });
+
+    test('should anonymise the tournament registration too', async () => {
+      // Il torneo non passa da collection.add() ma dalla transazione: è un
+      // secondo punto di scrittura, e deve rispettare lo stesso consenso.
+      renderForm(false);
+      document.getElementById('type').innerHTML =
+        '<option value="tcg_onepiece" selected>One Piece Card Game</option>';
+      await handleFormSubmit({ preventDefault: jest.fn() });
+
+      expect(transactionSet).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.objectContaining({ name: 'Iscritto anonimo', character: '' })
+      );
+    });
+
+    test('should send the real name to the organisers even without consent', async () => {
+      // L'organizzatore ha bisogno del nome vero per il check-in: il
+      // consenso riguarda la pubblicazione, non l'iscrizione in sé.
+      renderForm(false);
+      await handleFormSubmit({ preventDefault: jest.fn() });
+
+      const adminParams = window.emailjs.send.mock.calls[0][2];
+      expect(adminParams.from_name).toBe('Mario Rossi');
+      expect(adminParams.message).toContain('Mario Rossi');
+    });
+  });
+
+  // ── Testi email: come viene comunicato il consenso ─────────────────
+
+  describe('buildEmailText / buildUserEmailText — consenso alla pubblicazione', () => {
+    const base = {
+      name: 'Mario Rossi',
+      email: 'mario@example.com',
+      character: 'Monkey D. Rufy',
+      category: 'cosplay_singolo',
+      message: '',
+      age: '22',
+    };
+
+    test('should tell the organisers that consent was given', () => {
+      expect(buildEmailText({ ...base, publishConsent: true }))
+        .toContain('Pubblicazione in lista: Sì');
+    });
+
+    test('should warn the organisers that the public entry is anonymous', () => {
+      expect(buildEmailText({ ...base, publishConsent: false }))
+        .toContain('Iscritto anonimo');
+    });
+
+    test('should confirm publication to a consenting registrant', () => {
+      expect(buildUserEmailText({ ...base, publishConsent: true }))
+        .toContain('compaiono nella lista pubblica');
+    });
+
+    test('should explain the anonymous entry to a non-consenting registrant', () => {
+      expect(buildUserEmailText({ ...base, publishConsent: false }))
+        .toContain('Iscritto anonimo');
     });
   });
 });
