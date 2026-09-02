@@ -163,6 +163,21 @@
                 </div>
 
                 <!-- Promemoria che compare scegliendo il Contest K-POP -->
+                <div id="cosplay-note" class="hidden border-[3px] border-black p-5 text-sm leading-relaxed"
+                     style="background: rgba(44,232,200,.10); box-shadow: 0 0 18px rgba(44,232,200,.3);">
+                    <p class="font-extrabold uppercase tracking-widest text-xs mb-3" style="color:#2ce8c8;">
+                        <i class="fa-solid fa-circle-exclamation mr-2"></i>Gara Cosplay — cosa fare dopo l'iscrizione
+                    </p>
+                    <ul class="space-y-2 list-disc pl-5 text-brand-muted">
+                        <li>Le iscrizioni <strong class="text-white">non hanno scadenza</strong>: restano aperte fino al giorno dell'evento, salvo chiusura anticipata al raggiungimento di <strong class="text-white">30 partecipanti</strong>.</li>
+                        <li>Invia a <a href="mailto:Canoversecomicscosplay@gmail.com" class="text-brand-yellow underline">Canoversecomicscosplay@gmail.com</a>
+                            l'<strong class="text-white">immagine del personaggio</strong> e la <strong class="text-white">base audio o video</strong> dell'esibizione.</li>
+                        <li>A iscrizione conclusa non si possono più cambiare personaggio, traccia, ordine di esibizione o composizione del gruppo.</li>
+                        <li><strong class="text-white">Pre-judging alle 18:00</strong>, a bordo pista: la giuria osserva il costume da vicino. Chi non si presenta è <strong class="text-white">escluso</strong>.</li>
+                        <li>Esibizione cronometrata: <strong class="text-white">1 minuto</strong> da solo, <strong class="text-white">2</strong> in coppia, <strong class="text-white">3</strong> fino a 5 persone, <strong class="text-white">4</strong> da 6 in su.</li>
+                    </ul>
+                </div>
+
                 <div id="kpop-note" class="hidden border-[3px] border-black p-5 text-sm leading-relaxed"
                      style="background: rgba(255,45,149,.10); box-shadow: 0 0 18px rgba(255,45,149,.3);">
                     <p class="font-extrabold uppercase tracking-widest text-xs mb-3" style="color:#ff6ec7;">
@@ -318,6 +333,7 @@
             var age = document.getElementById('age');
             if (!sel || !age) return;
 
+            var cosplayNote = document.getElementById('cosplay-note');
             var kpopNote = document.getElementById('kpop-note');
             var workshopNote = document.getElementById('workshop-note');
             var groupWrap = document.getElementById('group-minors-wrap');
@@ -333,6 +349,12 @@
             function isGroup() { return GROUP_CATEGORIES.indexOf(sel.value) !== -1; }
 
             function toggle() {
+                if (cosplayNote) {
+                    cosplayNote.classList.toggle(
+                        'hidden',
+                        sel.value !== 'cosplay_singolo' && sel.value !== 'cosplay_gruppo'
+                    );
+                }
                 if (kpopNote) kpopNote.classList.toggle('hidden', sel.value !== 'kpop');
                 if (workshopNote) workshopNote.classList.toggle('hidden', sel.value !== 'workshop_cucito');
 
